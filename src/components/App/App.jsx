@@ -5,7 +5,7 @@ import DashboardPage from '../../pages/DashBoardPage'
 import LoginPage from '../../pages/LoginPage'
 import RegistationPage from '../../pages/RegistationPage'
 import RestrictedRoute from '../RestrictedRoute'
-import StatisticsTab from '../StatisticsTab/StatisticsTab'
+import StatisticsTab from '../../pages/StatisticsTab'
 
 function App() {
 
