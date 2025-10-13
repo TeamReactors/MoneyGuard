@@ -7,6 +7,7 @@ import RegistationPage from '../../pages/RegistationPage'
 import RestrictedRoute from '../RestrictedRoute'
 import StatisticsTab from '../../pages/StatisticsTab'
 import CurrencyTab from '../CurrencyTab/CurrencyTab'
+import PrivateRoute from '../PrivateRoute'
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
     <div className={styles.App}>
       <Suspense>
         <Routes>
-          <Route path="/" element={<RestrictedRoute redirectTo="/login"><DashboardPage /></RestrictedRoute>}>
+          <Route path="/" element={<PrivateRoute redirectTo="/login"><DashboardPage /></PrivateRoute>}>
           </Route>
           <Route path="/login" element={<RestrictedRoute redirectTo="/"><LoginPage /></RestrictedRoute>}>
           </Route>
