@@ -6,6 +6,7 @@ import LoginPage from '../../pages/LoginPage'
 import RegistationPage from '../../pages/RegistationPage'
 import RestrictedRoute from '../RestrictedRoute'
 import StatisticsTab from '../../pages/StatisticsTab'
+import CurrencyTab from '../CurrencyTab/CurrencyTab'
 
 function App() {
 
@@ -22,6 +23,8 @@ function App() {
           </Route>
           <Route path="/statistics" element={<StatisticsTab />} />
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/currency" element={<CurrencyTab />} />
+          <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </Suspense>
     </div>
