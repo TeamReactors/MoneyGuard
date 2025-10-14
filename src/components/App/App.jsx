@@ -7,6 +7,8 @@ import RestrictedRoute from '../RestrictedRoute'
 import StatisticsTab from '../../pages/StatisticsTab'
 import CurrencyTab from '../CurrencyTab/CurrencyTab'
 import PrivateRoute from '../PrivateRoute'
+import Header from '../Header/Header'
+import Navigation from '../Navigation/Navigation'
 
 const LoginPage = lazy(() => import("../../pages/LoginPage"))
 
@@ -24,6 +26,7 @@ function App() {
           <Route path="/register" element={<RestrictedRoute redirectTo="/"><RegistationPage /></RestrictedRoute>}>
           </Route>
           <Route path="/statistics" element={<StatisticsTab />} />
+          <Route path="/header" element={<Header />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/currency" element={<CurrencyTab />} />
           <Route path="*" element={<div>404 Not Found</div>} />
