@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'react'
 import styles from './App.module.css'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import DashboardPage from '../../pages/DashBoardPage'
+import DashboardPage from '../../pages/DashboardPage'
 import RegistationPage from '../../pages/RegistationPage'
 import RestrictedRoute from '../RestrictedRoute'
 import StatisticsTab from '../../pages/StatisticsTab'
