@@ -1,11 +1,22 @@
-import React from 'react'
+import { RegistrationForm } from "../components/RegistrationForm/RegistrationForm";
 
-const RegistationPage = () => {
-    return (
+export default function RegistrationPage() {
+  return (
+    <section>
+      <div>
         <div>
-            <p>Registation Page</p>
+          <img
+            src="/assets/logo.svg"
+            alt="Money Guard logo"
+          />
+          <h1>Money Guard</h1>
+          <p>
+            Take control of your finances with ease and clarity.
+          </p>
         </div>
-    )
-}
 
-export default RegistationPage
+        <RegistrationForm />
+      </div>
+    </section>
+  );
+}
