@@ -4,6 +4,9 @@ import * as Yup from "yup";
 import { Formik, Field, Form,ErrorMessage } from 'formik';
 import { useId } from "react";
 import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { MdEmail } from "react-icons/md";
+import { RiLockPasswordFill } from "react-icons/ri";
 
 const initialValues = {
     email: "",
@@ -30,22 +33,24 @@ const LoginForm = () => {
 
 
     return (
-        <>
+        <div className={css.login}>
             <h1>Money Guard</h1>
             <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={FeedBackSchema}>
                 <Form className={css.form}>
-                    <label htmlFor={emailField}></label>
-                    <Field type="email" id={emailField} name="email"></Field>
-                    <ErrorMessage name="email" component="span" />
+                    
+                    <label className={css.email} htmlFor={emailField}><MdEmail className={css.mail} /> E-mail</label>
+                    <Field type="email" id={emailField} name="email" placeholder="E-mail"></Field>
+                    <ErrorMessage className={css.error} name="email" component="span" />
 
-                    <label htmlFor={passwordField}></label>
+                    <label className={css.password} htmlFor={passwordField}><RiLockPasswordFill className={css.lock} />Password</label>
                     <Field type="password" id={passwordField} name="password"></Field>
-                    <ErrorMessage name="password" component="span" />
+                    <ErrorMessage className={css.error} name="password" component="span" />
 
                     <button type="submit">LOG IN</button>
+                    <NavLink className={css.link} to="/register">REGISTER</NavLink>
                 </Form>
             </Formik>
-        </>
+        </div>
     )
 }
 
