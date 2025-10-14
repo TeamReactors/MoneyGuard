@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<RestrictedRoute redirectTo="/dashboard" component={<LoginPage />} />} />
-          <Route path="/register" element={<RestrictedRoute redirectTo="/"><RegistationPage /></RestrictedRoute>} />
+          <Route path="/register" element={<RestrictedRoute redirectTo="/dashboard" component={<RegistationPage />} />} />
           <Route path="/statistics" element={<StatisticsTab />} />
           <Route path="/dashboard" element={<PrivateRoute redirectTo="/login"><DashboardPage /></PrivateRoute>} />
           <Route path="/currency" element={<CurrencyTab />} />
