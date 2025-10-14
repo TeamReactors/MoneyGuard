@@ -1,12 +1,256 @@
-.form{
+.login {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
-    border-radius: 16px;
-    padding: 30px;
-    background-color: rgb(49, 44, 73);
+    transform: translate(-50%, -50%);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.login h1 {
+    text-align: center;
+    font-size: 2rem;
+    background: linear-gradient(to right, rgb(216, 144, 97), rgb(181, 96, 149));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.form {
+    position: relative;
+    border-radius: 12px;
+    padding: 60px 50px 40px;
+    background: linear-gradient(145deg, rgb(49, 44, 73), rgb(40, 36, 60));
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2.5rem;
+    margin-top: 1rem;
+    width: 533px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: formSlideUp 0.7s ease-out;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes formSlideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Input container */
+.form input {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    border-bottom: 1px solid rgba(220, 220, 220, 0.3);
+    width: 100%;
+    padding: 15px 15px 15px 15px;
+    background-color: transparent;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.form input:focus {
+    outline: none;
+    border-bottom-color: rgb(181, 96, 149);
+    box-shadow: 0 2px 0 rgba(181, 96, 149, 0.2);
+}
+
+.form input::placeholder {
+    color: transparent;
+    /* Placeholder'ı gizle */
+}
+
+/* Label ve iconları INPUT'UN İÇİNE yerleştir - INPUT'dan önce gelmeli */
+.form label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Icon styles */
+.form .mail,
+.form .lock {
+    font-size: 1.25rem;
+    color: rgb(181, 96, 149);
+    transition: all 0.3s ease;
+}
+
+/* Focus durumunda label ve icon yukarı çıkacak */
+.form input:focus~label,
+.form input:not(:placeholder-shown)~label {
+    top: -10px;
+    left: 10px;
+    font-size: 0.8rem;
+    color: rgb(181, 96, 149);
+    background: linear-gradient(145deg, rgb(49, 44, 73), rgb(40, 36, 60));
+    padding: 0 8px;
+}
+
+.form input:focus~label .mail,
+.form input:focus~label .lock,
+.form input:not(:placeholder-shown)~label .mail,
+.form input:not(:placeholder-shown)~label .lock {
+    color: rgb(216, 144, 97);
+    transform: scale(1.1);
+}
+
+.form button {
+    display: block;
+    margin: auto;
+    padding: 12px;
+    border-radius: 30px;
+    background: linear-gradient(to right, rgb(216, 144, 97), rgb(181, 96, 149));
+    color: white;
+    border: none;
+    margin-top: 2rem;
+    width: 80%;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(181, 96, 149, 0.4);
+}
+
+.form button:active {
+    transform: translateY(0);
+}
+
+.form button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.form button:hover::before {
+    left: 100%;
+}
+
+.link {
+    display: block;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 12px;
+    border-radius: 30px;
+    width: 80%;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 500;
+}
+
+.link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    color: rgb(216, 144, 97);
+}
+
+.error {
+    color: #ff6b6b;
+    font-size: 0.85rem;
+    padding-left: 10px;
+    margin-top: 5px;
+    height: 20px;
+    display: block;
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+.error::before {
+    content: "*";
+    margin-right: 4px;
+}
+
+/* Input wrapper ekle */
+.form>div {
+    position: relative;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .form {
+        width: 90vw;
+        padding: 40px 30px 30px;
+    }
+
+    .form label {
+        left: 10px;
+    }
+
+    .form input:focus~label,
+    .form input:not(:placeholder-shown)~label {
+        left: 5px;
+    }
 }
