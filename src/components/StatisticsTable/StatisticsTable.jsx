@@ -1,17 +1,35 @@
 import css from "./StatisticsTable.module.css";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { transactionsSummary } from "../../redux/transactions/operations";
+import { colorSelect } from "../Chart/colorSelect";
 
 function StatisticsTable() {
-  const categoryList = [
-    { color: "red", name: "Main expenses", amount: 0 },
-    { color: "red", name: "Main expenses", amount: 0 },
-    { color: "red", name: "Main expenses", amount: 0 },
-    { color: "red", name: "Main expenses", amount: 0 },
-    { color: "red", name: "Main expenses", amount: 0 },
-    { color: "red", name: "Main expenses", amount: 0 },
-    { color: "red", name: "Main expenses", amount: 0 },
-    { color: "red", name: "Main expenses", amount: 0 },
-    { color: "red", name: "Main expenses", amount: 0 },
-  ];
+  const transactionsSummaryData = useSelector(
+    (state) => state.transactions.transactionsSummary
+  );
+
+  const date = useSelector((state) => state.transactions.date);
+  const categoryList = [];
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(transactionsSummary(date));
+  }, [date]);
+
+  colorSelect;
+
+  async function listCreate() {
+    transactionsSummaryData.categoriesSummary.map((category) => {
+      categoryList.push({
+        color: colorSelect(category.name),
+        name: category.name,
+        amount: category.total,
+      });
+    });
+  }
+  listCreate();
+
   return (
     <div className={css.area}>
       <div className={css.topBox}>
@@ -20,7 +38,7 @@ function StatisticsTable() {
       </div>
       <ul className={css.list}>
         {categoryList.map((category) => (
-          <li className={css.category}>
+          <li key={category.name} className={css.category}>
             <div
               className={css.box}
               style={{ backgroundColor: category.color }}
@@ -35,11 +53,11 @@ function StatisticsTable() {
       <div className={css.total}>
         <div className={css.totalValue}>
           <p>Expenses:</p>
-          <p className={css.evalue}>0</p>
+          <p className={css.evalue}>{transactionsSummaryData.expenseSummary}</p>
         </div>
         <div className={css.totalValue}>
           <p>Income:</p>
-          <p className={css.ivalue}>0</p>
+          <p className={css.ivalue}>{transactionsSummaryData.incomeSummary}</p>
         </div>
       </div>
     </div>
