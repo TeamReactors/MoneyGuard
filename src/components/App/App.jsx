@@ -7,22 +7,24 @@ import RestrictedRoute from '../RestrictedRoute'
 import StatisticsTab from '../../pages/StatisticsTab'
 import CurrencyTab from '../CurrencyTab/CurrencyTab'
 import PrivateRoute from '../PrivateRoute'
+import Header from '../Header/Header'
+import Navigation from '../Navigation/Navigation'
 
 const LoginPage = lazy(() => import("../../pages/LoginPage"))
 
 function App() {
-
-
   return (
     <div className={styles.App}>
       <Suspense fallback={null}>
         <Routes>
+          <Route path="/nav" element={ <Navigation />} />
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<RestrictedRoute redirectTo="/dashboard" component={<LoginPage />} />} />
           <Route path="/register" element={<RestrictedRoute redirectTo="/dashboard" component={<RegistationPage />} />} />
           <Route path="/statistics" element={<StatisticsTab />} />
           <Route path="/dashboard" element={<PrivateRoute redirectTo="/login"><DashboardPage /></PrivateRoute>} />
           <Route path="/currency" element={<CurrencyTab />} />
+           <Route path="/header" element={<Header />} />
           <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </Suspense>
