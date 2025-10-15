@@ -73,9 +73,6 @@
   margin-right: 12px;
 }
 
-body {
-  background-color: black;
-}
 
 @media (min-width: 768px) {
   .right {
