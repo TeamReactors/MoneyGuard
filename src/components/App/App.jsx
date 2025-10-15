@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react'
 import styles from './App.module.css'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import DashboardPage from '../../pages/DashboardPage'
 import RegistationPage from '../../pages/RegistationPage'
 import RestrictedRoute from '../RestrictedRoute'
@@ -19,15 +19,13 @@ function App() {
     <div className={styles.App}>
       <Suspense fallback={null}>
         <Routes>
-          <Route path="/" element={<PrivateRoute redirectTo="/login"><DashboardPage /></PrivateRoute>}>
-          </Route>
-          <Route path="/login" index element={<RestrictedRoute redirectTo="/dashboard" component={<LoginPage />} />} />
-
-          <Route path="/register" element={<RestrictedRoute redirectTo="/"><RegistationPage /></RestrictedRoute>}>
-          </Route>
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/login" element={<RestrictedRoute redirectTo="/dashboard" component={<LoginPage />} />} />
+          <Route path="/register" element={<RestrictedRoute redirectTo="/dashboard" component={<RegistationPage />} />} />
           <Route path="/statistics" element={<StatisticsTab />} />
           <Route path="/header" element={<Header />} />
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/dashboard" element={<PrivateRoute redirectTo="/login"><DashboardPage /></PrivateRoute>} />
           <Route path="/currency" element={<CurrencyTab />} />
           <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
