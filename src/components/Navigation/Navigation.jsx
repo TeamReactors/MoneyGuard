@@ -6,7 +6,8 @@ import { selectIsLoggedIn } from '../../redux/auth/selectors';
 const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  if (!isLoggedIn) return null;
+  // Kullanıcı giriş yapmadıysa navigasyonu gösterme şimdilik kapalı kalacak
+ // if (!isLoggedIn) return null;
 
   return (
     <nav>

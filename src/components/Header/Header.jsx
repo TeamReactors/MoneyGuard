@@ -37,9 +37,82 @@ const Header = () => {
   };
 
   //  kullanıcı yoksa header da yok 
-  if (!isLoggedIn) {
-    return null;
-  }
+  // if (!isLoggedIn) {
+  //   return null;
+  // }
+
+  // Test için kullanıcı yoksa gösterilecek header sonra değişecek
+
+if (!isLoggedIn) {
+  // Test için geçici kullanıcı bilgisi göster
+  return (
+    <header className={styles.header}>
+      <div className={styles.container}>
+    
+        <div className={styles.logo}>
+          <span className={styles.logoIcon}><img src="/monerguard.svg" alt="bidibidi" /></span>
+          <h1 className={styles.logoText}>Money Guard</h1>
+        </div>
+
+ 
+        <div className={styles.userSection}>
+          <div className={styles.userInfo}>
+            <span className={styles.userIcon}>👤</span>
+            <span className={styles.username}>testuser</span>
+          </div>
+          
+      
+          <button 
+            type="button"
+            className={styles.exitButton}
+            onClick={() => setShowLogoutModal(true)}
+          >
+            <span className={styles.exitIcon}>🚪</span>
+            <span className={styles.exitText}>Exit</span>
+          </button>
+        </div>
+      </div>
+
+
+      {showLogoutModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <div className={styles.modalContent}>
+              <h3 className={styles.modalTitle}>Confirm Logout</h3>
+              <p className={styles.modalText}>
+                Are you sure you want to log out from your Money Guard account?
+              </p>
+              
+              <div className={styles.modalActions}>
+                <button 
+                  type="button"
+                  className={styles.cancelButton}
+                  onClick={() => setShowLogoutModal(false)}
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="button"
+                  className={styles.logoutButton}
+                  onClick={() => {
+                    setShowLogoutModal(false);
+                    alert('Logout successful!');
+                  }}
+                >
+                  Log Out
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
+
+
+
+// Buradan sonrası normal kullanıcı için 
 
   return (
     <>
