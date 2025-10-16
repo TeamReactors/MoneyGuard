@@ -21,11 +21,13 @@ function StatisticsTable() {
 
   async function listCreate() {
     transactionsSummaryData.categoriesSummary.map((category) => {
-      categoryList.push({
+      if(category.name!="Income"){
+        categoryList.push({
         color: colorSelect(category.name),
         name: category.name,
         amount: category.total,
       });
+      }
     });
   }
   listCreate();

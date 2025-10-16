@@ -7,7 +7,14 @@ const initialState = {
   items: [],
   loading: false,
   error: null,
-  transactionsSummary: {},
+  transactionsSummary: {
+    "categoriesSummary": [],
+    "incomeSummary": 0,
+    "expenseSummary": 0,
+    "periodTotal": 0,
+    "year": null,
+    "month": null
+},
   date: {month:1,year:2020},
 };
 
