@@ -15,13 +15,12 @@ export const fetchTransactions = createAsyncThunk(
   }
 );
 
-
 export const transactionsSummary = createAsyncThunk(
   "transactions/transactionsSummary",
   async (date, thunkApi) => {
     try {
       const response = await axios.get(
-        `https://wallet.b.goit.study/api/transactions-summary?month=${date.month}&year=${date.year}`,{ headers: {"Authorization" : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiI1MTMwNDAyZC04ZGZiLTQ5NTktYWI2Ny0yN2E0ZjE2ODM1YTgiLCJpYXQiOjE3NjA0NzAzMzAsImV4cCI6MTAwMDAwMDE3NjA0NzAzMzB9.iuQC669u6_OOFljQxrUhN5NXfbWiNBsM5mHamYVCdzw`} }
+        `/api/transactions-summary?month=${date.month}&year=${date.year}`
       );
       return response.data;
     } catch (error) {
