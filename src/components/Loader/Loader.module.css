@@ -1,0 +1,13 @@
+.loader {
+    height: 80px;
+    width: 80px;
+    color: rgba(255, 199, 39, 1),
+        rgba(158, 64, 186, 1),
+        rgba(112, 0, 255, 1);
+    border-radius: 9px;
+    animation: rotate 1.5s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
