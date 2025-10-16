@@ -3,11 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logOut } from '../../redux/auth/operations';
 import { selectUser, selectIsLoggedIn } from '../../redux/auth/selectors';
 import styles from './Header.module.css';
-import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   
@@ -21,15 +19,17 @@ const Header = () => {
   };
 
   const handleConfirmLogout = async () => {
-    try {
-      await dispatch(logOut()).unwrap();
-      setShowLogoutModal(false);
-      navigate('/login');
-    } catch (error) {
-      console.error('Logout error:', error);
+    dispatch(logOut())
+    setShowLogoutModal(false)
+    // try {
+    //   await dispatch(logOut()).unwrap();
+    //   setShowLogoutModal(false);
+    //   navigate('/login');
+    // } catch (error) {
+    //   console.error('Logout error:', error);
    
-      alert('Logout failed: ' + error.message);
-    }
+    //   alert('Logout failed: ' + error.message);
+    // }
   };
 
   const handleCancelLogout = () => {
@@ -97,10 +97,7 @@ if (!isLoggedIn) {
                 <button 
                   type="button"
                   className={styles.logoutButton}
-                  onClick={() => {
-                    setShowLogoutModal(false);
-                    alert('Logout successful!');
-                  }}
+                  onClick={handleConfirmLogout}
                 >
                   Log Out
                 </button>
