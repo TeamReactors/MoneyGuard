@@ -7,14 +7,14 @@ const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   // Kullanıcı giriş yapmadıysa navigasyonu gösterme şimdilik kapalı kalacak
- // if (!isLoggedIn) return null;
+  if (!isLoggedIn) return null;
 
   return (
     <nav>
       <NavLink to="/home" end>Home</NavLink>
       <NavLink to="/statistics">Statistics</NavLink>
       <NavLink to="/currency">Currency</NavLink>
-      <NavLink to="/header">Header</NavLink>
+      
 
     </nav>
   );

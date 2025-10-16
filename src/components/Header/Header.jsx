@@ -57,7 +57,7 @@ if (!isLoggedIn) {
  
         <div className={styles.userSection}>
           <div className={styles.userInfo}>
-            <span className={styles.userIcon}>👤</span>
+            
             <span className={styles.username}>testuser</span>
           </div>
           
@@ -67,7 +67,10 @@ if (!isLoggedIn) {
             className={styles.exitButton}
             onClick={() => setShowLogoutModal(true)}
           >
-            <span className={styles.exitIcon}>🚪</span>
+            
+            <img src="buyukcizgi.svg" alt="sda"  />
+             <img src="exit.svg" alt="sda"  />
+        
             <span className={styles.exitText}>Exit</span>
           </button>
         </div>
@@ -125,22 +128,22 @@ if (!isLoggedIn) {
           </div>
 
 
-          <div className={styles.userSection}>
-            <div className={styles.userInfo}>
-              <span className={styles.userIcon}>👤</span>
-              <span className={styles.username}>{username}</span>
-            </div>
-            
-          
-            <button 
-              type="button"
-              className={styles.exitButton}
-              onClick={handleLogoutClick}
-            >
-              <span className={styles.exitIcon}>🚪</span>
-              <span className={styles.exitText}>Exit</span>
-            </button>
-          </div>
+         
+<div className={styles.userSection}>
+  <div className={styles.separator}></div>
+  <div className={styles.userInfo}>
+    <span className={styles.username}>{username}</span>
+  </div>
+  
+  <button 
+    type="button"
+    className={styles.exitButton}
+    onClick={handleLogoutClick}
+  >
+    <span className={styles.exitIcon}></span>
+    <span className={styles.exitText}>Exit</span>
+  </button>
+</div>
         </div>
       </header>
 
