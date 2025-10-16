@@ -1,19 +1,20 @@
 import { Suspense, lazy, useEffect } from 'react'
 import styles from './App.module.css'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import DashboardPage from '../../pages/DashboardPage'
-import RegistationPage from '../../pages/RegistationPage'
 import RestrictedRoute from '../RestrictedRoute'
 import StatisticsTab from '../../pages/StatisticsTab'
 import CurrencyTab from '../CurrencyTab/CurrencyTab'
 import PrivateRoute from '../PrivateRoute'
 import Header from '../Header/Header'
 import Navigation from '../Navigation/Navigation'
+import Loader from '../Loader/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { refreshUser } from '../../redux/auth/operations'
 import { selectIsRefreshing } from '../../redux/auth/selectors'
 
 const LoginPage = lazy(() => import("../../pages/LoginPage"))
+const RegistationPage = lazy(() => import("../../pages/RegistationPage"))
+const DashboardPage = lazy(()=> import("../../pages/DashboardPage"))
 
 function App() {
   const dispatch = useDispatch()
@@ -24,7 +25,7 @@ function App() {
   },[dispatch])
 
   return isRefreshing ? (
-    <strong>Refreshing user...</strong>
+    <Loader></Loader>
   ) : (
 
     <div className={styles.App}>
