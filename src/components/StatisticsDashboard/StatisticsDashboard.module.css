@@ -10,6 +10,15 @@
   padding: 12px;
 }
 
+.area {
+  background-color: black;/*sil*/
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+}
+
 .option {
   background-color: #533dba;
   color: #fbfbfb;
@@ -21,9 +30,10 @@
   }
 
   .date {
-    display: flex;
+    flex-direction: row;
     gap: 12px;
   }
+
   .area {
     display: flex;
     gap: 24px;
