@@ -1,9 +1,14 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import { register } from "../../redux/auth/operations";
 
 export const RegistrationForm = () => {
+
+  const dispatch = useDispatch()
+
   const validationSchema = Yup.object({
-    name: Yup.string()
+    username: Yup.string()
       .min(2, "Too short")
       .required("Name is required"),
     email: Yup.string()
@@ -15,21 +20,21 @@ export const RegistrationForm = () => {
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log("Registration Data:", values);
+    dispatch(register(values))
     resetForm();
   };
 
   return (
     <Formik
-      initialValues={{ name: "", email: "", password: "" }}
+      initialValues={{ username: "", email: "", password: "" }}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
       <Form>
         <label>
           Full Name
-          <Field type="text" name="name" />
-          <ErrorMessage name="name" component="div" />
+          <Field type="text" name="username" />
+          <ErrorMessage name="username" component="div" />
         </label>
 
         <label>
