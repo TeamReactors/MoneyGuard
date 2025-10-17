@@ -1,0 +1,127 @@
+/* Mobile-first styles */
+.transactionList {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	align-items: center;
+}
+
+.empty {
+	color: rgba(255, 255, 255, 0.6);
+	padding: 16px;
+	text-align: center;
+}
+
+/* Table defaults (desktop/table will override) */
+.tableContainer {
+	width: 100%;
+}
+
+.transactionTable {
+	width: 100%;
+	/* use separate so we can round the header corners per-cell without gaps */
+	border-collapse: separate;
+	border-spacing: 0;
+	table-layout: fixed;
+}
+
+.transactionTable thead th {
+	color: #fff;
+	font-weight: 700;
+	text-align: left;
+}
+
+.transactionTable td,
+.transactionTable th {
+	padding: 12px;
+	vertical-align: middle;
+}
+
+/* Action column alignment */
+.spanActions {
+	text-align: right;
+}
+
+/* Tablet styles -> fixed container width 704px */
+@media (min-width: 768px) {
+	.tableContainer {
+		width: 704px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	/* header pill that visually groups the headings as a single strip */
+	.transactionTable thead {
+		/* keep a solid strip look — individual th will carry the background so we can round ends */
+		margin-bottom: 10px;
+	}
+
+	.transactionTable thead th {
+		background: rgba(82, 59, 126, 0.6);
+		padding: 8px 12px;
+	}
+
+	/* round the left and right ends of the header pill */
+	.transactionTable thead th:first-child {
+		border-top-left-radius: 12px;
+		border-bottom-left-radius: 12px;
+	}
+
+	.transactionTable thead th:last-child {
+		border-top-right-radius: 12px;
+		border-bottom-right-radius: 12px;
+	}
+
+	.transactionTable tbody tr {
+		background: transparent; /* let page background shine through */
+	}
+
+	.transactionTable tbody tr + tr td {
+		border-top: 1px solid rgba(255,255,255,0.06);
+	}
+
+	.transactionTable td {
+		color: rgba(255,255,255,0.92);
+	}
+
+	/* align specific columns */
+	.transactionTable td:nth-child(1), .transactionTable th:nth-child(1) {
+    text-align: left; /* Date */
+  }
+	.transactionTable td:nth-child(2), .transactionTable th:nth-child(2) {
+		text-align: center; /* Type */
+	}
+
+	.transactionTable td:nth-child(3), .transactionTable th:nth-child(3) {
+		text-align: left; /* Category */
+	}
+
+	.transactionTable td:nth-child(4), .transactionTable th:nth-child(4) {
+		text-align: left; /* Comment */
+		max-width: 100px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.transactionTable td:nth-child(5), .transactionTable th:nth-child(5) {
+		text-align: right; /* Sum */
+		font-weight: 700;
+	}
+}
+
+/* Desktop styles -> 715px centered */
+@media (min-width: 1280px) {
+	.tableContainer {
+		width: 715px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.transactionTable thead th {
+		padding: 20px 6px;
+	}
+}
