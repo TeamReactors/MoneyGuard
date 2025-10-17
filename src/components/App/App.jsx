@@ -32,7 +32,6 @@ function App() {
     <div className={styles.App}>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/nav" element={<Navigation />} />
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<RestrictedRoute redirectTo="/dashboard" component={<LoginPage />} />} />
           <Route path="/register" element={<RestrictedRoute redirectTo="/dashboard" component={<RegistationPage />} />} />
