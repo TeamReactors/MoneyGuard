@@ -1,4 +1,3 @@
-
 .header {
   position: absolute;
   width: 100%;
@@ -7,7 +6,7 @@
   left: 0px;
   top: 0px;
   background: linear-gradient(270.02deg, #2E1746 3.2%, #2E225F 99.98%);
-  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25), inset 0px -3px 2px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25), inset 0px -3px 2px rgba(0, 0, 0, 0.1); */
   z-index: 1000;
 }
 
@@ -21,7 +20,7 @@
   margin: 0 auto;
 }
 
-
+/* LOGO STYLES */
 .logo {
   position: absolute;
   width: 115px;
@@ -40,7 +39,6 @@
   left: 45.96px;
   top: 0px;
 }
-
 
 .logoSvgTop {
   position: absolute;
@@ -103,7 +101,7 @@
   color: #FBFBFB;
 }
 
-
+/* USER SECTION STYLES */
 .userSection {
   position: absolute;
   width: 161px;
@@ -127,7 +125,7 @@
 }
 
 .userIcon {
-  display: none; 
+  display: none;
 }
 
 .username {
@@ -141,7 +139,7 @@
   white-space: nowrap;
 }
 
-
+/* EXIT BUTTON STYLES */
 .exitButton {
   position: absolute;
   width: 69px;
@@ -163,11 +161,9 @@
   height: 18px;
   left: 0px;
   top: 6px;
- 
 }
 
 .exitText {
-  
   width: 31px;
   height: 24px;
   left: 26px;
@@ -180,7 +176,6 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-
 .separator {
   position: absolute;
   width: 0px;
@@ -190,6 +185,7 @@
   border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
+/* MODAL STYLES */
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -201,7 +197,7 @@
   justify-content: center;
   align-items: center;
   z-index: 2000;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(8px);
   animation: fadeIn 0.3s ease;
 }
 
@@ -212,89 +208,194 @@
 
 .modal {
   background: linear-gradient(135deg, #2E1746 0%, #2E225F 100%);
-  border-radius: 15px;
-  padding: 2rem;
-  max-width: 400px;
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  max-width: 380px;
   width: 90%;
-  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  animation: slideUp 0.3s ease;
+ 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideUp 0.3s ease, modalGlow 0.5s ease-out 0.3s both;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+
+  animation: pulseGlow 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
 }
 
 @keyframes slideUp {
   from { 
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(30px) scale(0.95);
   }
   to { 
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
+/* 
+@keyframes modalGlow {
+  0% {
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 8px 40px rgba(0, 0, 0, 0.4),
+      0 0 0px rgba(157, 64, 186, 0),
+      0 0 0px rgba(112, 0, 255, 0);
+  }
+  100% {
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 8px 40px rgba(0, 0, 0, 0.4),
+      0 0 60px rgba(157, 64, 186, 0.2),
+      0 0 100px rgba(112, 0, 255, 0.15);
+  }
+} */
 
 .modalContent {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.modalLogo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(255, 199, 39, 0.3));
 }
 
 .modalTitle {
   color: white;
   font-size: 1.5rem;
-  margin-bottom: 1rem;
   font-weight: 600;
   font-family: 'Circe';
+  margin: 0;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .modalText {
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.5;
   font-family: 'Circe';
+  font-size: 1rem;
+  margin: 0;
+  padding: 0 1rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 .modalActions {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+
+.logoutButton {
+  background: linear-gradient(96.76deg, #FFC727 -16.42%, #9E40BA 97.04%, #7000FF 150.71%);
+  color: white;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+ 
+  font-family: 'Circe';
+  font-size: 1rem;
+  order: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.logoutButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+
+  transition: left 0.5s ease;
+}
+
+.logoutButton:hover::before {
+  left: 100%;
+}
+
+.logoutButton:hover {
+  background: linear-gradient(96.76deg, #FFD54F -16.42%, #B26BD6 97.04%, #8A3DFF 150.71%);
+  transform: translateY(-3px);
+
+}
+
+.logoutButton:active {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 3px 15px rgba(255, 199, 39, 0.3),
+    0 0 25px rgba(158, 64, 186, 0.3),
+    0 0 35px rgba(112, 0, 255, 0.2);
 }
 
 .cancelButton {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
+  padding: 0.875rem 1.5rem;
+  border-radius: 16px;
   cursor: pointer;
   font-weight: 500;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
   font-family: 'Circe';
+  font-size: 1rem;
+  order: 2;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .cancelButton:hover {
   background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.25),
+    0 0 25px rgba(255, 255, 255, 0.15);
 }
 
-.logoutButton {
-  background: linear-gradient(135deg, #e74c3c, #c0392b);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
-  font-family: 'Circe';
-}
-
-.logoutButton:hover {
-  background: linear-gradient(135deg, #c0392b, #e74c3c);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
-}
-
-
+/* RESPONSIVE STYLES */
 @media (max-width: 768px) {
   .header {
     height: 60px;
@@ -331,7 +432,7 @@
 
 @media (max-width: 480px) {
   .logoText {
-    display: none; 
+    display: none;
   }
   
   .username {
@@ -339,10 +440,38 @@
   }
   
   .exitText {
-    display: none; 
+    display: none;
   }
   
   .exitButton {
     width: 30px;
   }
+
+  .modal {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+    border-radius: 20px;
+  }
+  
+  .modalTitle {
+    font-size: 1.3rem;
+  }
+  
+  .modalText {
+    font-size: 0.95rem;
+    padding: 0;
+  }
+  
+  .logoutButton,
+  .cancelButton {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+    border-radius: 14px;
+  }
+  
+  .modal::before {
+    animation: none;
+  }
 }
+
+
