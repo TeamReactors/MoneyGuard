@@ -11,7 +11,7 @@ const Header = () => {
   
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-//  mailden kullanıcı adını alıyok
+  // Email'den kullanıcı adını alıyok
   const username = user?.email ? user.email.split('@')[0] : '';
 
   const handleLogoutClick = () => {
@@ -19,81 +19,66 @@ const Header = () => {
   };
 
   const handleConfirmLogout = async () => {
-    dispatch(logOut())
+     dispatch(logOut())
     setShowLogoutModal(false)
-    // try {
-    //   await dispatch(logOut()).unwrap();
-    //   setShowLogoutModal(false);
-    //   navigate('/login');
-    // } catch (error) {
-    //   console.error('Logout error:', error);
-   
-    //   alert('Logout failed: ' + error.message);
-    // }
   };
 
   const handleCancelLogout = () => {
     setShowLogoutModal(false);
   };
 
-  //  kullanıcı yoksa header da yok 
-  // if (!isLoggedIn) {
-  //   return null;
-  // }
+  // Kullanıcı giriş yapmamışsa header göstermiyoz
+  if (!isLoggedIn) {
+    return null;
+  }
 
-  // Test için kullanıcı yoksa gösterilecek header sonra değişecek
-
-if (!isLoggedIn) {
-  // Test için geçici kullanıcı bilgisi göster
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
-    
-        <div className={styles.logo}>
-          <span className={styles.logoIcon}><img src="/monerguard.svg" alt="bidibidi" /></span>
-          <h1 className={styles.logoText}>Money Guard</h1>
-        </div>
-
- 
-        <div className={styles.userSection}>
-          <div className={styles.userInfo}>
-            
-            <span className={styles.username}>testuser</span>
+    <>
+      <header className={styles.header}>
+        <div className={styles.container}>
+         
+          <div className={styles.logo}>
+            <span className={styles.logoIcon}>
+              <img src="/monerguard.svg" alt="Money Guard Logo" />
+            </span>
+            <h1 className={styles.logoText}>Money Guard</h1>
           </div>
+
           
-      
-          <button 
-            type="button"
-            className={styles.exitButton}
-            onClick={() => setShowLogoutModal(true)}
-          >
+          <div className={styles.userSection}>
+            <div className={styles.userInfo}>
+              <span className={styles.username}>{username}</span>
+            </div>
             
-            <img src="buyukcizgi.svg" alt="sda"  />
-             <img src="exit.svg" alt="sda"  />
-        
-            <span className={styles.exitText}>Exit</span>
-          </button>
+           
+            <button 
+              type="button"
+              className={styles.exitButton}
+              onClick={handleLogoutClick}
+            >
+              <img src="buyukcizgi.svg" alt="separator" />
+              <img src="exit.svg" alt="exit icon" />
+              <span className={styles.exitText}>Exit</span>
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
-
+      
       {showLogoutModal && (
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
             <div className={styles.modalContent}>
-              <h3 className={styles.modalTitle}>Confirm Logout</h3>
+
+           <div className={styles.modalHeader}>
+                <img src="/monerguard.svg" alt="Money Guard Logo" className={styles.modalLogo} />
+                <h3 className={styles.modalTitle}>Money Guard</h3>
+              </div>
               <p className={styles.modalText}>
-                Are you sure you want to log out from your Money Guard account?
+                Are you sure you want to log out?
               </p>
               
-              <div className={styles.modalActions}>
-                <button 
-                  type="button"
-                  className={styles.cancelButton}
-                  onClick={() => setShowLogoutModal(false)}
-                >
-                  Cancel
-                </button>
+               <div className={styles.modalActions}>
                 <button 
                   type="button"
                   className={styles.logoutButton}
@@ -101,73 +86,12 @@ if (!isLoggedIn) {
                 >
                   Log Out
                 </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
-
-
-
-// Buradan sonrası normal kullanıcı için 
-
-  return (
-    <>
-      <header className={styles.header}>
-        <div className={styles.container}>
-    
-          <div className={styles.logo}>
-            <span className={styles.logoIcon}>💰</span>
-            <h1 className={styles.logoText}>Money Guard</h1>
-          </div>
-
-
-         
-<div className={styles.userSection}>
-  <div className={styles.separator}></div>
-  <div className={styles.userInfo}>
-    <span className={styles.username}>{username}</span>
-  </div>
-  
-  <button 
-    type="button"
-    className={styles.exitButton}
-    onClick={handleLogoutClick}
-  >
-    <span className={styles.exitIcon}></span>
-    <span className={styles.exitText}>Exit</span>
-  </button>
-</div>
-        </div>
-      </header>
-
-     
-      {showLogoutModal && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modal}>
-            <div className={styles.modalContent}>
-              <h3 className={styles.modalTitle}>Confirm Logout</h3>
-              <p className={styles.modalText}>
-                Are you sure you want to log out from your Money Guard account?
-              </p>
-              
-              <div className={styles.modalActions}>
                 <button 
                   type="button"
                   className={styles.cancelButton}
                   onClick={handleCancelLogout}
                 >
                   Cancel
-                </button>
-                <button 
-                  type="button"
-                  className={styles.logoutButton}
-                  onClick={handleConfirmLogout}
-                >
-                  Log Out
                 </button>
               </div>
             </div>
