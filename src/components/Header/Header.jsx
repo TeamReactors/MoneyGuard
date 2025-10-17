@@ -69,25 +69,29 @@ const Header = () => {
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
             <div className={styles.modalContent}>
-              <h3 className={styles.modalTitle}>Confirm Logout</h3>
+
+           <div className={styles.modalHeader}>
+                <img src="/monerguard.svg" alt="Money Guard Logo" className={styles.modalLogo} />
+                <h3 className={styles.modalTitle}>Money Guard</h3>
+              </div>
               <p className={styles.modalText}>
-                Are you sure you want to log out from your Money Guard account?
+                Are you sure you want to log out?
               </p>
               
-              <div className={styles.modalActions}>
-                <button 
-                  type="button"
-                  className={styles.cancelButton}
-                  onClick={handleCancelLogout}
-                >
-                  Cancel
-                </button>
+               <div className={styles.modalActions}>
                 <button 
                   type="button"
                   className={styles.logoutButton}
                   onClick={handleConfirmLogout}
                 >
                   Log Out
+                </button>
+                <button 
+                  type="button"
+                  className={styles.cancelButton}
+                  onClick={handleCancelLogout}
+                >
+                  Cancel
                 </button>
               </div>
             </div>
