@@ -15,6 +15,48 @@ export const fetchTransactions = createAsyncThunk(
   }
 );
 
+export const createTransaction = createAsyncThunk(
+  "transactions/create",
+  async (transactionData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/api/transactions", transactionData);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || error.message || "An error occurred"
+      );
+    }
+  }
+);
+
+export const deleteTransaction = createAsyncThunk(
+  "transactions/delete",
+  async (transactionId, { rejectWithValue }) => {
+    try {
+      await axios.delete(`/api/transactions/${transactionId}`);
+      return transactionId;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || error.message || "An error occurred"
+      );
+    }
+  }
+);
+
+export const updateTransaction = createAsyncThunk(
+  "transactions/update",
+  async ({ id, updatedData }, { rejectWithValue }) => {
+    try {
+      const response = await axios.put(`/api/transactions/${id}`, updatedData);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || error.message || "An error occurred"
+      );
+    }
+  }
+);
+
 export const transactionsSummary = createAsyncThunk(
   "transactions/transactionsSummary",
   async (date, thunkApi) => {
