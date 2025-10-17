@@ -39,7 +39,7 @@ const Currency = () => {
 
     return (
         <div className={css.currencyContainer}>
-            <table>
+            <table className={css.currencyTable}>
                 <thead className={css.currencyHeader}>
                     <tr className={css.currencyRow}>
                         <th>Currency</th>
