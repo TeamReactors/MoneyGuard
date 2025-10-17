@@ -1,11 +1,62 @@
-import React from 'react'
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useDispatch } from "react-redux";
+import * as Yup from "yup";
+import { register } from "../../redux/auth/operations";
 
-const RegistrationForm = () => {
-    return (
-        <div>
-            <p>Registration Form</p>
-        </div>
-    )
-}
+export const RegistrationForm = () => {
 
-export default RegistrationForm
+  const dispatch = useDispatch()
+
+  const validationSchema = Yup.object({
+    username: Yup.string()
+      .min(2, "Too short")
+      .required("Name is required"),
+    email: Yup.string()
+      .email("Invalid email")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(6, "Minimum 6 characters")
+      .required("Password is required"),
+  });
+
+  const handleSubmit = (values, { resetForm }) => {
+    dispatch(register(values))
+    resetForm();
+  };
+
+  return (
+    <Formik
+      initialValues={{ username: "", email: "", password: "" }}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      <Form>
+        <label>
+          Full Name
+          <Field type="text" name="username" />
+          <ErrorMessage name="username" component="div" />
+        </label>
+
+        <label>
+          Email Address
+          <Field type="email" name="email" />
+          <ErrorMessage name="email" component="div" />
+        </label>
+
+        <label>
+          Password
+          <Field type="password" name="password" />
+          <ErrorMessage name="password" component="div" />
+        </label>
+
+        <button type="submit">
+          Create Account
+        </button>
+
+        <p>
+          Already have an account? <a href="/login">Log in</a>
+        </p>
+      </Form>
+    </Formik>
+  );
+};

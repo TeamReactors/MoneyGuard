@@ -1,0 +1,20 @@
+.title {
+  font-family: sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  color: white;
+}
+
+.box {
+  width: 280px;
+  height: 333px;
+  position: relative;
+}
+
+.centerText {
+  font-size: 30px;
+  color: white;
+  position: absolute;
+  top: 48%;
+  left: 36%;
+}
