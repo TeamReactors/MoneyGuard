@@ -1,22 +1,19 @@
-import React from 'react'
-import Header from '../components/Header/Header.jsx'
-import Currency from '../components/Currency/Currency.jsx'
-import StatisticsTab from './StatisticsTab.jsx'
+import React from "react";
+import Header from "../components/Header/Header.jsx";
+import Currency from "../components/Currency/Currency.jsx";
+import StatisticsTab from "./StatisticsTab.jsx";
+import TransactionList from "../components/TransactionsList/TransactionsList.jsx";
 
 const DashboardPage = () => {
-    return (
-        <div>
+  return (
+    <div>
+      <Header />
+      <div style={{ marginTop: "70px", width: "100%" }}>
+        <Currency />
+        <TransactionList />
+      </div>
+    </div>
+  );
+};
 
-       
-
-            <Header />
-            <div style={{ marginTop: "70px", width: "100%" }}>
-                <Currency />
-            </div>
-
-
-        </div>
-    )
-}
-
-export default DashboardPage
+export default DashboardPage;
