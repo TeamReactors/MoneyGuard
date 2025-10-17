@@ -1,7 +1,8 @@
 import css from "./LoginForm.module.css"
 import { logIn } from "../../redux/auth/operations";
 import * as Yup from "yup";
-import { Formik, Field, Form,ErrorMessage } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import toast from "react-hot-toast";
 import { useId } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -26,6 +27,13 @@ const LoginForm = () => {
     const handleSubmit = (values, actions) => {
         
         dispatch(logIn(values))
+            .unwrap()
+            .then(() => {
+            toast.success("Login Successfull",{duration: 2000})
+            })
+            .catch(() => {
+            toast.error("Please try again something went wrong",{duration: 2000})
+        })
 
 
         actions.resetForm()
@@ -38,13 +46,21 @@ const LoginForm = () => {
             <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={FeedBackSchema}>
                 <Form className={css.form}>
                     
-                    <label className={css.email} htmlFor={emailField}><MdEmail className={css.mail} /> E-mail</label>
-                    <Field type="email" id={emailField} name="email" placeholder="E-mail"></Field>
-                    <ErrorMessage className={css.error} name="email" component="span" />
+                    {/* <label className={css.email} htmlFor={emailField}> E-mail</label> */}
+                    <div className={css.inputWrapper}>
+                        <MdEmail className={css.mail} />
+                        <Field type="email" id={emailField} name="email" placeholder="E-mail"></Field>
+                        <ErrorMessage className={css.error} name="email" component="span" />
+                    </div>
+                    <div className={css.inputWrapper}>
+                        <RiLockPasswordFill className={css.lock} />
+                        <Field type="password" id={passwordField} name="password" placeholder="Paswword"></Field>
+                        <ErrorMessage className={css.error} name="password" component="span" />
+                    </div>
+                    
 
-                    <label className={css.password} htmlFor={passwordField}><RiLockPasswordFill className={css.lock} />Password</label>
-                    <Field type="password" id={passwordField} name="password"></Field>
-                    <ErrorMessage className={css.error} name="password" component="span" />
+                    {/* <label className={css.password} htmlFor={passwordField}>Password</label> */}
+                    
 
                     <button type="submit">LOG IN</button>
                     <NavLink className={css.link} to="/register">REGISTER</NavLink>
