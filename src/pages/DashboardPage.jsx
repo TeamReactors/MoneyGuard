@@ -7,6 +7,7 @@ import Navigation from '../components/Navigation/Navigation.jsx'
 import Balance from '../components/Balance/Balance.jsx'
 import Loader from '../components/Loader/Loader.jsx'
 import ButtonAddTransactions from '../components/ButtonAddTransactions/ButtonAddTransactions.jsx'
+import TransactionList from "../components/TransactionsList/TransactionsList.jsx";
 
 
 
@@ -25,6 +26,7 @@ const DashboardPage = () => {
                     <Currency />
                 </div>
                 <ButtonAddTransactions />
+                <TransactionList/>
                 <div>
                 </div>
             </div>
