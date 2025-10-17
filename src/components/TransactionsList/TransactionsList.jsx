@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const TransactionsList = () => {
-    return (
-        <div>
-            <p>Transactions List</p>
-        </div>
-    )
-}
+  return (
+    <div>
+      <p>Transactions List</p>
+    </div>
+  );
+};
 
-export default TransactionsList
+export default TransactionsList;
