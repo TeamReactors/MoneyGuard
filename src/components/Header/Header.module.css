@@ -6,8 +6,9 @@
   left: 0px;
   top: 0px;
   background: linear-gradient(270.02deg, #2E1746 3.2%, #2E225F 99.98%);
-  /* box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25), inset 0px -3px 2px rgba(0, 0, 0, 0.1); */
-  z-index: 1000;
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25), inset 0px -3px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+
 }
 
 .container {
@@ -202,8 +203,13 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .modal {
@@ -243,11 +249,12 @@
 }
 
 @keyframes slideUp {
-  from { 
+  from {
     opacity: 0;
     transform: translateY(30px) scale(0.95);
   }
-  to { 
+
+  to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
@@ -400,31 +407,31 @@
   .header {
     height: 60px;
   }
-  
+
   .container {
     padding: 0 12px;
   }
-  
+
   .logo {
     left: 12px;
     top: 12px;
     width: 100px;
   }
-  
+
   .logoText {
     font-size: 15px;
   }
-  
+
   .userSection {
     right: 12px;
     top: 15px;
     width: 120px;
   }
-  
+
   .username {
     font-size: 16px;
   }
-  
+
   .exitText {
     font-size: 16px;
   }
@@ -434,15 +441,15 @@
   .logoText {
     display: none;
   }
-  
+
   .username {
     font-size: 14px;
   }
-  
+
   .exitText {
     display: none;
   }
-  
+
   .exitButton {
     width: 30px;
   }

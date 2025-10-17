@@ -40,14 +40,14 @@ const Currency = () => {
     return (
         <div className={css.currencyContainer}>
             <table>
-                <thead>
-                    <tr>
+                <thead className={css.currencyHeader}>
+                    <tr className={css.currencyRow}>
                         <th>Currency</th>
                         <th>Purchase</th>
                         <th>Sale</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className={css.currencyBody}>
                     {currency.map((item) => (
                         <tr key={item.currencyCodeA}>
                             <td>{item.currencyCodeA === 840 ? 'USD' : 'EUR'}</td>

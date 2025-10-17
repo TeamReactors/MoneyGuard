@@ -3,6 +3,36 @@
     background-color: rgba(74, 86, 226, 0.1);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 480px;
-    height: 395px;
+    width: 320px;
+    height: 254px;
+}
+
+.currencyHeader {
+    background-color: rgba(74, 86, 226, 0.2);
+    width: 320px;
+}
+
+.currencyRow th {
+    padding: 5px;
+    text-align: left;
+    font-weight: 600;
+    color: #2E225F;
+    background-color: rgba(74, 86, 226, 0.2);
+    width: 320px;
+}
+
+.currencyBody {
+    background-color: rgba(74, 86, 226, 0.1);
+}
+
+@media (min-width: 768px) {
+    .currencyContainer {
+        width: 400px;
+    }
+}
+
+@media(min-width: 1024px) {
+    .currencyContainer {
+        width: 480px;
+    }
 }
