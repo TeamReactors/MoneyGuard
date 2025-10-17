@@ -6,12 +6,12 @@ import StatisticsTab from '../../pages/StatisticsTab'
 import CurrencyTab from '../CurrencyTab/CurrencyTab'
 import Currency from '../Currency/Currency'
 import PrivateRoute from '../PrivateRoute'
-import Header from '../Header/Header'
 import Navigation from '../Navigation/Navigation'
 import Loader from '../Loader/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { refreshUser } from '../../redux/auth/operations'
 import { selectIsRefreshing } from '../../redux/auth/selectors'
+import { Toaster } from 'react-hot-toast'
 
 const LoginPage = lazy(() => import("../../pages/LoginPage"))
 const RegistationPage = lazy(() => import("../../pages/RegistationPage"))
@@ -30,7 +30,7 @@ function App() {
   ) : (
 
     <div className={styles.App}>
-      <Suspense fallback={null}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/nav" element={<Navigation />} />
           <Route path="/" element={<Navigate to="/login" />} />
@@ -40,10 +40,10 @@ function App() {
           <Route path="/dashboard" element={<PrivateRoute redirectTo="/login" component={<DashboardPage />} />} />
           {/* <Route path="/" element={<button><CurrencyTab /></button>} /> */}
           <Route path="/currency" element={<Currency />} />
-          <Route path="/header" element={<Header />} />
           <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </Suspense>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   )
 }
