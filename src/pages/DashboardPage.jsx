@@ -6,10 +6,14 @@ import StatisticsTab from './StatisticsTab.jsx'
 const DashboardPage = () => {
     return (
         <div>
+
+       
+
             <Header />
             <div style={{ marginTop: "70px", width: "100%" }}>
                 <Currency />
             </div>
+
 
         </div>
     )
