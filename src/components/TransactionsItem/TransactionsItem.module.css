@@ -1,0 +1,125 @@
+/* Mobile-first card styles (mobile UI: each list item is a card 280px wide) */
+.transactionItem {
+	width: 280px;
+	background: linear-gradient(180deg, rgba(59,42,92,0.6), rgba(40,24,60,0.6));
+	border-radius: 12px;
+	display: flex;
+	overflow: hidden;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+.leftAccent {
+	width: 6px;
+	background: linear-gradient(180deg,#ffb86b,#c86bd6);
+}
+
+.cardContent {
+	padding: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	color: #fff;
+}
+
+.row {
+  width: 241px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid rgba(255,255,255,0.06);
+	padding-bottom: 6px;
+}
+
+.label {
+	text-transform: lowercase;
+	color: rgba(255,255,255,0.6);
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.value {
+	color: #fff;
+	font-weight: 600;
+}
+
+.sum {
+	font-weight: 700;
+}
+
+.actions {
+	display: flex;
+  flex-direction: row-reverse;
+	gap: 8px;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.deleteBtn {
+	background: linear-gradient(96.76deg, #FFC727 -16.42%, #9E40BA 97.04%);
+	border: none;
+	cursor: pointer;
+	width: 68px;
+	height: 30px;
+	border-radius: 20px;
+	color: #2b1b3b;
+	font-weight: 700;
+}
+
+.editBtn {
+	background: transparent;
+	border: none;
+	color: rgba(255,255,255,0.85);
+}
+
+/* Tablet & Desktop: use table rows instead of cards */
+@media (min-width: 768px) {
+	.transactionItem {
+		width: 100%;
+		background: transparent;
+		box-shadow: none;
+		border-radius: 0;
+	}
+
+	.cardContent,
+	.row,
+	.leftAccent {
+		display: none;
+	}
+
+	.tableRow {
+		display: table-row;
+		background: transparent;
+	}
+
+	.tableRow td {
+		padding: 18px 12px;
+		color: rgba(255,255,255,0.92);
+		border-top: 1px solid rgba(255,255,255,0.04);
+	}
+
+		/* Column specific alignment */
+		.tableRow td:nth-child(2) { text-align: center; } /* Type */
+		.tableRow td:nth-child(3) { text-align: left; } /* Category */
+		.tableRow td:nth-child(4) { text-align: left; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } /* Comment */
+		.tableRow td:nth-child(5) { text-align: right; font-weight: 700; } /* Sum */
+		.tableRow td:nth-child(6) { text-align: right; } /* Actions */
+
+		/* Action pill style */
+		.actions .deleteBtn {
+			background: linear-gradient(96.76deg, #FFC727 -16.42%, #9E40BA 97.04%);
+			color: #2b1b3b;
+			border-radius: 20px;
+			padding: 6px 12px;
+			box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+		}
+
+	.actions {
+		justify-content: flex-end;
+	}
+}
+
+@media (min-width: 1280px) {
+	.tableRow td {
+		padding: 18px 16px;
+	}
+}

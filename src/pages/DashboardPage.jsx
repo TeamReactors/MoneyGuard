@@ -1,3 +1,4 @@
+
 import React from 'react'
 import Header from '../components/Header/Header.jsx'
 import Currency from '../components/Currency/Currency.jsx'
@@ -33,3 +34,5 @@ const DashboardPage = () => {
 }
 
 export default DashboardPage
+
+
