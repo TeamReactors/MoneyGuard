@@ -5,27 +5,30 @@ import StatisticsTab from './StatisticsTab.jsx'
 import Navigation from '../components/Navigation/Navigation.jsx'
 import Balance from '../components/Balance/Balance.jsx'
 import Loader from '../components/Loader/Loader.jsx'
+import ButtonAddTransactions from '../components/ButtonAddTransactions/ButtonAddTransactions.jsx'
+
 
 
 
 const DashboardPage = () => {
+
     return (
-        <div>
+        <>
+            <div>
+                <Header />
+                <div style={{ marginTop: "70px", width: "100%" }}>
+                    <Navigation />
 
-       
+                    <Balance />
 
-            <Header />
-            <div style={{ marginTop: "70px", width: "100%" }}>
-                <Navigation/>
-             <Balance />
-                
-                <Currency />
+                    <Currency />
+                </div>
+                <ButtonAddTransactions />
+                <div>
+                </div>
             </div>
+        </>
 
-        
-
-
-        </div>
     )
 }
 
