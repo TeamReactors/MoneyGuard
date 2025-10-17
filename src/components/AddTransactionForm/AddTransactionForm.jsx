@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolver/yup";
+import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from "yup";
 import DatePicker from "react-datepicker";
 
