@@ -1,0 +1,31 @@
+.currencyTab {
+    cursor: pointer;
+    color: #734AEF;
+
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 38px;
+    height: 38px;
+    border-radius: 6px;
+}
+
+.currencyTab:focus,
+.currencyTab:hover {
+    color: white;
+    background-color: #734AEF;
+}
+
+.currencyTab .dollar {
+    /* Vector */
+
+    position: absolute;
+    width: 12.67px;
+    height: 22.4px;
+    left: 15.67px;
+    top: 11.44px;
+}
+
+.dollar:hover,
+.dollar:focus {
+    color: white;
+    cursor: pointer;
+}
