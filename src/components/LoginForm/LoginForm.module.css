@@ -3,19 +3,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: fadeIn 0.8s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -60%);
-    }
-
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
+    
 }
 
 .login h1 {
@@ -26,20 +14,10 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 1rem;
-    animation: slideDown 0.6s ease-out;
+    
 }
 
-@keyframes slideDown {
-    from {
-        transform: translateY(-30px);
-        opacity: 0;
-    }
 
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
 
 .form {
     position: relative;
@@ -48,25 +26,14 @@
     background: linear-gradient(145deg, rgb(49, 44, 73), rgb(40, 36, 60));
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 1rem;
     margin-top: 1rem;
     width: 533px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    animation: formSlideUp 0.7s ease-out;
+    
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-@keyframes formSlideUp {
-    from {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
 
 /* Input container */
 .form input {
@@ -75,7 +42,7 @@
     border: none;
     border-bottom: 1px solid rgba(220, 220, 220, 0.3);
     width: 100%;
-    padding: 15px 15px 15px 15px;
+    padding: 15px 15px 15px 35px;
     background-color: transparent;
     color: white;
     font-size: 1rem;
@@ -87,11 +54,6 @@
     outline: none;
     border-bottom-color: rgb(181, 96, 149);
     box-shadow: 0 2px 0 rgba(181, 96, 149, 0.2);
-}
-
-.form input::placeholder {
-    color: transparent;
-    /* Placeholder'ı gizle */
 }
 
 /* Label ve iconları INPUT'UN İÇİNE yerleştir - INPUT'dan önce gelmeli */
@@ -109,33 +71,30 @@
     pointer-events: none;
     z-index: 2;
 }
-
+.inputWrapper{
+    position: relative;
+}
+.form input::placeholder{
+    margin-top: 10px;
+}
 /* Icon styles */
 .form .mail,
 .form .lock {
     font-size: 1.25rem;
     color: rgb(181, 96, 149);
     transition: all 0.3s ease;
+    position: absolute;
+    top: 18px;
+    left: 5px;
 }
 
-/* Focus durumunda label ve icon yukarı çıkacak */
-.form input:focus~label,
-.form input:not(:placeholder-shown)~label {
-    top: -10px;
-    left: 10px;
-    font-size: 0.8rem;
-    color: rgb(181, 96, 149);
-    background: linear-gradient(145deg, rgb(49, 44, 73), rgb(40, 36, 60));
-    padding: 0 8px;
-}
-
-.form input:focus~label .mail,
+/* .form input:focus~label .mail,
 .form input:focus~label .lock,
 .form input:not(:placeholder-shown)~label .mail,
 .form input:not(:placeholder-shown)~label .lock {
     color: rgb(216, 144, 97);
     transform: scale(1.1);
-}
+} */
 
 .form button {
     display: block;
@@ -231,11 +190,6 @@
 .error::before {
     content: "*";
     margin-right: 4px;
-}
-
-/* Input wrapper ekle */
-.form>div {
-    position: relative;
 }
 
 /* Responsive design */
