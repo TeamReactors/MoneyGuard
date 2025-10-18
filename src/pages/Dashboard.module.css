@@ -1,0 +1,38 @@
+
+.containerDash {
+    max-width: 1280px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100%;
+    background: radial-gradient(1000px 400px at 10% 80%, rgba(255, 255, 255, 0.02), transparent 10%),
+        linear-gradient(180deg, #3b125e 0%, #2b0f4a 40%, #150723 100%);
+
+}
+
+
+.leftContainerDash {
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    border-right: solid 1px gray;
+}
+
+.rightContainerDash {
+    margin-top: 46px;
+    margin-left: 69px;
+    margin-right: 16px;
+
+    width: 800px;
+}
+
+.navigationDah {
+    width: 480px;
+    height: 80px;
+    background-color: rgb(80, 49, 13);
+    border-right: solid 1px gray;
+}
+

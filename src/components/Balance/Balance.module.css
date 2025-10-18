@@ -1,3 +1,30 @@
-.container {
-    background-color: rgb(196, 135, 175);
+.containerBalance {
+  background-color: rgba(82, 59, 126, 0.6);
+  width: 480px;
+  height: 80px;
+  font-weight: 400px;
+  backdrop-filter: blur(8px);
+  margin-top: 28px;
+  border-right: solid 1px gray;
+
+}
+
+.balanceCard {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  margin-left: 56px;
+
+
+}
+
+.titleBalance {
+  color: #8979a9;
+  font-size: 12px;
+}
+
+.balanceAmount {
+  font-size: 30PX;
+  margin-top: 12px;
+  color: rgba(251, 251, 251, 1);
 }
