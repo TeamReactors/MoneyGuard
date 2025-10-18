@@ -15,9 +15,9 @@ const BalancePage = () => {
   }, [dispatch, date]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.containerBalance}>
       <div className={styles.balanceCard}>
-        <h2 className={styles.title}>Your balance
+        <h2 className={styles.titleBalance}> YOUR BALANCE
 </h2>
         <div className={styles.balanceAmount}>
           {balance !== null && balance !== undefined ? 

@@ -8,6 +8,7 @@ import Balance from '../components/Balance/Balance.jsx'
 import Loader from '../components/Loader/Loader.jsx'
 import ButtonAddTransactions from '../components/ButtonAddTransactions/ButtonAddTransactions.jsx'
 import TransactionList from "../components/TransactionsList/TransactionsList.jsx";
+import styles from './Dashboard.module.css'
 
 
 
@@ -15,20 +16,26 @@ import TransactionList from "../components/TransactionsList/TransactionsList.jsx
 const DashboardPage = () => {
 
     return (
-        <>
-            <div>
-                <Header />
-                <div style={{ marginTop: "70px", width: "100%" }}>
-                    <Navigation />
-
+        <> 
+            <div className={styles.containerDash}>
+                {/* <Header />  */}
+                <div className={styles.leftContainerDash}>
+                   <div className={styles.navigationDah}>
+                    <Navigation/>
+                   </div>
+ 
                     <Balance />
-
-                    <Currency />
+       <div className={styles.CurrencyDash}> <Currency  /></div>
+                   
                 </div>
-                <ButtonAddTransactions />
+            
+                <div className={styles.rightContainerDash}>
+                     
                 <TransactionList/>
-                <div>
+                 <ButtonAddTransactions className={styles.addbuttonDash}/>
                 </div>
+
+                
             </div>
         </>
 
