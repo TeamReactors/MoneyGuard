@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import DatePicker from "react-datepicker";
 
@@ -42,9 +42,8 @@ const AddTransactionForm = ({ onSuccess }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <select {...register("type")}>
-        <option value="">İşlem Türü Seçin</option>
-        <option value="income">Gelir</option>
-        <option value="expense">Gider</option>
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
       </select>
       <p>{errors.type?.message}</p>
 
@@ -55,16 +54,16 @@ const AddTransactionForm = ({ onSuccess }) => {
       />
       <p>{errors.date?.message}</p>
 
-      <input type="number" placeholder="Tutar" {...register("amount")} />
+      <input type="number" placeholder="0.00" {...register("amount")} />
       <p>{errors.amount?.message}</p>
 
-      <input type="text" placeholder="Kategori" {...register("category")} />
+      <input type="text" placeholder="Category" {...register("category")} />
       <p>{errors.category?.message}</p>
 
-      <textarea placeholder="Yorum" {...register("comment")} />
+      <textarea placeholder="Comment" {...register("comment")} />
       <p>{errors.comment?.message}</p>
 
-      <button type="sumbit">Gönder</button>
+      <button type="sumbit">ADD</button>
     </form>
   );
 };
