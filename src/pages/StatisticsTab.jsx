@@ -7,7 +7,6 @@ import Currency from "../components/Currency/Currency";
 const StatisticsTab = () => {
   return (
     <div className={css.area}>
-      <Currency />
       <div>
         <Chart />
       </div>

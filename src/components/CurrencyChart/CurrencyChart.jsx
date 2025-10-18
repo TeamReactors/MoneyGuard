@@ -49,11 +49,11 @@ export default function CurrencyChart() {
 
                     const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
                     gradient.addColorStop(0, 'rgba(255,255,255,0)');
-                    gradient.addColorStop(0.2, 'rgba(255,255,255,0)');
-                    gradient.addColorStop(0.3, 'rgba(255,255,255,0.2)');
-                    gradient.addColorStop(0.5, 'rgba(255,255,255,0.4)');
-                    gradient.addColorStop(0.8, 'rgba(255,255,255,0.6)');
-                    gradient.addColorStop(1, 'rgba(255,255,255,1)');
+                    gradient.addColorStop(0.2, 'rgba(255,255,255,0.2)');
+                    gradient.addColorStop(0.3, 'rgba(255,255,255,0.54)');
+                    gradient.addColorStop(0.5, 'rgba(255,255,255,0.27)');
+                    gradient.addColorStop(0.8, 'rgba(255,255,255,0.15)');
+                    gradient.addColorStop(1, 'rgba(255,255,255,0)');
                     return gradient;
                 },
                 tension: 0.3,

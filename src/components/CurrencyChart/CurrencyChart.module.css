@@ -1,15 +1,16 @@
 .chartContainer {
-    padding: 5px;
+    padding: 2px;
     background-color: transparent;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(160, 6, 6, 0.1);
-    width: 320px;
+    width: 240px;
     height: 144px;
+    margin: 0 auto;
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
     .chartContainer {
-        width: 334px;
+        width: 400px;
         height: 180px;
     }
 }
