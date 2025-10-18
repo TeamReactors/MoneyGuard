@@ -1,38 +1,51 @@
 .currencyContainer {
-    padding: 20px;
-    background-color: rgba(74, 86, 226, 0.1);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: rgba(48, 46, 142, 1);
+    border-radius: 3px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: #fff;
     width: 320px;
-    height: 254px;
+    margin: 0 auto;
+}
+
+.currencyTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
 .currencyHeader {
-    background-color: rgba(74, 86, 226, 0.2);
-    width: 320px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 13px, 20px;
 }
 
 .currencyRow th {
-    padding: 5px;
+    padding: 12px;
     text-align: left;
-    font-weight: 600;
-    color: #2E225F;
-    background-color: rgba(74, 86, 226, 0.2);
-    width: 320px;
+    font-size: 16px;
+
 }
 
-.currencyBody {
-    background-color: rgba(74, 86, 226, 0.1);
+.currencyBody td {
+    padding: 10px;
+    font-size: 15px;
+
 }
 
-@media (min-width: 768px) {
+.currencyBody tr:hover {
+    background-color: #4b2d75;
+    transition: background-color 0.3s ease;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
     .currencyContainer {
-        width: 400px;
+        width: 336px;
+        height: 322px;
     }
 }
 
 @media(min-width: 1024px) {
     .currencyContainer {
         width: 480px;
+        height: 380px;
     }
 }
