@@ -28,3 +28,37 @@
   margin-top: 12px;
   color: rgba(251, 251, 251, 1);
 }
+
+@media (max-width: 1280px) and (min-width: 769px) {}
+
+
+@media (max-width: 768px) and (min-width: 320px) {
+.containerBalance {
+
+  width: 280px;
+
+
+
+  margin-top: 12px;
+
+
+
+margin-left: 20px;
+  border:  1px solid transparent;
+  border-radius: 8px;
+
+
+}
+
+.balanceCard {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  margin-left: 32px;
+
+
+
+}
+
+
+}
