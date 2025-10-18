@@ -14,6 +14,7 @@
 }
 
 .cardContent {
+	width: 100%;
 	padding: 12px;
 	display: flex;
 	flex-direction: column;
@@ -22,7 +23,8 @@
 }
 
 .row {
-  width: 241px;
+	width: 100%;
+	box-sizing: border-box;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -58,11 +60,71 @@
 	background: linear-gradient(96.76deg, #FFC727 -16.42%, #9E40BA 97.04%);
 	border: none;
 	cursor: pointer;
-	width: 68px;
+	min-width: 68px;
 	height: 30px;
+	padding: 6px 12px;
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	border-radius: 20px;
-	color: #2b1b3b;
+	color: #ffffff;
 	font-weight: 700;
+}
+
+/* Holographic overlay using a pseudo-element so button background-size doesn't change */
+.deleteBtn {
+	position: relative;
+	overflow: hidden;
+}
+
+.deleteBtn::before {
+	content: '';
+	position: absolute;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: linear-gradient(
+		0deg,
+		transparent,
+		transparent 30%,
+		rgba(0,255,255,0.18)
+	);
+	transform: rotate(-45deg);
+	transition: opacity 0.45s ease, transform 0.6s ease;
+	opacity: 0;
+	pointer-events: none;
+	mix-blend-mode: screen;
+}
+
+.deleteBtn:hover,
+.deleteBtn:focus {
+	transform: translateZ(0) scale(1.02);
+}
+
+.deleteBtn:hover::before,
+.deleteBtn:focus::before {
+	opacity: 1;
+	transform: rotate(-45deg) translateY(100%);
+	animation: holoLoop 1.6s linear infinite;
+}
+
+@keyframes holoLoop {
+  0% { transform: rotate(-45deg) translateY(-10%); opacity: 0.6; }
+  40% { transform: rotate(-45deg) translateY(40%); opacity: 1; }
+  100% { transform: rotate(-45deg) translateY(100%); opacity: 0.4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.deleteBtn::before,
+	.deleteBtn:hover::before,
+	.deleteBtn:focus::before {
+		transition: none;
+		animation: none !important;
+		opacity: 0;
+		transform: rotate(-45deg);
+	}
 }
 
 .editBtn {
@@ -106,15 +168,22 @@
 
 		/* Action pill style */
 		.actions .deleteBtn {
-			background: linear-gradient(96.76deg, #FFC727 -16.42%, #9E40BA 97.04%);
-			color: #2b1b3b;
-			border-radius: 20px;
-			padding: 6px 12px;
-			box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-		}
+  background: linear-gradient(96.76deg, #FFC727 -18%, #9E40BA 96%, #7000FF 150.71%);
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 6px 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  transition: transform 0.3s ease;
+}
+
+.actions .deleteBtn:hover {
+	/* keep gradient flow but also trigger holographic overlay on hover */
+	transform: scale(1.05);
+}
 
 	.actions {
 		justify-content: flex-end;
+		flex-direction: row;
 	}
 }
 
