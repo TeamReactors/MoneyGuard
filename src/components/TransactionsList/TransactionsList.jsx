@@ -9,10 +9,6 @@ const TransactionList = () => {
 
   const isMobile = useMediaQuery({ maxWidth: 767.98 });
 
-  if (!transactions || transactions.length === 0) {
-    return <p className={css.empty}>No transactions yet</p>;
-  }
-
   return isMobile ? (
     <ul className={css.transactionList}>
       {transactions.map((transaction) => (
@@ -44,6 +40,15 @@ const TransactionList = () => {
             <th className={css.spanActions}></th>
           </tr>
         </thead>
+        {(!transactions || transactions.length === 0) && (
+          <tbody>
+            <tr>
+              <td colSpan="6" style={{ textAlign: "center", padding: "16px" }}>
+                No transactions
+              </td>
+            </tr>
+          </tbody>
+        )}
         <tbody>
           {transactions.map((transaction) => (
             <TransactionsItem key={transaction.id} transaction={transaction} />
