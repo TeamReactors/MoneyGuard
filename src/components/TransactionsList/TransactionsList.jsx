@@ -1,11 +1,25 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectTransactions } from "../../redux/transactions/selectors";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
+import { createTransaction } from "../../redux/transactions/operations";
 import css from "./TransactionsList.module.css";
 import { useMediaQuery } from "react-responsive";
 
 const TransactionList = () => {
   const transactions = useSelector(selectTransactions);
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    const dummyData = {
+      transactionDate: new Date().toISOString().split("T")[0],
+      type: "INCOME",
+      categoryId: "063f1132-ba5d-42b4-951d-44011ca46262", // Gerçek ID ile değiştir
+      comment: "Dummy gelir işlemi",
+      amount: 250,
+    };
+
+    dispatch(createTransaction(dummyData));
+  };
 
   const isMobile = useMediaQuery({ maxWidth: 767.98 });
 
@@ -21,6 +35,7 @@ const TransactionList = () => {
     </ul>
   ) : (
     <div className={css.tableContainer}>
+      <button onClick={handleClick}>Add Transaction</button>
       <table className={`${css.transactionTable} ${css.scaledContainer}`}>
         <colgroup>
           <col style={{ width: "16%" }} />
