@@ -1,44 +1,47 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectBalance } from '../../redux/transactions/selectors'; 
-import { transactionsSummary } from '../../redux/transactions/operations'; 
-import styles from '../Balance/Balance.module.css'
+import { useSelector } from "react-redux";
+import { selectTransactions } from "../../redux/transactions/selectors";
+import styles from './Balance.module.css';
+import { FiDollarSign } from "react-icons/fi";
 
 const BalancePage = () => {
-  const dispatch = useDispatch();
-  const balance = useSelector(selectBalance);
-  const { date } = useSelector(state => state.transactions);
+  const transactions = useSelector(selectTransactions);
 
-  
-  useEffect(() => {
-    dispatch(transactionsSummary(date));
-  }, [dispatch, date]);
+  const balanceData = transactions.reduce(
+    (acc, transaction) => {
+      if (transaction.type === "INCOME") {
+        acc.income += transaction.amount;
+      } else if (transaction.type === "EXPENSE") {
+        acc.expense += transaction.amount;
+      }
+      return acc;
+    },
+    { income: 0, expense: 0 }
+  );
+
+  const balance = balanceData.income - balanceData.expense;
 
   return (
-    <div className={styles.containerBalance}>
+       <div className={styles.containerBalance}>
       <div className={styles.balanceCard}>
         <h2 className={styles.titleBalance}> YOUR BALANCE
 </h2>
-        <div className={styles.balanceAmount}>
-          {balance !== null && balance !== undefined ? 
-            `${balance.toFixed(2)} TL` : 
-            'Yükleniyor...'
-          }
-        </div>
+       <div className={styles.balanceAmount}>
+  {balance !== null && balance !== undefined ? (
+    <>
+      <FiDollarSign/>  {balance.toLocaleString("tr-TR", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+    </>
+  ) : (
+    'Yükleniyor...'
+  )}
+</div>
 
-         {/* DÖNEM İÇİ EKLEME BİLGİSİ  EKLENEBİLİR  OPSİYONEL 
-        {/* <div className={styles.balanceInfo}>
-          {date && (
-            <p className={styles.dateInfo}>
-              {date.month}/{date.year} dönemi için toplam bakiyeniz
-            </p>
-          )}
-        </div> */}
+       
       </div>
     </div>
   );
 };
-
-
 
 export default BalancePage;

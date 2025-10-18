@@ -31,6 +31,7 @@ const DashboardPage = () => {
                     <div className={styles.navigationDah}>
                         <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
                     </div>
+                    <div className={styles.BalanceDash}></div>
                     <Balance />
                     <div className={styles.CurrencyDash}>
                         <Currency />

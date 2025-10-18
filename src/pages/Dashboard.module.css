@@ -36,3 +36,70 @@
 .CurrencyDash{
     margin-top: 32px;
 }
+
+@media (max-width: 1280px) and (min-width: 769px) {
+     
+.containerDash {
+    max-width: 768px;
+
+
+}
+
+}
+
+@media (max-width: 768px) and (min-width: 320px) {
+    
+.containerDash {
+    max-width: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100%;
+    background: radial-gradient(1000px 400px at 10% 80%, rgba(255, 255, 255, 0.02), transparent 10%),
+        linear-gradient(180deg, #3b125e 0%, #2b0f4a 40%, #150723 100%);
+         padding-top: 80px;
+  
+
+}
+
+
+
+
+
+
+
+.CurrencyDash{
+   display: none;
+}
+
+.leftContainerDash {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    border-right: solid 1px gray;
+
+}
+
+.rightContainerDash {
+    margin-top: 32px;
+    margin-left: 0px;
+    margin-right: 0px;
+
+ width: 100%;
+}
+
+.BalanceDash{
+    display: flex;
+    margin-left: 20px;
+    background-color: aqua;
+
+}
+
+
+
+
+}
