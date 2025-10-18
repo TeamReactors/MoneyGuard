@@ -27,6 +27,7 @@
   font-size: 30PX;
   margin-top: 12px;
   color: rgba(251, 251, 251, 1);
+  display: flex;
 }
 
 @media (max-width: 1280px) and (min-width: 769px) {}
