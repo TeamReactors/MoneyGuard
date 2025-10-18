@@ -52,7 +52,7 @@ function App() {
               />
             }
           />
-          <Route path="/statistics" element={<StatisticsTab />} />
+          {/* <Route path="/statistics" element={<StatisticsTab />} /> */}
           <Route
             path="/dashboard"
             element={
@@ -60,7 +60,7 @@ function App() {
             }
           />
           {/* <Route path="/" element={<button><CurrencyTab /></button>} /> */}
-          <Route path="/currency" element={<Currency />} />
+          {/* <Route path="/currency" element={<Currency />} /> */}
           <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </Suspense>

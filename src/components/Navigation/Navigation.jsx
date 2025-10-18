@@ -1,38 +1,46 @@
-import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import styles from './Navigation.module.css';
 
-const Navigation = () => {
+const Navigation = ({ activeTab, onTabChange }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   
-  const getClasses = (isActive) => 
-    isActive ? `${styles.navLink} ${styles.active}` : styles.navLink;
+  const handleTabClick = (tabName) => {
+    onTabChange(tabName);
+  };
 
   if (!isLoggedIn) return null;
 
   return (
     <nav className={styles.navigation}>
-      <NavLink to="/dashboard" className={({ isActive }) => getClasses(isActive)} end>
+      <div 
+        className={activeTab === 'home' ? `${styles.navLink} ${styles.active}` : styles.navLink}
+        onClick={() => handleTabClick('home')}
+      >
         <div className={styles.linkIcon}>
           <img src="/home.svg" alt="Home" className={styles.navIcon} />
         </div>
         <span className={styles.linkText}>Home</span>
-      </NavLink>
+      </div>
 
-      <NavLink to="/statistics" className={({ isActive }) => getClasses(isActive)}>
+      <div 
+        className={activeTab === 'statistics' ? `${styles.navLink} ${styles.active}` : styles.navLink}
+        onClick={() => handleTabClick('statistics')}
+      >
         <div className={styles.linkIcon}>
           <img src="/statistic.svg" alt="Statistics" className={styles.navIcon} />
         </div>
         <span className={styles.linkText}>Statistics</span>
-      </NavLink>
-
-      <NavLink to="/currency" className={({ isActive }) => getClasses(isActive)}>
+      </div>
+      <div 
+        className={`${styles.navLink} ${styles.currencyLink} ${activeTab === 'currency' ? styles.active : ''}`}
+        onClick={() => handleTabClick('currency')}
+      >
         <div className={styles.linkIcon}>
           <img src="/dolar.svg" alt="Currency" className={styles.navIcon} />
         </div>
         <span className={styles.linkText}>Currency</span>
-      </NavLink>
+      </div>
     </nav>
   );
 };
