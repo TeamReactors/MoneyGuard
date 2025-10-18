@@ -10,6 +10,8 @@
     min-height: 100%;
     background: radial-gradient(1000px 400px at 10% 80%, rgba(255, 255, 255, 0.02), transparent 10%),
         linear-gradient(180deg, #3b125e 0%, #2b0f4a 40%, #150723 100%);
+         padding-top: 80px;
+  
 
 }
 
@@ -29,12 +31,7 @@
     width: 800px;
 }
 
-.navigationDah {
-    width: 480px;
-    height: 80px;
-    background-color: #3b125e ;
-    border-right: solid 1px gray;
-}
+
 
 .CurrencyDash{
     margin-top: 32px;
