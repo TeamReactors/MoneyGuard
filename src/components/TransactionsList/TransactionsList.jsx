@@ -31,8 +31,8 @@ const TransactionList = () => {
           <col style={{ width: "8%" }} />
           <col style={{ width: "16%" }} />
           <col style={{ width: "25%" }} />
-          <col style={{ width: "20%" }} />
-          <col style={{ width: "15%" }} />
+          <col style={{ width: "17%" }} />
+          <col style={{ width: "18%" }} />
         </colgroup>
         <thead className={css.tableHeader}>
           <tr>
