@@ -18,7 +18,7 @@ const DashboardPage = () => {
     return (
         <> 
             <div className={styles.containerDash}>
-                {/* <Header />  */}
+                <Header /> 
                 <div className={styles.leftContainerDash}>
                    <div className={styles.navigationDah}>
                     <Navigation/>
