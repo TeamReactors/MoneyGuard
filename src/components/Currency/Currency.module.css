@@ -1,9 +1,7 @@
 .currencyContainer {
     background-color: rgba(74, 86, 226, 0.1);
-    border-radius: 3px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     color: #fff;
-    width: 393px;
+    width: 320px;
     margin: 0 auto;
 }
 
@@ -15,21 +13,18 @@
 
 .currencyHeader {
     background-color: rgba(255, 255, 255, 0.2);
-    /* padding: 13px 20px; */
     height: 50px;
     width: 100%;
 }
 
 .currencyRow th {
     padding: 13px 20px;
-    text-align: left;
     font-size: 1rem;
 }
 
 .currencyBody td {
     padding: 8px 20px;
     font-size: 0.875rem;
-
 }
 
 .currencyBody tr:hover {
@@ -40,13 +35,11 @@
 @media (min-width: 768px) and (max-width: 1023px) {
     .currencyContainer {
         width: 336px;
-        height: 322px;
     }
 }
 
 @media(min-width: 1024px) {
     .currencyContainer {
         width: 480px;
-        height: 380px;
     }
 }
