@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./EditTransactionForm.module.css";
 
-// ✅ Validation şeması
+// Validation şeması
 const schema = yup.object({
   category: yup.string().when("type", {
     is: "expense",
@@ -23,11 +23,8 @@ const schema = yup.object({
 });
 
 const EditTransactionForm = ({ transactionData, onSubmit, onCancel }) => {
-  const [transactionType, setTransactionType] = useState(
-    transactionData?.type || "income"
-  );
+  const transactionType = transactionData?.type || "income";
 
-  // ✅ react-hook-form yapılandırması
   const {
     register,
     handleSubmit,
@@ -41,7 +38,6 @@ const EditTransactionForm = ({ transactionData, onSubmit, onCancel }) => {
     },
   });
 
-  // ✅ Gönderim
   const handleFormSubmit = (data) => {
     const formatted = {
       ...data,
@@ -55,28 +51,28 @@ const EditTransactionForm = ({ transactionData, onSubmit, onCancel }) => {
     <form onSubmit={handleSubmit(handleFormSubmit)} className={styles.form}>
       <h2 className={styles.title}>Edit transaction</h2>
 
-      {/* GELİR / GİDER GEÇİŞİ */}
+      {/* GELİR / GİDER GÖRÜNÜMÜ (PASİF, TIKLANMAZ) */}
       <div className={styles.typeSwitch}>
         <span
           className={`${styles.income} ${
             transactionType === "income" ? styles.activeIncome : styles.inactive
           }`}
-          onClick={() => setTransactionType("income")}
         >
           Income
         </span>
         <span className={styles.divider}>/</span>
         <span
           className={`${styles.expense} ${
-            transactionType === "expense" ? styles.activeExpense : styles.inactive
+            transactionType === "expense"
+              ? styles.activeExpense
+              : styles.inactive
           }`}
-          onClick={() => setTransactionType("expense")}
         >
           Expense
         </span>
       </div>
 
-      {/* KATEGORİ (Sadece giderde görünür) */}
+      {/* Expense formuysa kategori alanı görünür */}
       {transactionType === "expense" && (
         <>
           <select {...register("category")} className={styles.select}>
@@ -94,7 +90,7 @@ const EditTransactionForm = ({ transactionData, onSubmit, onCancel }) => {
         </>
       )}
 
-      {/* TUTAR */}
+      {/* Tutar */}
       <input
         type="number"
         placeholder="0.00"
@@ -103,7 +99,7 @@ const EditTransactionForm = ({ transactionData, onSubmit, onCancel }) => {
       />
       {errors.amount && <p className={styles.error}>{errors.amount.message}</p>}
 
-      {/* TARİH */}
+      {/* Tarih */}
       <Controller
         name="date"
         control={control}
@@ -119,7 +115,7 @@ const EditTransactionForm = ({ transactionData, onSubmit, onCancel }) => {
       />
       {errors.date && <p className={styles.error}>{errors.date.message}</p>}
 
-      {/* AÇIKLAMA */}
+      {/* Açıklama */}
       <input
         type="text"
         placeholder="Comment"
@@ -130,7 +126,6 @@ const EditTransactionForm = ({ transactionData, onSubmit, onCancel }) => {
         <p className={styles.error}>{errors.comment.message}</p>
       )}
 
-      {/* BUTONLAR */}
       <div className={styles.buttons}>
         <button type="submit" className={styles.saveBtn}>
           SAVE
