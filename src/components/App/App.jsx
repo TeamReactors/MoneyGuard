@@ -13,6 +13,7 @@ import { refreshUser } from "../../redux/auth/operations";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 import { fetchTransactions } from "../../redux/transactions/operations";
 import { Toaster } from "react-hot-toast";
+import NotFound from "../NotFound/NotFound";
 
 const LoginPage = lazy(() => import("../../pages/LoginPage"));
 const RegistationPage = lazy(() => import("../../pages/RegistationPage"));
@@ -61,7 +62,7 @@ function App() {
           />
           {/* <Route path="/" element={<button><CurrencyTab /></button>} /> */}
           {/* <Route path="/currency" element={<Currency />} /> */}
-          <Route path="*" element={<div>404 Not Found</div>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
       <Toaster position="top-right" reverseOrder={false} />
