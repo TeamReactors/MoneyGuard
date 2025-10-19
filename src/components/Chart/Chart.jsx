@@ -10,7 +10,7 @@ import { Doughnut } from "react-chartjs-2";
 import css from "./Chart.module.css";
 import { useSelector } from "react-redux";
 
-import { colorSelect } from "./colorSelect";
+import { colorSelect } from "../../utils/colorSelect";
 
 ChartJS.register(CategoryScale, LinearScale, ArcElement, Tooltip, Legend);
 

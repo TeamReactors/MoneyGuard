@@ -11,7 +11,7 @@ const BalancePage = () => {
       if (transaction.type === "INCOME") {
         acc.income += transaction.amount;
       } else if (transaction.type === "EXPENSE") {
-        acc.expense += transaction.amount;
+        acc.expense -= transaction.amount;
       }
       return acc;
     },
