@@ -3,7 +3,6 @@ import { logIn } from "../../redux/auth/operations";
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import toast from "react-hot-toast";
-import { useId } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { MdEmail } from "react-icons/md";
@@ -23,9 +22,6 @@ const FeedBackSchema = Yup.object().shape({
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-
-  const emailField = useId();
-  const passwordField = useId();
 
   const handleSubmit = (values, actions) => {
     dispatch(logIn(values))
@@ -53,12 +49,11 @@ const LoginForm = () => {
           validationSchema={FeedBackSchema}
         >
           <Form className={css.form}>
-            {/* <label className={css.email} htmlFor={emailField}> E-mail</label> */}
+            
             <div className={css.inputWrapper}>
               <MdEmail className={css.mail} />
               <Field
                 type="email"
-                id={emailField}
                 name="email"
                 placeholder="E-mail"
               ></Field>
@@ -72,7 +67,6 @@ const LoginForm = () => {
               <RiLockPasswordFill className={css.lock} />
               <Field
                 type="password"
-                id={passwordField}
                 name="password"
                 placeholder="Paswword"
               ></Field>
@@ -83,7 +77,7 @@ const LoginForm = () => {
               />
             </div>
 
-            {/* <label className={css.password} htmlFor={passwordField}>Password</label> */}
+           
 
             <button type="submit">LOG IN</button>
             <NavLink className={css.link} to="/register">
