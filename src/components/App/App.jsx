@@ -14,7 +14,7 @@ import { fetchTransactions } from "../../redux/transactions/operations";
 import { Toaster } from "react-hot-toast";
 import NotFound from "../NotFound/NotFound";
 
-const LoginPage = lazy(() => import("../../pages/LoginPage"));
+const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 const RegistationPage = lazy(() => import("../../pages/RegistationPage"));
 const DashboardPage = lazy(() => import("../../pages/Dashboard/DashboardPage"));
 

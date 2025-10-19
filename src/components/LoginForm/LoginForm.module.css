@@ -180,10 +180,13 @@
     margin-right: 4px;
 }
 
-/* Responsive design */
-@media (max-width: 600px) {
+@media screen and (max-width:600px) {
+    .login{
+        width: 95%;
+        padding: 60px 10px;
+    }
     .form {
-        width: 90vw;
+        width: 100%;
         padding: 40px 30px 30px;
     }
 
@@ -195,4 +198,5 @@
     .form input:not(:placeholder-shown)~label {
         left: 5px;
     }
-}
+} 
+    
