@@ -21,7 +21,7 @@
   position: relative;
 }
 
-/* LOGO STYLES - RESPONSIVE */
+
 .logo {
   display: flex;
   align-items: center;
@@ -31,13 +31,13 @@
 @media (max-width: 1023px) {
   .logo {
     flex-direction: column;
-    gap: 2px; /* Logo ve yazı arası daha az */
+    gap: 2px; 
     align-items: center;
     justify-content: center;
   }
   
   .logoText {
-    font-size: 10px; /* Mobilde daha küçük */
+    font-size: 10px; 
     line-height: 1;
     margin: 0;
   }
@@ -48,7 +48,7 @@
   }
 }
 
-/* Desktop için yatay hizalama */
+
 @media (min-width: 1024px) {
   .logo {
     flex-direction: row;
@@ -165,7 +165,7 @@
 
 .modal {
   background: linear-gradient(135deg, #2E1746 0%, #2E225F 100%);
-  border-radius: clamp(16px, 4vw, 24px);
+  border-radius: 3px;
   padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
   width: min(90%, 400px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -334,7 +334,7 @@
   }
   
   .modalActions {
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
   }
   
