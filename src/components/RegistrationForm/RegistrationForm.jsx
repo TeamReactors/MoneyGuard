@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { register } from "../../redux/auth/operations";
 import css from "./RegistrationForm.module.css";
-/* import dollar1 from "../../assets/money1.png";
-import dollar2 from "../../assets/money2.png";
+import dollar1 from "../../assets/img/bg-register-desk@1x.webp";
+/*import dollar2 from "../../assets/money2.png";
 import dollar3 from "../../assets/money3.png"; */
 
 export const RegistrationForm = () => {
@@ -33,9 +33,9 @@ export const RegistrationForm = () => {
 
   return (
     <div className={css.wrapper}>
-      {/* Floating money visuals */}{/* 
+      {/* Floating money visuals */}{ 
       <img src={dollar1} alt="" className={css.money} style={{ left: "10%", animationDelay: "0s" }} />
-      <img src={dollar2} alt="" className={css.money} style={{ left: "50%", animationDelay: "3s" }} />
+      /*<img src={dollar2} alt="" className={css.money} style={{ left: "50%", animationDelay: "3s" }} />
       <img src={dollar3} alt="" className={css.money} style={{ left: "80%", animationDelay: "6s" }} /> */}
 
       <Formik
