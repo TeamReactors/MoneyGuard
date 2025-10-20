@@ -1,196 +1,118 @@
+/* HEADER MODULE CSS - RESPONSIVE */
 .header {
   position: fixed;
-    left: 0px;
-  top: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
-  margin: 0 auto;
- 
-  max-width: 1280px;
-  height: 80px;
+  height: clamp(60px, 8vw, 80px);
   z-index: 1000;
   background: linear-gradient(270.02deg, #2E1746 3.2%, #2E225F 99.98%);
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25), inset 0px -3px 2px rgba(0, 0, 0, 0.1);
- left: 50%;                
-  transform: translateX(-50%);
-
 }
 
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
+  padding: 0 clamp(12px, 3vw, 20px);
   height: 100%;
-  max-width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
+  position: relative;
 }
 
-/* LOGO STYLES */
+/* LOGO STYLES - RESPONSIVE */
 .logo {
-  position: absolute;
-  width: 115px;
-  height: 48px;
-  left: 16px;
-  top: 16px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: clamp(6px, 1.5vw, 10px);
+  flex-shrink: 0;
 }
 
 .logoIcon {
-  position: absolute;
-  width: 23.49px;
-  height: 22.47px;
-  left: 45.96px;
-  top: 0px;
+  width: clamp(20px, 5vw, 28px);
+  height: clamp(20px, 5vw, 28px);
+  flex-shrink: 0;
 }
 
-.logoSvgTop {
-  position: absolute;
-  left: 29.64%;
-  right: 31.41%;
-  top: 3.13%;
-  bottom: 50.85%;
-  background: #FFB627;
-}
-
-.logoSvgMiddle1 {
-  position: absolute;
-  left: 11.94%;
-  right: 38.49%;
-  top: 21.24%;
-  bottom: 6.17%;
-  background: #FBFBFB;
-}
-
-.logoSvgMiddle2 {
-  position: absolute;
-  left: 54.43%;
-  right: 11.94%;
-  top: 23.01%;
-  bottom: 25.65%;
-  background: #FBFBFB;
-}
-
-.logoSvgBottom1 {
-  position: absolute;
-  left: 68.59%;
-  right: 11.94%;
-  top: 60.19%;
-  bottom: 0.86%;
-  background: #FBFBFB;
-}
-
-.logoSvgBottom2 {
-  position: absolute;
-  left: 11.94%;
-  right: 68.59%;
-  top: 60.19%;
-  bottom: 0.86%;
-  background: #FBFBFB;
+.logoIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .logoText {
-  position: absolute;
-  width: 116px;
-  height: 26px;
-  left: 0px;
-  top: 22.47px;
-  font-family: 'Poppins';
-  font-style: normal;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  font-size: 17.0969px;
-  line-height: 26px;
-  display: flex;
-  align-items: center;
+  font-size: clamp(14px, 3.5vw, 18px);
   color: #FBFBFB;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
 }
 
-/* USER SECTION STYLES */
+/* USER SECTION STYLES - RESPONSIVE */
 .userSection {
-  position: absolute;
-  width: 161px;
-  height: 30px;
-  right: 16px;
-  top: 25px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: clamp(8px, 2vw, 16px);
 }
 
 .userInfo {
-  position: absolute;
-  width: 80px;
-  height: 24px;
-  right: 81px;
-  top: 3px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-}
-
-.userIcon {
-  display: none;
 }
 
 .username {
-  font-family: 'Circe';
-  font-style: normal;
+  font-family: 'Circe', sans-serif;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-  text-align: right;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: clamp(12px, 3vw, 16px);
+  color: rgba(255, 255, 255, 0.8);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
 }
 
-/* EXIT BUTTON STYLES */
+/* EXIT BUTTON STYLES - RESPONSIVE */
 .exitButton {
-  position: absolute;
-  width: 69px;
-  height: 30px;
-  right: 0px;
-  top: 0px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: clamp(4px, 1vw, 8px);
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: clamp(4px, 1vw, 8px);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  min-height: 32px;
 }
 
-.exitIcon {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  left: 0px;
-  top: 6px;
+.exitButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.exitButton img {
+  width: clamp(14px, 3.5vw, 18px);
+  height: clamp(14px, 3.5vw, 18px);
+  object-fit: contain;
+}
+
+.exitButton img[alt="separator"] {
+  width: 1px;
+  height: 20px;
+  opacity: 0.6;
 }
 
 .exitText {
-  width: 31px;
-  height: 24px;
-  left: 26px;
-  top: 3px;
-  font-family: 'Circe';
-  font-style: normal;
+  font-family: 'Circe', sans-serif;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: clamp(12px, 3vw, 16px);
+  color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
 }
 
-.separator {
-  position: absolute;
-  width: 0px;
-  height: 30px;
-  right: 69px;
-  top: 0px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-}
-
-/* MODAL STYLES */
+/* MODAL STYLES - RESPONSIVE */
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -204,29 +126,34 @@
   z-index: 2000;
   backdrop-filter: blur(8px);
   animation: fadeIn 0.3s ease;
+  padding: clamp(12px, 3vw, 20px);
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modal {
   background: linear-gradient(135deg, #2E1746 0%, #2E225F 100%);
-  border-radius: 24px;
-  padding: 2.5rem 2rem;
-  max-width: 380px;
-  width: 90%;
- 
+  border-radius: clamp(16px, 4vw, 24px);
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+  width: min(90%, 400px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  animation: slideUp 0.3s ease, modalGlow 0.5s ease-out 0.3s both;
+  animation: slideUp 0.3s ease;
   position: relative;
   overflow: hidden;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .modal::before {
@@ -236,56 +163,21 @@
   left: -50%;
   width: 200%;
   height: 200%;
-
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
   animation: pulseGlow 3s ease-in-out infinite;
   pointer-events: none;
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
-  }
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.05); }
 }
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-/* 
-@keyframes modalGlow {
-  0% {
-    box-shadow: 
-      0 0 0 1px rgba(255, 255, 255, 0.1),
-      0 8px 40px rgba(0, 0, 0, 0.4),
-      0 0 0px rgba(157, 64, 186, 0),
-      0 0 0px rgba(112, 0, 255, 0);
-  }
-  100% {
-    box-shadow: 
-      0 0 0 1px rgba(255, 255, 255, 0.1),
-      0 8px 40px rgba(0, 0, 0, 0.4),
-      0 0 60px rgba(157, 64, 186, 0.2),
-      0 0 100px rgba(112, 0, 255, 0.15);
-  }
-} */
 
 .modalContent {
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: clamp(1rem, 3vw, 1.5rem);
   position: relative;
   z-index: 1;
 }
@@ -294,22 +186,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
+  gap: clamp(0.5rem, 2vw, 0.75rem);
 }
 
 .modalLogo {
-  width: 48px;
-  height: 48px;
+  width: clamp(36px, 9vw, 48px);
+  height: clamp(36px, 9vw, 48px);
   object-fit: contain;
   filter: drop-shadow(0 4px 12px rgba(255, 199, 39, 0.3));
 }
 
 .modalTitle {
   color: white;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
   font-weight: 600;
-  font-family: 'Circe';
+  font-family: 'Circe', sans-serif;
   margin: 0;
   letter-spacing: 0.5px;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -318,246 +209,200 @@
 .modalText {
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.5;
-  font-family: 'Circe';
-  font-size: 1rem;
+  font-family: 'Circe', sans-serif;
+  font-size: clamp(0.9rem, 3vw, 1rem);
   margin: 0;
-  padding: 0 1rem;
+  padding: 0 clamp(0.5rem, 2vw, 1rem);
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 .modalActions {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
+  gap: clamp(0.5rem, 2vw, 0.75rem);
+  margin-top: clamp(0.25rem, 1vw, 0.5rem);
 }
-
 
 .logoutButton {
   background: linear-gradient(96.76deg, #FFC727 -16.42%, #9E40BA 97.04%, #7000FF 150.71%);
   color: white;
   border: none;
-  padding: 0.875rem 1.5rem;
-  border-radius: 16px;
+  padding: clamp(0.75rem, 3vw, 0.875rem) clamp(1rem, 3vw, 1.5rem);
+  border-radius: clamp(12px, 3vw, 16px);
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
- 
-  font-family: 'Circe';
-  font-size: 1rem;
+  font-family: 'Circe', sans-serif;
+  font-size: clamp(0.9rem, 3vw, 1rem);
   order: 1;
   position: relative;
   overflow: hidden;
 }
 
-.logoutButton::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-
-  transition: left 0.5s ease;
-}
-
-.logoutButton:hover::before {
-  left: 100%;
-}
-
 .logoutButton:hover {
   background: linear-gradient(96.76deg, #FFD54F -16.42%, #B26BD6 97.04%, #8A3DFF 150.71%);
-  transform: translateY(-3px);
-
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(158, 64, 186, 0.4);
 }
 
 .logoutButton:active {
   transform: translateY(-1px);
-  box-shadow: 
-    0 3px 15px rgba(255, 199, 39, 0.3),
-    0 0 25px rgba(158, 64, 186, 0.3),
-    0 0 35px rgba(112, 0, 255, 0.2);
 }
 
 .cancelButton {
   background: rgba(255, 255, 255, 0.15);
   color: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0.875rem 1.5rem;
-  border-radius: 16px;
+  padding: clamp(0.75rem, 3vw, 0.875rem) clamp(1rem, 3vw, 1.5rem);
+  border-radius: clamp(12px, 3vw, 16px);
   cursor: pointer;
   font-weight: 500;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
-  font-family: 'Circe';
-  font-size: 1rem;
+  font-family: 'Circe', sans-serif;
+  font-size: clamp(0.9rem, 3vw, 1rem);
   order: 2;
-  box-shadow: 
-    0 4px 15px rgba(0, 0, 0, 0.2),
-    0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .cancelButton:hover {
   background: rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
-  box-shadow: 
-    0 6px 20px rgba(0, 0, 0, 0.25),
-    0 0 25px rgba(255, 255, 255, 0.15);
-}
-/* 
-/* RESPONSIVE STYLES 
-@media (max-width: 768px) {
-  .header {
-    height: 60px;
-  }
-
-  .container {
-    padding: 0 12px;
-  }
-
-  .logo {
-    left: 12px;
-    top: 12px;
-    width: 100px;
-  }
-
-  .logoText {
-    font-size: 15px;
-  }
-
-  .userSection {
-    right: 12px;
-    top: 15px;
-    width: 120px;
-  }
-
-  .username {
-    font-size: 16px;
-  }
-
-  .exitText {
-    font-size: 16px;
-  }
 }
 
+/* RESPONSIVE BREAKPOINTS */
+/* Mobile First Approach */
+
+/* Small Mobile (320px - 480px) */
 @media (max-width: 480px) {
   .logoText {
     display: none;
   }
-
+  
   .username {
-    font-size: 14px;
+    max-width: 80px;
+    font-size: 12px;
   }
-
+  
   .exitText {
     display: none;
   }
-
+  
   .exitButton {
-    width: 30px;
+    padding: 6px;
   }
-
+  
   .modal {
-    padding: 2rem 1.5rem;
-    margin: 1rem;
-    border-radius: 20px;
+    padding: 1.25rem 0.875rem;
   }
   
-  .modalTitle {
-    font-size: 1.3rem;
-  }
-  
-  .modalText {
-    font-size: 0.95rem;
-    padding: 0;
-  }
-  
-  .logoutButton,
-  .cancelButton {
-    padding: 0.75rem 1.25rem;
-    font-size: 0.95rem;
-    border-radius: 14px;
-  }
-  
-  .modal::before {
-    animation: none;
+  .modalActions {
+    gap: 0.5rem;
   }
 }
 
- */ 
-
- @media (max-width: 1280px) and (min-width: 769px) {
-
-
- }
-@media (max-width: 768px) and (min-width: 320px) {
-   .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    max-width: 100%;
-    background: linear-gradient(270.02deg, #2E1746 3.2%, #2E225F 99.98%);
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
+/* Tablet (768px - 1024px) */
+@media (min-width: 768px) {
+  .modalActions {
+    flex-direction: row;
+    justify-content: center;
   }
-
-  .container {
-    padding: 0 12px;
-    justify-content: space-between;
-  }
-
-  .logo {
-    width: 90px;
-    height: auto;
-    top: 8px;
-    left: 12px;
-  }
-
-  .logoText {
-    display: none; /* küçük ekranda sadece ikon görünsün */
-  }
-
-  .userSection {
-    right: 12px;
-    top: 14px;
-    width: auto;
-    gap: 8px;
-  }
-
-  .username {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
-  }
-
-  .exitText {
-    display: none; /* sadece ikon görünsün */
-  }
-
-  .exitButton {
-    width: 28px;
-    height: 28px;
-  }
-
-  .modal {
-    width: 90%;
-    padding: 1.5rem 1rem;
-    border-radius: 16px;
-  }
-
-  .modalTitle {
-    font-size: 1.2rem;
-  }
-
-  .modalText {
-    font-size: 0.9rem;
-  }
-
+  
   .logoutButton,
   .cancelButton {
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
+    min-width: 120px;
+  }
+  
+  .username {
+    max-width: 150px;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 20px;
+  }
+  
+  .logo {
+    gap: 10px;
+  }
+  
+  .userSection {
+    gap: 16px;
+  }
+  
+  .username {
+    max-width: 200px;
+    font-size: 16px;
+  }
+  
+  .exitText {
+    display: block;
+  }
+}
+
+/* Large Desktop (1280px+) */
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .logoIcon img,
+  .exitButton img,
+  .modalLogo {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .modal,
+  .modal::before,
+  .logoutButton,
+  .cancelButton,
+  .exitButton {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .modal {
+    background: linear-gradient(135deg, #2E1746 0%, #2E225F 100%);
+  }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .modalOverlay {
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+  
+  .modal {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .exitButton:hover,
+  .logoutButton:hover,
+  .cancelButton:hover {
+    transform: none;
+    background: initial;
+  }
+  
+  .exitButton:active,
+  .logoutButton:active,
+  .cancelButton:active {
+    transform: scale(0.98);
   }
 }
