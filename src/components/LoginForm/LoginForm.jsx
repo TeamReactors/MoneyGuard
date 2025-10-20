@@ -31,7 +31,7 @@ const LoginForm = () => {
       })
       .catch((e) => {
         if (e === "Request failed with status code 403") {
-         return  toast.error("Invalid email or password",{duration:2000})
+         return  toast.error("Password is incorrect",{duration:2000})
         } else if (e === "Request failed with status code 404") {
           return toast.error("There is no account associated with this email and password.",{duration:2000})
         }
