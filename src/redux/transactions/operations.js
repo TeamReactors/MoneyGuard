@@ -18,6 +18,7 @@ export const fetchTransactions = createAsyncThunk(
 export const createTransaction = createAsyncThunk(
   "transactions/create",
   async (transactionData, { rejectWithValue }) => {
+    console.log(transactionData)
     try {
       const response = await axios.post("/api/transactions", transactionData);
       return response.data;
