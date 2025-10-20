@@ -29,7 +29,14 @@ const LoginForm = () => {
       .then(() => {
         toast.success("Login Successfull", { duration: 2000 });
       })
-      .catch(() => {
+      .catch((e) => {
+        if (e === "Request failed with status code 403") {
+         return  toast.error("Invalid email or password",{duration:2000})
+        } else if (e === "Request failed with status code 404") {
+          return toast.error("There is no account associated with this email and password.",{duration:2000})
+        }
+        console.log(e)
+        
         toast.error("Please try again something went wrong", {
           duration: 2000,
         });
