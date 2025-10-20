@@ -23,7 +23,10 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
 
   return isMobile ? (
     <li className={css.transactionItem}>
-      <div className={css.leftAccent} />
+      <div
+        className={css.leftAccent}
+        style={{ background: sumColor(transaction.type) }}
+      />
       <div className={css.cardContent}>
         <div className={css.row}>
           <span className={css.label}>Date</span>
