@@ -9,7 +9,9 @@ img{
 }
 html{
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 body{
   font-family: "Poppins", sans-serif;
+   background: radial-gradient(1000px 400px at 10% 80%, rgba(255, 255, 255, 0.02), transparent 10%), linear-gradient(63deg, #331c47 0%, #160a23 40%, #150723 100%);
 }

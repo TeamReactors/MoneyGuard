@@ -1,0 +1,253 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 25px;
+  align-items: center;
+}
+
+/* --- Başlık --- */
+.title {
+  color: #fff;
+  text-align: center;
+  font-weight: 400;
+  font-size: 28px;
+  margin: 0 0 10px 0;
+}
+
+/* --- Toggle Switch  --- */
+.toggleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.toggleLabel {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ccc; /* Aktif olmayan renk */
+  transition: color 0.3s ease;
+}
+.toggleLabel.income.active {
+  color: #ffb627; /* Aktif Gelir (Income) rengi */
+}
+.toggleLabel.expense.active {
+  color: #ff868d; /* Aktif Gider (Expense) rengi */
+}
+
+/* Switch'in kendisi */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 34px;
+  transition: 0.4s;
+}
+
+.slider::before {
+  position: absolute;
+  content: "+"; /* Gelir için + */
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #ffb627; /* Sarı topuz */
+  border-radius: 50%;
+  transition: 0.4s;
+  /* Artı işaretini ortalamak için */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Gider (Expense) seçilince (checked) */
+.switch input:checked + .slider::before {
+  transform: translateX(26px);
+  background-color: #ff868d; /* Pembe/Kırmızı topuz */
+  content: "-"; /* Gider için - */
+}
+
+/* --- Kategori Select (Gider için) --- */
+.categorySelect {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  padding: 12px 5px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.categorySelect:focus {
+  outline: none;
+  border-bottom-color: #fff;
+}
+/* Select'in option elemanlarını stillendirme */
+.categorySelect option {
+  background-color: #3a2d80; /* Koyu mor (açılır menü arkaplanı) */
+  color: #fff;
+}
+
+/* --- Miktar ve Tarih Satırı --- */
+.inputRow {
+  display: flex;
+  gap: 30px; /* Tutar ve Tarih arası boşluk */
+}
+
+/* Tutar ve Tarih inputlarının ikisi de %50 yer kaplasın */
+/* DatePicker bir <div> içine sarılı olduğu için > div kullandık */
+.inputRow > .inputField,
+.inputRow > div {
+  width: 50%;
+}
+
+/* --- Genel Input Stilleri (Tutar, Yorum) --- */
+.inputField,
+.comment {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  padding: 12px 5px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box; /* Padding'in genişliği etkilememesi için */
+}
+
+/* Placeholder Rengi */
+.inputField::placeholder,
+.comment::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Focus (Tıklama) Stili */
+.inputField:focus,
+.comment:focus {
+  outline: none;
+  border-bottom-color: #fff;
+}
+
+/* Tutar alanı (tasarımda ortalıydı) */
+.inputField {
+  text-align: center;
+}
+/* Yorum alanı (soldan hizalı) */
+.comment {
+  text-align: left;
+}
+
+/* --- DatePicker Stili --- */
+/* DatePicker'ın input'u da diğer input'lar gibi görünmeli */
+.datePicker {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  padding: 12px 5px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center; /* Tarih de ortalı */
+  cursor: pointer;
+}
+.datePicker:focus {
+  outline: none;
+  border-bottom-color: #fff;
+}
+
+/* DatePicker'ın ikonunu eklemek (JSX'teki .inputRow > div hedefleniyor) */
+.inputRow > div:last-child {
+  position: relative;
+}
+
+.inputRow > div:last-child::after {
+  content: "📅"; /* Takvim ikonu */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.7;
+  pointer-events: none; /* İkonun tıklamayı engellememesi için */
+}
+
+/* --- Hata Mesajları --- */
+.error {
+  color: #ff868d; /* Pembe/Kırmızı */
+  font-size: 12px;
+  text-align: left;
+  margin-top: -20px; /* Input'a yaklaştır */
+  margin-bottom: -10px; /* Sonraki elemanla boşluğu kapa */
+}
+/* Miktar/Tarih satırının altındaki hata ortalansın */
+.inputRow + .error {
+  text-align: center;
+}
+
+/* --- Buton Grubu --- */
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px; /* Formun kalanıyla arayı aç */
+}
+
+/* --- ADD Butonu (Gradient) --- */
+.addButton {
+  padding: 14px;
+  border: none;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: linear-gradient(90deg, #ffb627 0%, #9e40ba 61%, #7000ff 91%);
+  color: white;
+  letter-spacing: 10%;
+  width: 300px;
+  height: 50px;
+}
+.addButton:hover {
+  opacity: 0.9;
+  box-shadow: 0 5px 15px rgba(255, 150, 80, 0.3);
+}
+
+/* --- CANCEL Butonu (Beyaz) --- */
+.cancelButton {
+  padding: 14px;
+  border: none;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #fff;
+  color: #623f8b;
+  letter-spacing: 10%;
+  width: 300px;
+  height: 50px;
+}
+.cancelButton:hover {
+  background: #f0f0f0;
+}

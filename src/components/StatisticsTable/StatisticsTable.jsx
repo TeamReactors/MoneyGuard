@@ -2,7 +2,7 @@ import css from "./StatisticsTable.module.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { transactionsSummary } from "../../redux/transactions/operations";
-import { colorSelect } from "../Chart/colorSelect";
+import { colorSelect } from "../../utils/colorSelect";
 
 function StatisticsTable() {
   const transactionsSummaryData = useSelector(

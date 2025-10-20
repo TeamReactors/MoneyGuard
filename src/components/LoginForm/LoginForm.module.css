@@ -1,72 +1,44 @@
+
 .login {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: fadeIn 0.8s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -60%);
-    }
-
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
+    background-image: linear-gradient(145deg, #4A397F, #2D263F);
+    border-radius: 12px;
+    padding: 60px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 533px;
+    
 }
 
 .login h1 {
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.65rem;
     background: linear-gradient(to right, rgb(216, 144, 97), rgb(181, 96, 149));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: white;
     background-clip: text;
     margin-bottom: 1rem;
-    animation: slideDown 0.6s ease-out;
+    
+}
+.guard{
+    display: block;
+    margin: 10px auto;
 }
 
-@keyframes slideDown {
-    from {
-        transform: translateY(-30px);
-        opacity: 0;
-    }
 
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
 
 .form {
     position: relative;
-    border-radius: 12px;
-    padding: 60px 50px 40px;
-    background: linear-gradient(145deg, rgb(49, 44, 73), rgb(40, 36, 60));
+    
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 1.5rem;
     margin-top: 1rem;
-    width: 533px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    animation: formSlideUp 0.7s ease-out;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    
 }
 
-@keyframes formSlideUp {
-    from {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
 
 /* Input container */
 .form input {
@@ -75,7 +47,7 @@
     border: none;
     border-bottom: 1px solid rgba(220, 220, 220, 0.3);
     width: 100%;
-    padding: 15px 15px 15px 15px;
+    padding: 15px 15px 15px 35px;
     background-color: transparent;
     color: white;
     font-size: 1rem;
@@ -89,52 +61,22 @@
     box-shadow: 0 2px 0 rgba(181, 96, 149, 0.2);
 }
 
-.form input::placeholder {
-    color: transparent;
-    /* Placeholder'ı gizle */
-}
 
-/* Label ve iconları INPUT'UN İÇİNE yerleştir - INPUT'dan önce gelmeli */
-.form label {
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 500;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    z-index: 2;
+.inputWrapper{
+    position: relative;
 }
-
+.form input::placeholder{
+    margin-top: 10px;
+}
 /* Icon styles */
 .form .mail,
 .form .lock {
     font-size: 1.25rem;
-    color: rgb(181, 96, 149);
+    color: rgb(140, 131, 176);
     transition: all 0.3s ease;
-}
-
-/* Focus durumunda label ve icon yukarı çıkacak */
-.form input:focus~label,
-.form input:not(:placeholder-shown)~label {
-    top: -10px;
-    left: 10px;
-    font-size: 0.8rem;
-    color: rgb(181, 96, 149);
-    background: linear-gradient(145deg, rgb(49, 44, 73), rgb(40, 36, 60));
-    padding: 0 8px;
-}
-
-.form input:focus~label .mail,
-.form input:focus~label .lock,
-.form input:not(:placeholder-shown)~label .mail,
-.form input:not(:placeholder-shown)~label .lock {
-    color: rgb(216, 144, 97);
-    transform: scale(1.1);
+    position: absolute;
+    top: 18px;
+    left: 5px;
 }
 
 .form button {
@@ -153,11 +95,13 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    letter-spacing: 0.25rem;
 }
 
 .form button:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(181, 96, 149, 0.4);
+    
 }
 
 .form button:active {
@@ -193,13 +137,16 @@
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.2);
     font-weight: 500;
+    letter-spacing: 0.25rem;
 }
 
 .link:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background-color: white;
+    color: purple;
+    
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    color: rgb(216, 144, 97);
+    
 }
 
 .error {
@@ -233,15 +180,13 @@
     margin-right: 4px;
 }
 
-/* Input wrapper ekle */
-.form>div {
-    position: relative;
-}
-
-/* Responsive design */
-@media (max-width: 600px) {
+@media screen and (max-width:600px) {
+    .login{
+        width: 95%;
+        padding: 60px 10px;
+    }
     .form {
-        width: 90vw;
+        width: 100%;
         padding: 40px 30px 30px;
     }
 
@@ -253,4 +198,5 @@
     .form input:not(:placeholder-shown)~label {
         left: 5px;
     }
-}
+} 
+    

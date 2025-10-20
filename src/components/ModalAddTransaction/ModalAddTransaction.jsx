@@ -1,29 +1,20 @@
-import React, { useEffect } from "react";
-import "./ModalAddTransaction.module.css";
+import ReactDOM from "react-dom";
+import styles from "./ModalAddTransaction.module.css";
+import AddTransactionForm from "../AddTransactionForm/AddTransactionForm";
 
-const ModalAddTransaction = ({ isOpen, onClose, children }) => {
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
-  }, [onClose]);
-
+const ModalAddTransaction = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
-  return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="close-button" onClick={onClose}>
-          x
+  return ReactDOM.createPortal(
+    <div className={styles.overlay}>
+      <div className={styles.modal}>
+        <button className={styles.closeButton} onClick={onClose}>
+          ✕
         </button>
-        {children}
-        <button type="button" onClick={onClose}>
-          Cancel
-        </button>
+        <AddTransactionForm onClose={onClose} />
       </div>
-    </div>
+    </div>,
+    document.getElementById("root")
   );
 };
 

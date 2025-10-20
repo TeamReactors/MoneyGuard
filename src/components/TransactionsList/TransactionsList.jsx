@@ -1,17 +1,27 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectTransactions } from "../../redux/transactions/selectors";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
+import { createTransaction } from "../../redux/transactions/operations";
 import css from "./TransactionsList.module.css";
 import { useMediaQuery } from "react-responsive";
 
 const TransactionList = () => {
   const transactions = useSelector(selectTransactions);
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    const dummyData = {
+      transactionDate: new Date().toISOString().split("T")[0],
+      type: "INCOME",
+      categoryId: "063f1132-ba5d-42b4-951d-44011ca46262", // Gerçek ID ile değiştir
+      comment: "Dummy gelir işlemi",
+      amount: 250,
+    };
+
+    dispatch(createTransaction(dummyData));
+  };
 
   const isMobile = useMediaQuery({ maxWidth: 767.98 });
-
-  if (!transactions || transactions.length === 0) {
-    return <p className={css.empty}>No transactions yet</p>;
-  }
 
   return isMobile ? (
     <ul className={css.transactionList}>
@@ -25,31 +35,92 @@ const TransactionList = () => {
     </ul>
   ) : (
     <div className={css.tableContainer}>
-      <table className={`${css.transactionTable} ${css.scaledContainer}`}>
-        <colgroup>
-          <col style={{ width: "16%" }} />
-          <col style={{ width: "8%" }} />
-          <col style={{ width: "16%" }} />
-          <col style={{ width: "25%" }} />
-          <col style={{ width: "20%" }} />
-          <col style={{ width: "15%" }} />
-        </colgroup>
-        <thead className={css.tableHeader}>
-          <tr>
-            <th className={css.spanDate}>Date</th>
-            <th className={css.spanType}>Type</th>
-            <th className={css.spanCategory}>Category</th>
-            <th className={css.spanComment}>Comment</th>
-            <th className={css.spanSum}>Sum</th>
-            <th className={css.spanActions}></th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.map((transaction) => (
-            <TransactionsItem key={transaction.id} transaction={transaction} />
-          ))}
-        </tbody>
-      </table>
+      <button onClick={handleClick}>Add Transaction</button>
+      {transactions.length > 8 ? (
+        <div className={css.scrollTableWrapper}>
+          <table className={`${css.transactionTable} ${css.scaledContainer}`}>
+            <colgroup>
+              <col style={{ width: "16%" }} />
+              <col style={{ width: "8%" }} />
+              <col style={{ width: "16%" }} />
+              <col style={{ width: "25%" }} />
+              <col style={{ width: "17%" }} />
+              <col style={{ width: "18%" }} />
+            </colgroup>
+            <thead className={css.tableHeader}>
+              <tr>
+                <th className={css.spanDate}>Date</th>
+                <th className={css.spanType}>Type</th>
+                <th className={css.spanCategory}>Category</th>
+                <th className={css.spanComment}>Comment</th>
+                <th className={css.spanSum}>Sum</th>
+                <th className={css.spanActions}></th>
+              </tr>
+            </thead>
+            {(!transactions || transactions.length === 0) && (
+              <tbody>
+                <tr>
+                  <td
+                    colSpan="6"
+                    style={{ textAlign: "center", padding: "16px" }}
+                  >
+                    No transactions
+                  </td>
+                </tr>
+              </tbody>
+            )}
+            <tbody>
+              {transactions.map((transaction) => (
+                <TransactionsItem
+                  key={transaction.id}
+                  transaction={transaction}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <table className={`${css.transactionTable} ${css.scaledContainer}`}>
+          <colgroup>
+            <col style={{ width: "16%" }} />
+            <col style={{ width: "8%" }} />
+            <col style={{ width: "16%" }} />
+            <col style={{ width: "25%" }} />
+            <col style={{ width: "17%" }} />
+            <col style={{ width: "18%" }} />
+          </colgroup>
+          <thead className={css.tableHeader}>
+            <tr>
+              <th className={css.spanDate}>Date</th>
+              <th className={css.spanType}>Type</th>
+              <th className={css.spanCategory}>Category</th>
+              <th className={css.spanComment}>Comment</th>
+              <th className={css.spanSum}>Sum</th>
+              <th className={css.spanActions}></th>
+            </tr>
+          </thead>
+          {(!transactions || transactions.length === 0) && (
+            <tbody>
+              <tr>
+                <td
+                  colSpan="6"
+                  style={{ textAlign: "center", padding: "16px" }}
+                >
+                  No transactions
+                </td>
+              </tr>
+            </tbody>
+          )}
+          <tbody>
+            {transactions.map((transaction) => (
+              <TransactionsItem
+                key={transaction.id}
+                transaction={transaction}
+              />
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };

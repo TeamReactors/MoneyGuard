@@ -1,3 +1,30 @@
+@media (min-width: 768px) {
+	.scrollTableWrapper {
+		max-height: 540px; /* 8 rows * ~67px per row, adjust as needed */
+		overflow-y: auto;
+		border-radius: 12px;
+	}
+
+	/* Custom scrollbar for Chrome, Edge, Safari */
+	.scrollTableWrapper::-webkit-scrollbar {
+		width: 10px;
+		border-radius: 8px;
+		background: transparent;
+	}
+	.scrollTableWrapper::-webkit-scrollbar-thumb {
+		border-radius: 8px;
+		background: linear-gradient(96.76deg, #FFC727 -16.42%, #9E40BA 97.04%);
+	}
+	.scrollTableWrapper::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	/* Custom scrollbar for Firefox */
+	.scrollTableWrapper {
+		scrollbar-width: thin;
+		scrollbar-color: #FFC727 #9E40BA;
+	}
+}
 /* Mobile-first styles */
 .transactionList {
 	list-style: none;
