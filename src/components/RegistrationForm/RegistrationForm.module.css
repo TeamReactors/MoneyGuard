@@ -1,0 +1,149 @@
+/* === PAGE BACKGROUND === */
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 30% 30%, #2a006f 0%, #160038 60%, #0d0022 100%);
+  background-image: url(../../assets/img/bg-register-desk@1x.webp);
+  background-size: cover;
+}
+
+/* Subtle purple glow behind the form */
+.wrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(177, 81, 255, 0.25), transparent 70%);
+  filter: blur(60px);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* Floating dollar bills */
+.money {
+  position: absolute;
+  width: 160px;
+  opacity: 0.15;
+  animation: floatMoney 14s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatMoney {
+  0% {
+    transform: translateY(-10%) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translateY(120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* === FORM BOX === */
+.form {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: rgba(48, 23, 96, 0.75);
+  backdrop-filter: blur(12px);
+  padding: 48px 56px;
+  border-radius: 16px;
+  width: 380px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  text-align: left;
+}
+
+/* === FORM ELEMENTS === */
+.label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.input {
+  margin-top: 6px;
+  padding: 12px;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  border-bottom-color: #f5b841;
+}
+
+.error {
+  color: #ff7777;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* === BUTTONS === */
+.button {
+  margin-top: 10px;
+  padding: 12px 0;
+  background: linear-gradient(90deg, #f5b841, #b151ff);
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(177, 81, 255, 0.4);
+}
+
+/* === LOGIN REDIRECT === */
+.loginRedirect {
+  margin-top: 10px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+}
+
+.loginRedirect a {
+  color: #ffbb50;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 4px;
+  transition: color 0.2s ease;
+}
+
+.loginRedirect a:hover {
+  color: #ffffff;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 480px) {
+  .form {
+    width: 90%;
+    padding: 32px 24px;
+  }
+}
