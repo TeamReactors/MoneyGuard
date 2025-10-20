@@ -6,7 +6,6 @@ import StatisticsTab from "../../pages/StatisticsTab";
 import CurrencyTab from "../CurrencyTab/CurrencyTab";
 import Currency from "../Currency/Currency";
 import PrivateRoute from "../PrivateRoute";
-import Navigation from "../Navigation/Navigation";
 import Loader from "../Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "../../redux/auth/operations";
@@ -15,9 +14,9 @@ import { fetchTransactions } from "../../redux/transactions/operations";
 import { Toaster } from "react-hot-toast";
 import NotFound from "../NotFound/NotFound";
 
-const LoginPage = lazy(() => import("../../pages/LoginPage"));
+const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 const RegistationPage = lazy(() => import("../../pages/RegistationPage"));
-const DashboardPage = lazy(() => import("../../pages/DashboardPage"));
+const DashboardPage = lazy(() => import("../../pages/Dashboard/DashboardPage"));
 
 function App() {
   const dispatch = useDispatch();

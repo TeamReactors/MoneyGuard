@@ -10,14 +10,14 @@ const BalancePage = () => {
       if (transaction.type === "INCOME") {
         acc.income += transaction.amount;
       } else if (transaction.type === "EXPENSE") {
-        acc.expense -= transaction.amount;
+        acc.expense += transaction.amount;
       }
       return acc;
     },
     { income: 0, expense: 0 }
   );
 
-  const balance = balanceData.income - balanceData.expense;
+  const balance = balanceData.income + balanceData.expense;
 
   return (
     <div className={styles.containerBalance}>
