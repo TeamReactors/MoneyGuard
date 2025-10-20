@@ -26,6 +26,7 @@ const AddTransactionForm = ({ onClose }) => {
       }),
       amount: Yup.number()
         .typeError("Enter a valid number")
+        .positive("Amount must be positive")
         .required("Amount is required"),
       comment: Yup.string().max(100, "Max 100 characters"),
     }),
@@ -38,6 +39,9 @@ const AddTransactionForm = ({ onClose }) => {
       };
       if(type === "INCOME") {
         values.categoryId = "063f1132-ba5d-42b4-951d-44011ca46262";
+      }
+      if (type === "EXPENSE") {
+        values.amount = -values.amount;
       }
 
       const newTransaction = {
