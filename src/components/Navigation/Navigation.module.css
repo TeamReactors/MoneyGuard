@@ -1,4 +1,4 @@
-/* NAVIGATION MODULE CSS - RESPONSIVE & CLEAN */
+
 .navigation {
   display: flex;
   flex-direction: row;
@@ -74,7 +74,6 @@
   font-weight: 600;
 }
 
-/* Mobile (320px - 767px) - Header ile aynı boyutlarda */
 @media screen and (max-width: 767px) {
   .navigation {
     padding: 8px 0;
@@ -107,7 +106,6 @@
   }
 }
 
-/* Tablet (768px - 1023px) */
 @media screen and (min-width: 768px) {
   .navigation {
     flex-direction: column;
@@ -148,7 +146,6 @@
   }
 }
 
-/* Desktop (1024px - 1279px) */
 @media screen and (min-width: 1024px) {
   .navigation {
     gap: 10px;
@@ -164,7 +161,6 @@
   }
 }
 
-/* Large Desktop (1280px+) */
 @media screen and (min-width: 1280px) {
   .navigation {
     gap: 12px;

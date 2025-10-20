@@ -1,4 +1,4 @@
-/* HEADER MODULE CSS - RESPONSIVE */
+
 .header {
   position: fixed;
   top: 0;
@@ -28,6 +28,37 @@
   gap: clamp(6px, 1.5vw, 10px);
   flex-shrink: 0;
 }
+@media (max-width: 1023px) {
+  .logo {
+    flex-direction: column;
+    gap: 2px; /* Logo ve yazı arası daha az */
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logoText {
+    font-size: 10px; /* Mobilde daha küçük */
+    line-height: 1;
+    margin: 0;
+  }
+  
+  .logoIcon {
+    width: clamp(18px, 4vw, 24px);
+    height: clamp(18px, 4vw, 24px);
+  }
+}
+
+/* Desktop için yatay hizalama */
+@media (min-width: 1024px) {
+  .logo {
+    flex-direction: row;
+    gap: clamp(6px, 1.5vw, 10px);
+  }
+  
+  .logoText {
+    font-size: clamp(14px, 3.5vw, 18px);
+  }
+}
 
 .logoIcon {
   width: clamp(20px, 5vw, 28px);
@@ -44,13 +75,12 @@
 .logoText {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  font-size: clamp(14px, 3.5vw, 18px);
+  font-size: clamp(12px, 3vw, 18px); 
   color: #FBFBFB;
   white-space: nowrap;
-  transition: opacity 0.3s ease;
 }
 
-/* USER SECTION STYLES - RESPONSIVE */
+
 .userSection {
   display: flex;
   align-items: center;
@@ -73,7 +103,7 @@
   max-width: 120px;
 }
 
-/* EXIT BUTTON STYLES - RESPONSIVE */
+
 .exitButton {
   display: flex;
   align-items: center;
@@ -109,10 +139,9 @@
   font-size: clamp(12px, 3vw, 16px);
   color: rgba(255, 255, 255, 0.8);
   white-space: nowrap;
-  transition: opacity 0.3s ease;
 }
 
-/* MODAL STYLES - RESPONSIVE */
+
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -270,13 +299,10 @@
   transform: translateY(-2px);
 }
 
-/* RESPONSIVE BREAKPOINTS */
-/* Mobile First Approach */
-
-/* Small Mobile (320px - 480px) */
 @media (max-width: 480px) {
   .logoText {
-    display: none;
+    display: block; 
+    font-size: 12px; 
   }
   
   .username {
@@ -301,8 +327,12 @@
   }
 }
 
-/* Tablet (768px - 1024px) */
+
 @media (min-width: 768px) {
+  .logoText {
+    font-size: 16px; 
+  }
+  
   .modalActions {
     flex-direction: row;
     justify-content: center;
@@ -318,7 +348,7 @@
   }
 }
 
-/* Desktop (1024px+) */
+
 @media (min-width: 1024px) {
   .container {
     padding: 0 20px;
@@ -326,6 +356,10 @@
   
   .logo {
     gap: 10px;
+  }
+  
+  .logoText {
+    font-size: 18px; 
   }
   
   .userSection {
@@ -342,14 +376,12 @@
   }
 }
 
-/* Large Desktop (1280px+) */
 @media (min-width: 1280px) {
   .container {
     max-width: 1280px;
   }
 }
 
-/* High DPI Screens */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .logoIcon img,
   .exitButton img,
@@ -359,7 +391,6 @@
   }
 }
 
-/* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   .modal,
   .modal::before,
@@ -371,14 +402,12 @@
   }
 }
 
-/* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .modal {
     background: linear-gradient(135deg, #2E1746 0%, #2E225F 100%);
   }
 }
 
-/* Landscape Mobile */
 @media (max-height: 500px) and (orientation: landscape) {
   .modalOverlay {
     align-items: flex-start;
@@ -391,7 +420,6 @@
   }
 }
 
-/* Touch Device Optimizations */
 @media (hover: none) and (pointer: coarse) {
   .exitButton:hover,
   .logoutButton:hover,
