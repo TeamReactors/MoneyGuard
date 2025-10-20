@@ -5,7 +5,6 @@ import { FiDollarSign } from "react-icons/fi";
 
 const BalancePage = () => {
   const transactions = useSelector(selectTransactions);
-
   const balanceData = transactions.reduce(
     (acc, transaction) => {
       if (transaction.type === "INCOME") {
