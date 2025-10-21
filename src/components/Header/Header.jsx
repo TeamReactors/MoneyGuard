@@ -28,14 +28,14 @@ const Header = () => {
   };
 
   const scrollToTop = () => {
-  const scrollStep = -window.scrollY / (500 / 15);
+  const scrollStep = -window.scrollY / (5 / 15);
   const scrollInterval = setInterval(() => {
     if (window.scrollY !== 0) {
       window.scrollBy(0, scrollStep);
     } else {
       clearInterval(scrollInterval);
     }
-  }, 15);
+  }, 5);
 };
 
   // Kullanıcı giriş yapmamışsa header göstermiyoz
