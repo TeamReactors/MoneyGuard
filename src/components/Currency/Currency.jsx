@@ -40,8 +40,11 @@ const Currency = () => {
     if (error) return <p>{error}</p>;
 
     return (
-        <div>
-            
+        <div className={css.CurrencyMobil}>
+       
+             <div className= {css.ellipse5}></div>
+              <div className={css.ellipse2}></div>
+              <div className={css.ellipse1}></div>
         <div className={css.currencyContainer}>
             
             <table className={css.currencyTable}>
