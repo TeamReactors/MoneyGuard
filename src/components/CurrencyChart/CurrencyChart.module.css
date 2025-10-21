@@ -3,14 +3,15 @@
     width: 100%;
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1279px) {
     .chartContainer {
-        width: 336px;
+        height: 88px;
     }
 }
 
+/* 
 @media (min-width: 1024px) {
     .chartContainer {
-        width: 480px;
+        width: 100%;
     }
-}
+} */
