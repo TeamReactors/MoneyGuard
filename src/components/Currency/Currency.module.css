@@ -1,14 +1,12 @@
 .currencyContainer {
     background-color: rgba(74, 86, 226, 0.1);
     color: #fff;
-
     margin: 0 auto;
 }
 
 .currencyTable {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
 }
 
 .currencyHeader {
@@ -20,11 +18,17 @@
 .currencyRow th {
     padding: 13px 20px;
     font-size: 1rem;
+    border-bottom: #fff;
 }
 
 .currencyBody td {
     padding: 8px 20px;
     font-size: 0.875rem;
+    text-align: center;
+}
+.currencyBody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease;
 }
 
 .currencyBody tr:hover {
@@ -34,13 +38,6 @@
 
 @media (min-width: 768px) and (max-width: 1279px) {
     .currencyContainer {
-        height: 214px;
+        max-height: 214px;
     }
 }
-
-/* 
-@media(min-width: 1280px) {
-    .currencyContainer {
-        width: 480px;
-    }
-} */
