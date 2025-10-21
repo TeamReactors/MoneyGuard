@@ -65,12 +65,12 @@ function App() {
             }
           >
             <Route index element={<TransactionList />} />
-            <Route path="statistics" element={<StatisticsTab />} />
+            <Route path="/statistics" element={<PrivateRoute redirectTo="/login" component={<StatisticsTab />}/>} />
            
             <Route 
-              path="currency" 
+              path="/currency" 
               element={
-                isMobile ? <Currency /> : <Navigate to="/dashboard" replace />
+                <PrivateRoute redirectTo="/login" component={<Currency />} />
               } 
             />
           </Route>
