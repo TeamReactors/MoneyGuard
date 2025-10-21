@@ -4,7 +4,7 @@ export default function RegistrationPage() {
   return (
     <section>
       <div>
-        <div>
+        {/* <div>
           <img
             src="/assets/logo.svg"
             alt="Money Guard logo"
@@ -13,7 +13,7 @@ export default function RegistrationPage() {
           <p>
             Take control of your finances with ease and clarity.
           </p>
-        </div>
+        </div> */}
 
         <RegistrationForm />
       </div>
