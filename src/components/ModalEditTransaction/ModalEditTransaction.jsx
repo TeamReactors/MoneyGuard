@@ -1,7 +1,10 @@
+// ...existing code...
 import React, { useEffect } from "react";
+import ReactDOM from "react-dom";
 import styles from "./ModalEditTransaction.module.css";
+import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
 
-const ModalEditTransaction = ({ isOpen, onClose, children }) => {
+const ModalEditTransaction = ({ isOpen, onClose, transaction }) => {
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") onClose();
@@ -12,17 +15,18 @@ const ModalEditTransaction = ({ isOpen, onClose, children }) => {
 
   if (!isOpen) return null;
 
-  return (
+  return ReactDOM.createPortal(
     <div className={styles.backdrop} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        {/* Sağ üst X butonu */}
         <button className={styles.closeBtn} onClick={onClose}>
           ✕
         </button>
-        {children}
+        <EditTransactionForm transactionData={transaction} onCancel={onClose} />
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
 export default ModalEditTransaction;
+// ...existing code...
