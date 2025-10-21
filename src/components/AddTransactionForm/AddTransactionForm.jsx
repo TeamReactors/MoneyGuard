@@ -23,7 +23,7 @@ const AddTransactionForm = ({ onClose }) => {
     initialValues: {
       categoryId: "",
       comment: "",
-      amount: 0,
+      amount: "",
     },
     validationSchema: Yup.object({
       categoryId: Yup.string().when([], {
@@ -43,7 +43,7 @@ const AddTransactionForm = ({ onClose }) => {
         const day = String(d.getDate()).padStart(2, "0");
         return `${y}-${m}-${day}`;
       };
-      if(type === "INCOME") {
+      if (type === "INCOME") {
         values.categoryId = "063f1132-ba5d-42b4-951d-44011ca46262";
       }
       if (type === "EXPENSE") {
@@ -55,7 +55,7 @@ const AddTransactionForm = ({ onClose }) => {
         type,
         ...values,
       };
-      console.log(newTransaction)
+      console.log(newTransaction);
       dispatch(createTransaction(newTransaction));
       onClose();
     },
@@ -102,11 +102,13 @@ const AddTransactionForm = ({ onClose }) => {
           onBlur={formik.handleBlur}
           className={styles.categorySelect}
         >
+
           {
             categories.map((category) => (
               <option key={category.id} value={category.id}>{category.name}</option>
             ))
           }
+
         </select>
       )}
       {formik.touched.categoryId && formik.errors.categoryId && (

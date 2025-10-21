@@ -9,25 +9,24 @@ import Loader from "../Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "../../redux/auth/operations";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
-import { fetchTransactions } from "../../redux/transactions/operations";
 import { Toaster } from "react-hot-toast";
 import NotFound from "../NotFound/NotFound";
 
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 const RegistationPage = lazy(() => import("../../pages/RegistationPage"));
 const DashboardPage = lazy(() => import("../../pages/Dashboard/DashboardPage"));
-const CurrencyPage = lazy(() => import("../../pages/CurrencyPage/CurrencyPage"));
+const CurrencyPage = lazy(() =>
+  import("../../pages/CurrencyPage/CurrencyPage")
+);
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-  
-  
+
   // const isMobile = useMediaQuery('(max-width: 767px)');
 
   useEffect(() => {
     dispatch(refreshUser());
-    dispatch(fetchTransactions());
   }, [dispatch]);
 
   return isRefreshing ? (
@@ -55,17 +54,28 @@ function App() {
               />
             }
           />
-          
-     
+
           <Route
-            path="/dashboard" element={<PrivateRoute redirectTo="/login" component={<DashboardPage />} />}
+            path="/dashboard"
+            element={
+              <PrivateRoute redirectTo="/login" component={<DashboardPage />} />
+            }
           />
-            
-          <Route path="/statistics" element={<PrivateRoute redirectTo="/login" component={<StatisticsTab />} />} />
-           
-          <Route path="/currency" element={<PrivateRoute redirectTo="/login" component={<CurrencyPage />} />} />
-          
-          
+
+          <Route
+            path="/statistics"
+            element={
+              <PrivateRoute redirectTo="/login" component={<StatisticsTab />} />
+            }
+          />
+
+          <Route
+            path="/currency"
+            element={
+              <PrivateRoute redirectTo="/login" component={<CurrencyPage />} />
+            }
+          />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
