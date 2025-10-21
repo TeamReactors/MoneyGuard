@@ -68,8 +68,9 @@ function App() {
             element={
               <PrivateRoute redirectTo="/login" component={<StatisticsTab />} />
             }
-          />
-
+            />
+            
+            {/* çağlayan burayı sileyim deme sakın sjhdbef */}
           <Route
             path="/currency"
             element={
