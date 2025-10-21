@@ -21,6 +21,11 @@
   background-color: #533dba;
   color: #fbfbfb;
 }
+@media screen and (max-width:600px) {
+  .currency {
+    display: none;
+  }
+}
 
 @media (min-width: 768px) {
   .box {

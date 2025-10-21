@@ -5,6 +5,7 @@ import {
   deleteTransaction,
   updateTransaction,
   transactionsSummary,
+  fetchCategories,
 } from "./operations";
 import { logOut } from "../auth/operations";
 
@@ -19,6 +20,9 @@ const initialState = {
     periodTotal: 0,
     year: null,
     month: null,
+  },
+  categories: {
+    items: []
   },
   date: { month: 1, year: 2020 },
 };
@@ -85,7 +89,13 @@ export const transactionsSlice = createSlice({
       .addCase(transactionsSummary.fulfilled, (state, action) => {
         state.transactionsSummary = action.payload;
       })
-      .addCase(transactionsSummary.rejected, handleRejected);
+      .addCase(transactionsSummary.rejected, handleRejected)
+      .addCase(fetchCategories.pending, handlePending)
+      .addCase(fetchCategories.fulfilled, (state, action) => {
+  
+        state.categories.items = action.payload;
+      })
+      .addCase(fetchCategories.rejected, handleRejected);
   },
   reducers: {
     changeDate: (state, action) => {

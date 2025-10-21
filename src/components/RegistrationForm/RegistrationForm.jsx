@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import toast from "react-hot-toast";
 import { register } from "../../redux/auth/operations";
 import css from "./RegistrationForm.module.css";
 
@@ -61,7 +62,17 @@ export const RegistrationForm = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     const { username, email, password } = values;
-    dispatch(register({ username, email, password }));
+    dispatch(register({ username, email, password }))
+    .unwrap()
+    .then(() => {
+      toast.success("Registration Successful", { duration: 2000 });
+    })
+      .catch((e) => {
+        if(e === "Request failed with status code 409"){
+          return toast.error("User with this email already exists.", { duration: 2000 });
+        }
+      toast.error("Registration Failed. Please try again.", { duration: 2000 });
+    });
     resetForm();
   };
 

@@ -29,7 +29,12 @@ const LoginForm = () => {
       .then(() => {
         toast.success("Login Successfull", { duration: 2000 });
       })
-      .catch(() => {
+      .catch((e) => {
+        if (e === "Request failed with status code 403") {
+         return  toast.error("Password is incorrect",{duration:2000})
+        } else if (e === "Request failed with status code 404") {
+          return toast.error(`User with email ${values.email} not found`,{duration:2000})
+        }
         toast.error("Please try again something went wrong", {
           duration: 2000,
         });
@@ -68,7 +73,7 @@ const LoginForm = () => {
               <Field
                 type="password"
                 name="password"
-                placeholder="Paswword"
+                placeholder="Password"
               ></Field>
               <ErrorMessage
                 className={css.error}

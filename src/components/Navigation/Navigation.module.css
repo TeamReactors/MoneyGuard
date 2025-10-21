@@ -170,3 +170,8 @@
     padding: 16px 24px;
   }
 }
+@media screen and (min-width:600px) {
+  .navLink {
+    display: none;
+  }
+}

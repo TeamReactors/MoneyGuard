@@ -1,27 +1,33 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./AddTransactionForm.module.css";
-import { createTransaction } from "../../redux/transactions/operations";
+import { createTransaction, fetchCategories } from "../../redux/transactions/operations";
+import { selectCategories } from "../../redux/transactions/selectors";
 
 const AddTransactionForm = ({ onClose }) => {
   const dispatch = useDispatch();
+  const categories = useSelector(selectCategories)
 
-  const [type, setType] = useState("income");
+  useEffect(() => {
+    dispatch(fetchCategories());
+  },[dispatch])
+
+  const [type, setType] = useState("INCOME");
   const [date, setDate] = useState(new Date());
 
   const formik = useFormik({
     initialValues: {
-      category: "",
-      amount: "",
+      categoryId: "",
       comment: "",
+      amount: 0,
     },
     validationSchema: Yup.object({
-      category: Yup.string().when([], {
-        is: () => type === "expense",
+      categoryId: Yup.string().when([], {
+        is: () => type === "EXPENSE",
         then: (schema) => schema.required("Category is required"),
       }),
       amount: Yup.number()
@@ -31,11 +37,25 @@ const AddTransactionForm = ({ onClose }) => {
       comment: Yup.string().max(100, "Max 100 characters"),
     }),
     onSubmit: (values) => {
+      const formatDate = (d) => {
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, "0");
+        const day = String(d.getDate()).padStart(2, "0");
+        return `${y}-${m}-${day}`;
+      };
+      if(type === "INCOME") {
+        values.categoryId = "063f1132-ba5d-42b4-951d-44011ca46262";
+      }
+      if (type === "EXPENSE") {
+        values.amount = -values.amount;
+      }
+
       const newTransaction = {
+        transactionDate: formatDate(date),
         type,
-        date,
         ...values,
       };
+      console.log(newTransaction)
       dispatch(createTransaction(newTransaction));
       onClose();
     },
@@ -49,7 +69,7 @@ const AddTransactionForm = ({ onClose }) => {
       <div className={styles.toggleContainer}>
         <span
           className={`${styles.toggleLabel} ${styles.income} ${
-            type === "income" ? styles.active : ""
+            type === "INCOME" ? styles.active : ""
           }`}
         >
           Income
@@ -58,15 +78,15 @@ const AddTransactionForm = ({ onClose }) => {
         <label className={styles.switch}>
           <input
             type="checkbox"
-            checked={type === "expense"}
-            onChange={() => setType(type === "income" ? "expense" : "income")}
+            checked={type === "EXPENSE"}
+            onChange={() => setType(type === "INCOME" ? "EXPENSE" : "INCOME")}
           />
           <span className={styles.slider}></span>
         </label>
 
         <span
           className={`${styles.toggleLabel} ${styles.expense} ${
-            type === "expense" ? styles.active : ""
+            type === "EXPENSE" ? styles.active : ""
           }`}
         >
           Expense
@@ -74,29 +94,29 @@ const AddTransactionForm = ({ onClose }) => {
       </div>
 
       {/* kategori (yalnızca gider için) */}
-      {type === "expense" && (
+      {type === "EXPENSE" && (
         <select
-          name="category"
-          value={formik.values.category}
+          name="categoryId"
+          value={formik.values.categoryId}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           className={styles.categorySelect}
         >
-          <option value="">Select a category</option>
-          <option value="Food">Food</option>
-          <option value="Transport">Transport</option>
-          <option value="Shopping">Shopping</option>
-          <option value="Bills">Bills</option>
+          {
+            categories.map((category) => (
+              <option key={category.id} value={category.id}>{category.name}</option>
+            ))
+          }
         </select>
       )}
-      {formik.touched.category && formik.errors.category && (
-        <div className={styles.error}>{formik.errors.category}</div>
+      {formik.touched.categoryId && formik.errors.categoryId && (
+        <div className={styles.error}>{formik.errors.categoryId}</div>
       )}
 
       {/* Miktar ve tarih */}
       <div className={styles.inputRow}>
         <input
-          type="text"
+          type="number"
           name="amount"
           placeholder="0.00"
           value={formik.values.amount}

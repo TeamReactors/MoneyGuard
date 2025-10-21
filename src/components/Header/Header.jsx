@@ -27,6 +27,17 @@ const Header = () => {
     setShowLogoutModal(false);
   };
 
+  const scrollToTop = () => {
+  const scrollStep = -window.scrollY / (5 / 15);
+  const scrollInterval = setInterval(() => {
+    if (window.scrollY !== 0) {
+      window.scrollBy(0, scrollStep);
+    } else {
+      clearInterval(scrollInterval);
+    }
+  }, 5);
+};
+
   // Kullanıcı giriş yapmamışsa header göstermiyoz
   if (!isLoggedIn) {
     return null;
@@ -37,7 +48,9 @@ const Header = () => {
       <header className={styles.header}>
         <div className={styles.container}>
          
-          <div className={styles.logo}>
+          <div className={styles.logo}
+           onClick={() => {scrollToTop();}}
+               >
             <span className={styles.logoIcon}>
               <img src="/monerguard.svg" alt="Money Guard Logo" />
             </span>

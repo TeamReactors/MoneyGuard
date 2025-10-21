@@ -3,7 +3,6 @@ import styles from "./App.module.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import RestrictedRoute from "../RestrictedRoute";
 import StatisticsTab from "../../pages/StatisticsTab";
-import CurrencyTab from "../CurrencyTab/CurrencyTab";
 import Currency from "../Currency/Currency";
 import PrivateRoute from "../PrivateRoute";
 import Loader from "../Loader/Loader";
@@ -17,10 +16,14 @@ import NotFound from "../NotFound/NotFound";
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 const RegistationPage = lazy(() => import("../../pages/RegistationPage"));
 const DashboardPage = lazy(() => import("../../pages/Dashboard/DashboardPage"));
+const CurrencyPage = lazy(() => import("../../pages/CurrencyPage/CurrencyPage"));
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  
+  
+  // const isMobile = useMediaQuery('(max-width: 767px)');
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -52,15 +55,17 @@ function App() {
               />
             }
           />
-          {/* <Route path="/statistics" element={<StatisticsTab />} /> */}
+          
+     
           <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute redirectTo="/login" component={<DashboardPage />} />
-            }
+            path="/dashboard" element={<PrivateRoute redirectTo="/login" component={<DashboardPage />} />}
           />
-          {/* <Route path="/" element={<button><CurrencyTab /></button>} /> */}
-          {/* <Route path="/currency" element={<Currency />} /> */}
+            
+          <Route path="/statistics" element={<PrivateRoute redirectTo="/login" component={<StatisticsTab />} />} />
+           
+          <Route path="/currency" element={<PrivateRoute redirectTo="/login" component={<CurrencyPage />} />} />
+          
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
