@@ -31,6 +31,13 @@ const DashboardPage = () => {
 
   return (
     <>
+    
+ <div className={styles.backgroundDah}>
+        <div className={styles.ellipse5}></div>
+  <div className={styles.ellipse4}></div>
+  <div className={styles.ellipse2}></div>
+  <div className={styles.ellipse1}></div>
+
       <Header /> 
       <div className={styles.containerDash}>
         <div className={styles.leftContainerDash}>
@@ -52,6 +59,7 @@ const DashboardPage = () => {
           <TransactionList />
           <ButtonAddTransactions className={styles.addbuttonDash} />
         </div>
+      </div>
       </div>
     </>
   );
