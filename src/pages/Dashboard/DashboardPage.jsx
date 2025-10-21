@@ -5,6 +5,7 @@ import Navigation from '../../components/Navigation/Navigation.jsx';
 import Balance from '../../components/Balance/Balance.jsx';
 import ButtonAddTransactions from '../../components/ButtonAddTransactions/ButtonAddTransactions.jsx';
 import styles from './Dashboard.module.css';
+import TransactionList from '../../components/TransactionsList/TransactionsList.jsx';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const DashboardPage = () => {
@@ -48,7 +49,7 @@ const DashboardPage = () => {
         </div>
         <div>
          
-          <Outlet />
+          <TransactionList />
           <ButtonAddTransactions className={styles.addbuttonDash} />
         </div>
       </div>

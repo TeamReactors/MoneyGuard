@@ -12,19 +12,18 @@ import { selectIsRefreshing } from "../../redux/auth/selectors";
 import { fetchTransactions } from "../../redux/transactions/operations";
 import { Toaster } from "react-hot-toast";
 import NotFound from "../NotFound/NotFound";
-import useMediaQuery from "../../hooks/useMediaQuery";
 
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 const RegistationPage = lazy(() => import("../../pages/RegistationPage"));
 const DashboardPage = lazy(() => import("../../pages/Dashboard/DashboardPage"));
-const TransactionList = lazy(() => import("../TransactionsList/TransactionsList"));
+const CurrencyPage = lazy(() => import("../../pages/CurrencyPage/CurrencyPage"));
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   
   
-  const isMobile = useMediaQuery('(max-width: 767px)');
+  // const isMobile = useMediaQuery('(max-width: 767px)');
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -59,21 +58,13 @@ function App() {
           
      
           <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute redirectTo="/login" component={<DashboardPage />} />
-            }
-          >
-            <Route index element={<TransactionList />} />
-            <Route path="/statistics" element={<PrivateRoute redirectTo="/login" component={<StatisticsTab />}/>} />
+            path="/dashboard" element={<PrivateRoute redirectTo="/login" component={<DashboardPage />} />}
+          />
+            
+          <Route path="/statistics" element={<PrivateRoute redirectTo="/login" component={<StatisticsTab />} />} />
            
-            <Route 
-              path="/currency" 
-              element={
-                <PrivateRoute redirectTo="/login" component={<Currency />} />
-              } 
-            />
-          </Route>
+          <Route path="/currency" element={<PrivateRoute redirectTo="/login" component={<CurrencyPage />} />} />
+          
           
           <Route path="*" element={<NotFound />} />
         </Routes>
