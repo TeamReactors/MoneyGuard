@@ -55,7 +55,7 @@ const AddTransactionForm = ({ onClose }) => {
         type,
         ...values,
       };
-      console.log(newTransaction);
+
       dispatch(createTransaction(newTransaction));
       onClose();
     },

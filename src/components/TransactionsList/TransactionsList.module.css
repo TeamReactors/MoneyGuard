@@ -71,6 +71,22 @@
 .spanActions {
 	text-align: right;
 }
+.addButton{
+	display: block;
+	margin: 10px auto;
+	border-radius: 20px;
+	background-image: linear-gradient(to right,rgb(225,158,84),rgb(177,91,156));
+	padding: 10px;
+	border: none;
+	color: white;
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+.addButton:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22);
+	background-image: linear-gradient(to right, rgb(245,180,100), rgb(195,110,170));
+}
 
 /* Tablet styles -> fixed container width 704px */
 @media (min-width: 768px) {
