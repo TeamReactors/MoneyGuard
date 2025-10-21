@@ -9,11 +9,15 @@ import Currency from "../components/Currency/Currency";
 
 const StatisticsTab = () => {
   return (
-    <div className={css.area}>
+    <div>
       <Header></Header>
       <Navigation></Navigation>
       <Balance></Balance>
-      <Currency></Currency>
+      <div className={css.currency}>
+        <Currency></Currency>
+      </div>
+      
+      <div className={css.area}>
       <div>
         <Chart />
       </div>
@@ -22,6 +26,8 @@ const StatisticsTab = () => {
         <StatisticsTable />
       </div>
     </div>
+    </div>
+    
   );
 };
 
