@@ -1,12 +1,21 @@
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { useNavigate } from 'react-router-dom'; 
 import styles from './Navigation.module.css';
 
 const Navigation = ({ activeTab, onTabChange }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
+  
   
   const handleTabClick = (tabName) => {
     onTabChange(tabName);
+   
+    if (tabName === 'home') {
+      navigate('/dashboard');
+    } else {
+      navigate(`/dashboard/${tabName}`);
+    }
   };
 
   if (!isLoggedIn) return null;
@@ -32,6 +41,8 @@ const Navigation = ({ activeTab, onTabChange }) => {
         </div>
         <span className={styles.linkText}>Statistics</span>
       </div>
+      
+     
       <div 
         className={`${styles.navLink} ${styles.currencyLink} ${activeTab === 'currency' ? styles.active : ''}`}
         onClick={() => handleTabClick('currency')}
