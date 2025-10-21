@@ -11,6 +11,7 @@ import { refreshUser } from "../../redux/auth/operations";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 import { Toaster } from "react-hot-toast";
 import NotFound from "../NotFound/NotFound";
+import { useMediaQuery } from "react-responsive";
 
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 const RegistationPage = lazy(() => import("../../pages/RegistationPage"));
@@ -23,7 +24,7 @@ function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
 
-  // const isMobile = useMediaQuery('(max-width: 767px)');
+  const isMobile = useMediaQuery({ maxWidth: 767 });
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -72,7 +73,7 @@ function App() {
           <Route
             path="/currency"
             element={
-              <PrivateRoute redirectTo="/login" component={<CurrencyPage />} />
+              <PrivateRoute redirectTo="/login" component={isMobile ? <CurrencyPage /> : <Navigate to="/dashboard" replace />} />
             }
           />
 
