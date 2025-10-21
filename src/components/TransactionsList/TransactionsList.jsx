@@ -1,13 +1,20 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { selectTransactions } from "../../redux/transactions/selectors";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import ModalAddTransaction from "../ModalAddTransaction/ModalAddTransaction.jsx";
 import AddTransactionForm from "../AddTransactionForm/AddTransactionForm.jsx";
 import css from "./TransactionsList.module.css";
 import { useMediaQuery } from "react-responsive";
+import { fetchTransactions } from "../../redux/transactions/operations.js";
 
 const TransactionList = () => {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchTransactions());
+  },[dispatch])
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
