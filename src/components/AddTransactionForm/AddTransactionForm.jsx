@@ -1,14 +1,20 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./AddTransactionForm.module.css";
-import { createTransaction } from "../../redux/transactions/operations";
+import { createTransaction, fetchCategories } from "../../redux/transactions/operations";
+import { selectCategories } from "../../redux/transactions/selectors";
 
 const AddTransactionForm = ({ onClose }) => {
   const dispatch = useDispatch();
+  const categories = useSelector(selectCategories)
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  },[dispatch])
 
   const [type, setType] = useState("INCOME");
   const [date, setDate] = useState(new Date());
@@ -96,28 +102,13 @@ const AddTransactionForm = ({ onClose }) => {
           onBlur={formik.handleBlur}
           className={styles.categorySelect}
         >
-          <option value="">Select a category</option>
-          <option value="c9d9e447-1b83-4238-8712-edc77b18b739">
-            Main Expenses
-          </option>
-          <option value="27eb4b75-9a42-4991-a802-4aefe21ac3ce">Products</option>
-          <option value="3caa7ba0-79c0-40b9-ae1f-de1af1f6e386">Car</option>
-          <option value="76cc875a-3b43-4eae-8fdb-f76633821a34">
-            Child Care
-          </option>
-          <option value="128673b5-2f9a-46ae-a428-ec48cf1effa1">
-            Household Products
-          </option>
-          <option value="1272fcc4-d59f-462d-ad33-a85a075e5581">
-            Education
-          </option>
-          <option value="c143130f-7d1e-4011-90a4-54766d4e308e">Leisure</option>
-          <option value="719626f1-9d23-4e99-84f5-289024e437a8">
-            Other Expenses
-          </option>
-          <option value="3acd0ecd-5295-4d54-8e7c-d3908f4d0402">
-            Entertainment
-          </option>
+
+          {
+            categories.map((category) => (
+              <option key={category.id} value={category.id}>{category.name}</option>
+            ))
+          }
+
         </select>
       )}
       {formik.touched.categoryId && formik.errors.categoryId && (
