@@ -8,6 +8,8 @@ import { isLessThanOneHour } from '../../utils/timeUtils.js';
 import CurrencyChart from '../CurrencyChart/CurrencyChart.jsx';
 import css from './Currency.module.css';
 import Loader from '../Loader/Loader.jsx';
+import Header from '../Header/Header.jsx';
+import Navigation from '../Navigation/Navigation.jsx';
 
 const Currency = () => {
     const [currency, setCurrency] = useState([]);
@@ -38,7 +40,10 @@ const Currency = () => {
     if (error) return <p>{error}</p>;
 
     return (
+        <div>
+            
         <div className={css.currencyContainer}>
+            
             <table className={css.currencyTable}>
                 <thead className={css.currencyHeader}>
                     <tr className={css.currencyRow}>
@@ -60,6 +65,8 @@ const Currency = () => {
 
             <CurrencyChart data={currency} />
         </div>
+        </div>
+        
     );
 }
 export default Currency;
