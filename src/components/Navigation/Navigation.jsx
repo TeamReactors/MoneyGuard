@@ -23,23 +23,23 @@ const Navigation = () => {
   return (
     <nav className={styles.navigation}>
       <ul>
-        <li>
-          <div className={styles.linkIcon}>
-          <img src="/home.svg" alt="Home" className={styles.navIcon} />
-          </div>
+        <li className={styles.link}>
+          
+          <img  src="/home.svg" alt="Home" className={styles.navIcon} />
+          
           
           <NavLink className={styles.linkText} to="/dashboard">Home</NavLink>
         </li>
-        <li>
-          <div className={styles.linkIcon}>
+        <li className={styles.link}>
+          
           <img src="/statistic.svg" alt="Statistics" className={styles.navIcon} />
-        </div>
+        
           <NavLink className={styles.linkText} to="/statistics">Statistics</NavLink>
         </li>
         <li className={styles.navLink}>
-          <div className={styles.linkIcon}>
+          
           <img src="/dolar.svg" alt="Currency" className={styles.navIcon} />
-        </div>
+        
           <NavLink className={styles.linkText} to="/currency">Currency</NavLink>
         </li>
       </ul>  

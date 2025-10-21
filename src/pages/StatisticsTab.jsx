@@ -11,23 +11,26 @@ const StatisticsTab = () => {
   return (
     <div>
       <Header></Header>
-      <Navigation></Navigation>
-      <Balance></Balance>
-      <div className={css.currency}>
-        <Currency></Currency>
-      </div>
-      
-      <div className={css.area}>
-      <div>
-        <Chart />
-      </div>
-      <div>
-        <StatisticsDashboard />
-        <StatisticsTable />
+      <div className={css.container}>
+        <div>
+          <Navigation></Navigation>
+          <Balance></Balance>
+          <div className={css.currency}>
+            <Currency></Currency>
+          </div>
+        </div>
+
+        <div className={css.area}>
+          <div>
+            <Chart />
+          </div>
+          <div>
+            <StatisticsDashboard />
+            <StatisticsTable />
+          </div>
+        </div>
       </div>
     </div>
-    </div>
-    
   );
 };
 
