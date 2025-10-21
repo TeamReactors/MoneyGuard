@@ -181,7 +181,7 @@
     padding: 16px 24px;
   }
 }
-@media screen and (min-width:600px) {
+@media screen and (min-width:768px) {
   .navLink {
     display: none;
   }
