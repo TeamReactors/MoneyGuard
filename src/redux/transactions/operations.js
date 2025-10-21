@@ -70,3 +70,12 @@ export const transactionsSummary = createAsyncThunk(
     }
   }
 );
+export const fetchCategories = createAsyncThunk("transactions/fetchCategories", async (_, thunkApi) => { 
+  try {
+    const res = await axios.get("/api/transaction-categories");
+    
+    return res.data;
+  } catch (error) {
+    return thunkApi.rejectWithValue(error.message);
+  }
+});
