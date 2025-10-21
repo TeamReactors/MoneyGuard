@@ -35,8 +35,6 @@ const LoginForm = () => {
         } else if (e === "Request failed with status code 404") {
           return toast.error("There is no account associated with this email and password.",{duration:2000})
         }
-        console.log(e)
-        
         toast.error("Please try again something went wrong", {
           duration: 2000,
         });
@@ -75,7 +73,7 @@ const LoginForm = () => {
               <Field
                 type="password"
                 name="password"
-                placeholder="Paswword"
+                placeholder="Password"
               ></Field>
               <ErrorMessage
                 className={css.error}
