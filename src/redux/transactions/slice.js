@@ -8,6 +8,7 @@ import {
   fetchCategories,
 } from "./operations";
 import { logOut } from "../auth/operations";
+import Toast from "react-hot-toast";
 
 const initialState = {
   items: [],
@@ -22,7 +23,7 @@ const initialState = {
     month: null,
   },
   categories: {
-    items: []
+    items: [],
   },
   date: {},
 };
@@ -35,6 +36,15 @@ const handlePending = (state) => {
 const handleRejected = (state, action) => {
   state.loading = false;
   state.error = action.payload;
+  () => {
+    Toast.error(
+      "We can't reach the server, please try again later or contact support",
+      {
+        duration: 3000,
+        style: { zIndex: 9999 },
+      }
+    );
+  };
 };
 
 export const transactionsSlice = createSlice({
@@ -92,7 +102,6 @@ export const transactionsSlice = createSlice({
       .addCase(transactionsSummary.rejected, handleRejected)
       .addCase(fetchCategories.pending, handlePending)
       .addCase(fetchCategories.fulfilled, (state, action) => {
-  
         state.categories.items = action.payload;
       })
       .addCase(fetchCategories.rejected, handleRejected);

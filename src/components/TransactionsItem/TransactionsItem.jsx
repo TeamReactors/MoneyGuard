@@ -8,10 +8,9 @@ import {
   transactionCategory,
   sumColor,
 } from "../../utils/transactionUtils";
-// ...existing code...
 import { useState } from "react";
 import ModalEditTransaction from "../ModalEditTransaction/ModalEditTransaction";
-// ...existing code...
+import Toast from "react-hot-toast";
 
 const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
   const dispatch = useDispatch();
@@ -19,7 +18,17 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
   const isMobile =
     typeof isMobileProp === "boolean" ? isMobileProp : fallbackMobile;
 
-  const handleDelete = () => dispatch(deleteTransaction(transaction.id));
+  const handleDelete = () => {
+    dispatch(deleteTransaction(transaction.id))
+      .then(() => {
+        Toast.success("Transaction deleted successfully", { duration: 2000 });
+      })
+      .catch(() => {
+        Toast.error("Failed to delete transaction. Please try again.", {
+          duration: 3000,
+        });
+      });
+  };
 
   const [isEditOpen, setIsEditOpen] = useState(false);
   const openEdit = () => setIsEditOpen(true);
@@ -88,7 +97,10 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
             {transactionCategory(transaction.categoryId)}
           </td>
           <td className={css.spanComment}>{transaction.comment}</td>
-          <td className={css.spanSum} style={{ color: sumColor(transaction.type) }}>
+          <td
+            className={css.spanSum}
+            style={{ color: sumColor(transaction.type) }}
+          >
             {amount}
           </td>
           <td className={css.spanActions}>
@@ -108,11 +120,14 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
         </tr>
       )}
       {isEditOpen && (
-        <ModalEditTransaction isOpen = {openEdit} transaction={transaction} onClose={closeEdit} />
+        <ModalEditTransaction
+          isOpen={openEdit}
+          transaction={transaction}
+          onClose={closeEdit}
+        />
       )}
     </>
   );
 };
 
 export default TransactionsItem;
-// ...existing code...
