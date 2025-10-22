@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ModalAddTransaction from "../ModalAddTransaction/ModalAddTransaction.jsx";
 import AddTransactionForm from "../AddTransactionForm/AddTransactionForm.jsx";
-import styles from './ButtonAddTransaction.module.css'
+import styles from "./ButtonAddTransaction.module.css";
+import "../../index.css";
 
 const ButtonAddTransactions = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,9 +20,9 @@ const ButtonAddTransactions = () => {
   };
 
   return (
-    <div>
+    <div className={styles.buttonContainer}>
       <button
-        className={styles.addbtn}
+        className={`${styles.addbtn} buttonEffect`}
         onClick={openModal}
         aria-label="Yeni işlem ekle"
       >

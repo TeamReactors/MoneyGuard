@@ -141,7 +141,6 @@
   font-weight: 600;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.2s ease;
   background: linear-gradient(90deg, #ffb627 0%, #9e40ba 61%, #7000ff 91%);
   color: white;
   letter-spacing: 10%;

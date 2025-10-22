@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import styles from "./ModalEditTransaction.module.css";
 import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
+import "../../index.css";
 
 const ModalEditTransaction = ({ isOpen, onClose, transaction }) => {
   useEffect(() => {
