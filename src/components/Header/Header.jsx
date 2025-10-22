@@ -1,26 +1,45 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { logOut } from '../../redux/auth/operations';
-import { selectUser, selectIsLoggedIn } from '../../redux/auth/selectors';
-import styles from './Header.module.css';
+import React, { useState,useEffect,useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { logOut } from "../../redux/auth/operations";
+import { selectUser, selectIsLoggedIn } from "../../redux/auth/selectors";
+import styles from "./Header.module.css";
 
 const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  
+
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
+  useEffect(() => {
+    if (!showLogoutModal) return;
+    const handleEsc = (e) => {
+      if (e.key === "Escape") setShowLogoutModal(false);
+    };
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, [showLogoutModal]);
+
+  const handleBackdropClick = useCallback(
+      (event) => {
+        if (event.target === event.currentTarget) {
+          setShowLogoutModal(false);
+        }
+      },
+      []
+    );
+  
+
   // Email'den kullanıcı adını alıyok
-  const username = user?.email ? user.email.split('@')[0] : '';
+  const username = user?.email ? user.email.split("@")[0] : "";
 
   const handleLogoutClick = () => {
     setShowLogoutModal(true);
   };
 
   const handleConfirmLogout = async () => {
-     dispatch(logOut())
-    setShowLogoutModal(false)
+    dispatch(logOut());
+    setShowLogoutModal(false);
   };
 
   const handleCancelLogout = () => {
@@ -28,15 +47,15 @@ const Header = () => {
   };
 
   const scrollToTop = () => {
-  const scrollStep = -window.scrollY / (5 / 15);
-  const scrollInterval = setInterval(() => {
-    if (window.scrollY !== 0) {
-      window.scrollBy(0, scrollStep);
-    } else {
-      clearInterval(scrollInterval);
-    }
-  }, 5);
-};
+    const scrollStep = -window.scrollY / (5 / 15);
+    const scrollInterval = setInterval(() => {
+      if (window.scrollY !== 0) {
+        window.scrollBy(0, scrollStep);
+      } else {
+        clearInterval(scrollInterval);
+      }
+    }, 5);
+  };
 
   // Kullanıcı giriş yapmamışsa header göstermiyoz
   if (!isLoggedIn) {
@@ -47,24 +66,24 @@ const Header = () => {
     <>
       <header className={styles.header}>
         <div className={styles.container}>
-          
-          <div className={styles.logo}
-           onClick={() => {scrollToTop();}}
-               >
+          <div
+            className={styles.logo}
+            onClick={() => {
+              scrollToTop();
+            }}
+          >
             <span className={styles.logoIcon}>
               <img src="/monerguard.svg" alt="Money Guard Logo" />
             </span>
             <h1 className={styles.logoText}>Money Guard</h1>
           </div>
 
-          
           <div className={styles.userSection}>
             <div className={styles.userInfo}>
               <span className={styles.username}>{username}</span>
             </div>
-            
-           
-            <button 
+
+            <button
               type="button"
               className={styles.exitButton}
               onClick={handleLogoutClick}
@@ -77,31 +96,37 @@ const Header = () => {
         </div>
       </header>
 
-      
       {showLogoutModal && (
-        <div className={styles.modalOverlay}>
+        <div className={styles.modalOverlay} onClick={handleBackdropClick}>
           <div className={styles.modal}>
             <div className={styles.modalContent}>
-            <button className={styles.closeButton} onClick={handleCancelLogout}>
-          ✕
-        </button>
-           <div className={styles.modalHeader}>
-                <img src="/monerguard.svg" alt="Money Guard Logo" className={styles.modalLogo} />
+              <button
+                className={styles.closeButton}
+                onClick={handleCancelLogout}
+              >
+                ✕
+              </button>
+              <div className={styles.modalHeader}>
+                <img
+                  src="/monerguard.svg"
+                  alt="Money Guard Logo"
+                  className={styles.modalLogo}
+                />
                 <h3 className={styles.modalTitle}>Money Guard</h3>
               </div>
               <p className={styles.modalText}>
                 Are you sure you want to log out?
               </p>
-              
-               <div className={styles.modalActions}>
-                <button 
+
+              <div className={styles.modalActions}>
+                <button
                   type="button"
                   className={styles.logoutButton}
                   onClick={handleConfirmLogout}
                 >
                   Log Out
                 </button>
-                <button 
+                <button
                   type="button"
                   className={styles.cancelButton}
                   onClick={handleCancelLogout}
