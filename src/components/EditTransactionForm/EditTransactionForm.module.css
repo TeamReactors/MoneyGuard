@@ -38,13 +38,13 @@
   transition: color 0.2s ease;
 }
 
-.activeIncome {
+/* .activeIncome {
   color: #ffb627;
 }
 
 .activeExpense {
   color: #ff868d;
-}
+} */
 
 .inactive {
   color: #ffffff99;
@@ -123,6 +123,9 @@
 
 .cancelBtn:hover {
   background: #e8e8e8;
+}
+.active{
+  color: #ff868d;
 }
 
 /* TABLET VE ÜSTÜ */
