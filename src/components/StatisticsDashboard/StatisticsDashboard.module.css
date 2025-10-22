@@ -69,6 +69,7 @@
   }
 
   .date {
+    flex-direction: row;
     gap: 24px;
   }
 }
