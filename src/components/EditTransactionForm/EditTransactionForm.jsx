@@ -95,16 +95,16 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className={styles.form}>
+    <form onSubmit={handleSubmit(handleFormSubmit)} className={styles.formContainer}>
       <h2 className={styles.title}>Edit transaction</h2>
 
       {/* Type is fixed to transaction's original value (no toggle) */}
       <div className={styles.typeSwitch}>
-        <span className={`${styles.typePill} ${type === "INCOME" ? styles.active : ""}`}>
+        <span style={{marginRight:10}} className={`${styles.typePill} ${type === "INCOME" ? styles.income : ""}`}>
           INCOME
         </span>
         /
-        <span className={`${styles.typePill} ${type === "EXPENSE" ? styles.active : ""}`}>
+        <span style={{marginLeft:10}} className={`${styles.typePill} ${type === "EXPENSE" ? styles.expense : ""}`}>
           EXPENSE
         </span>
       </div>
@@ -117,19 +117,21 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
             value={categoryName}
             readOnly
             placeholder="Category"
-            className={styles.input}
+            className={styles.inputField}
           />
           <input type="hidden" {...register("categoryId")} />
           {errors.categoryId && <p className={styles.error}>{errors.categoryId.message}</p>}
         </>
       )}
-
+      <div className={styles.inputRow}>
       {/* Tutar */}
-      <input type="number" placeholder="0.00" {...register("amount")} className={styles.input} />
+      <input type="number" placeholder="0.00" {...register("amount")} style={{ textAlign: "center"}} className={styles.inputField} />
       {errors.amount && <p className={styles.error}>{errors.amount.message}</p>}
 
       {/* Tarih */}
+
       <Controller
+        
         name="date"
         control={control}
         render={({ field }) => (
@@ -138,21 +140,22 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
             selected={field.value}
             onChange={(date) => field.onChange(date)}
             dateFormat="dd.MM.yyyy"
-            className={styles.input}
+            className={styles.datePicker}
           />
         )}
-      />
+        />
+        </div>
       {errors.date && <p className={styles.error}>{errors.date.message}</p>}
 
       {/* Açıklama */}
-      <input type="text" placeholder="Comment" {...register("comment")} className={styles.input} />
+      <input type="text" placeholder="Comment" {...register("comment")}  className={styles.comment} />
       {errors.comment && <p className={styles.error}>{errors.comment.message}</p>}
 
-      <div className={styles.buttons}>
-        <button type="submit" className={styles.saveBtn}>
+      <div className={styles.buttonGroup}>
+        <button type="submit" className={styles.addButton}>
           SAVE
         </button>
-        <button type="button" onClick={onCancel} className={styles.cancelBtn}>
+        <button type="button" onClick={onCancel} className={styles.cancelButton}>
           CANCEL
         </button>
       </div>

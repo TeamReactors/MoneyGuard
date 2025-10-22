@@ -16,9 +16,9 @@ const ModalEditTransaction = ({ isOpen, onClose, transaction }) => {
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
-    <div className={styles.backdrop} onClick={onClose}>
+    <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeBtn} onClick={onClose}>
+        <button className={styles.closeButton} onClick={onClose}>
           ✕
         </button>
         <EditTransactionForm transactionData={transaction} onCancel={onClose} />
