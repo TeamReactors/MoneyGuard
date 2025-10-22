@@ -36,6 +36,46 @@ const TransactionList = () => {
 
   return isMobile ? (
     <ul className={css.transactionList}>
+      {transactions.length === 0 && (
+        <li style={{ textAlign: "center", padding: "32px 16px" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 12,
+            }}
+          >
+            <span style={{ fontSize: "2.5rem" }}>🪙</span>
+            <div
+              style={{
+                fontWeight: 600,
+                fontSize: "1.1rem",
+                color: "#fff",
+                marginBottom: 4,
+              }}
+            >
+              No transactions yet
+            </div>
+            <div
+              style={{
+                color: "rgba(255,255,255,0.7)",
+                fontSize: "0.98rem",
+                marginBottom: 12,
+              }}
+            >
+              Start tracking your money by adding your first transaction!
+            </div>
+            <button className={css.addButton} onClick={openModal}>
+              <span style={{ fontSize: "1.2rem", marginRight: 6 }}>＋</span> Add
+              Transaction
+            </button>
+            <ModalAddTransaction isOpen={isModalOpen} onClose={closeModal}>
+              <AddTransactionForm onSuccess={handleTransactionSuccess} />
+            </ModalAddTransaction>
+          </div>
+        </li>
+      )}
       {transactions.map((transaction) => (
         <TransactionsItem
           key={transaction.id}
