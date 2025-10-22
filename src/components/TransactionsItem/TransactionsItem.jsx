@@ -20,6 +20,7 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
 
   const handleDelete = () => {
     dispatch(deleteTransaction(transaction.id))
+      .unwrap()
       .then(() => {
         Toast.success("Transaction deleted successfully", { duration: 2000 });
       })
