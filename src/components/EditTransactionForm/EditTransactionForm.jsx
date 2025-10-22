@@ -122,7 +122,7 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
         >
           Income
         </span>
-        /
+        <span style={{ color: "white" }}>/</span>
         <span
           style={{ marginLeft: 10 }}
           className={`${styles.typePill} ${
