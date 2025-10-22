@@ -1,4 +1,3 @@
-// ...existing code...
 import { useDispatch } from "react-redux";
 import { deleteTransaction } from "../../redux/transactions/operations";
 import css from "./TransactionsItem.module.css";

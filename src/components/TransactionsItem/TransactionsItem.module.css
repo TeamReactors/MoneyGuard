@@ -132,6 +132,10 @@
 	color: rgba(255,255,255,0.85);
 }
 
+.editBtn:hover {
+	color: #ffb627;
+}
+
 /* Tablet & Desktop: use table rows instead of cards */
 @media (min-width: 768px) {
 	.transactionItem {
