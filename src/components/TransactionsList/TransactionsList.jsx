@@ -9,12 +9,11 @@ import { useMediaQuery } from "react-responsive";
 import { fetchTransactions } from "../../redux/transactions/operations.js";
 
 const TransactionList = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchTransactions());
-  },[dispatch])
+  }, [dispatch]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -28,29 +27,54 @@ const TransactionList = () => {
     setIsModalOpen(false);
   };
 
-  const handleTransactionSuccess = (result) => {
-    console.log("İşlem başarıyla eklendi:", result);
+  const handleTransactionSuccess = () => {
     closeModal();
-    // burada listeyi yenileyebilirsin
   };
-
-  // const handleClick = () => {
-  //   // const dummyData = {
-  //   //   transactionDate: new Date().toISOString().split("T")[0],
-  //   //   type: "INCOME",
-  //   //   categoryId: "063f1132-ba5d-42b4-951d-44011ca46262", // Gerçek ID ile değiştir
-  //   //   comment: "Dummy gelir işlemi",
-  //   //   amount: 250,
-  //   // };
-
-  //   dispatch(createTransaction(dummyData));
-  // };
-
 
   const isMobile = useMediaQuery({ maxWidth: 767.98 });
 
   return isMobile ? (
     <ul className={css.transactionList}>
+      {transactions.length === 0 && (
+        <li style={{ textAlign: "center", padding: "32px 16px" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 12,
+            }}
+          >
+            <span style={{ fontSize: "2.5rem" }}>🪙</span>
+            <div
+              style={{
+                fontWeight: 600,
+                fontSize: "1.1rem",
+                color: "#fff",
+                marginBottom: 4,
+              }}
+            >
+              No transactions yet
+            </div>
+            <div
+              style={{
+                color: "rgba(255,255,255,0.7)",
+                fontSize: "0.98rem",
+                marginBottom: 12,
+              }}
+            >
+              Start tracking your money by adding your first transaction!
+            </div>
+            <button className={css.addButton} onClick={openModal}>
+              <span style={{ fontSize: "1.2rem", marginRight: 6 }}>＋</span> Add
+              Transaction
+            </button>
+            <ModalAddTransaction isOpen={isModalOpen} onClose={closeModal}>
+              <AddTransactionForm onSuccess={handleTransactionSuccess} />
+            </ModalAddTransaction>
+          </div>
+        </li>
+      )}
       {transactions.map((transaction) => (
         <TransactionsItem
           key={transaction.id}
@@ -61,7 +85,6 @@ const TransactionList = () => {
     </ul>
   ) : (
     <div className={css.tableContainer}>
-      
       {transactions.length > 8 ? (
         <div className={css.scrollTableWrapper}>
           <table className={`${css.transactionTable} ${css.scaledContainer}`}>
@@ -88,9 +111,44 @@ const TransactionList = () => {
                 <tr>
                   <td
                     colSpan="6"
-                    style={{ textAlign: "center", padding: "16px" }}
+                    style={{ textAlign: "center", padding: "32px 16px" }}
                   >
-                    No transactions
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        gap: 12,
+                      }}
+                    >
+                      <span style={{ fontSize: "2.5rem" }}>🪙</span>
+                      <div
+                        style={{
+                          fontWeight: 600,
+                          fontSize: "1.1rem",
+                          color: "#fff",
+                          marginBottom: 4,
+                        }}
+                      >
+                        No transactions yet
+                      </div>
+                      <div
+                        style={{
+                          color: "rgba(255,255,255,0.7)",
+                          fontSize: "0.98rem",
+                          marginBottom: 12,
+                        }}
+                      >
+                        Start tracking your money by adding your first
+                        transaction!
+                      </div>
+                      <button className={css.addButton} onClick={openModal}>
+                        <span style={{ fontSize: "1.2rem", marginRight: 6 }}>
+                          ＋
+                        </span>{" "}
+                        Add Transaction
+                      </button>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -130,9 +188,44 @@ const TransactionList = () => {
               <tr>
                 <td
                   colSpan="6"
-                  style={{ textAlign: "center", padding: "16px" }}
+                  style={{ textAlign: "center", padding: "32px 16px" }}
                 >
-                  No transactions
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      gap: 12,
+                    }}
+                  >
+                    <span style={{ fontSize: "2.5rem" }}>🪙</span>
+                    <div
+                      style={{
+                        fontWeight: 600,
+                        fontSize: "1.1rem",
+                        color: "#fff",
+                        marginBottom: 4,
+                      }}
+                    >
+                      No transactions yet
+                    </div>
+                    <div
+                      style={{
+                        color: "rgba(255,255,255,0.7)",
+                        fontSize: "0.98rem",
+                        marginBottom: 12,
+                      }}
+                    >
+                      Start tracking your money by adding your first
+                      transaction!
+                    </div>
+                    <button className={css.addButton} onClick={openModal}>
+                      <span style={{ fontSize: "1.2rem", marginRight: 6 }}>
+                        ＋
+                      </span>{" "}
+                      Add Transaction
+                    </button>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -146,11 +239,10 @@ const TransactionList = () => {
             ))}
           </tbody>
         </table>
-        )}
-        <button className={css.addButton} onClick={openModal}>Add Transaction</button>
-        <ModalAddTransaction isOpen={isModalOpen} onClose={closeModal}>
-          <AddTransactionForm onSuccess={handleTransactionSuccess} />
-        </ModalAddTransaction>
+      )}
+      <ModalAddTransaction isOpen={isModalOpen} onClose={closeModal}>
+        <AddTransactionForm onSuccess={handleTransactionSuccess} />
+      </ModalAddTransaction>
     </div>
   );
 };

@@ -27,8 +27,7 @@ const Currency = () => {
                     saveToLocalStorage(data);
                     setCurrency(data);
                 } catch (err) {
-                    console.error(err);
-                    setError('No data available');
+                    setError(true)
                 } finally {
                     setLoading(false);
                 }
@@ -39,7 +38,7 @@ const Currency = () => {
     }, []);
 
     if (loading) return <Loader />;
-    if (error) return <p>{error}</p>;
+    if (error) return <p>'No data available</p>;
 
     return (
         <div className={css.CurrencyMobil}>

@@ -63,7 +63,7 @@
   backdrop-filter: blur(12px);
   padding: 48px 56px;
   border-radius: 16px;
-  width: 380px;
+  width: 583px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
   color: #ffffff;
   text-align: left;
@@ -141,7 +141,7 @@
 }
 
 /* === RESPONSIVE === */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .form {
     width: 90%;
     padding: 32px 24px;

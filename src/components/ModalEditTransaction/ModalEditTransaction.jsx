@@ -29,4 +29,3 @@ const ModalEditTransaction = ({ isOpen, onClose, transaction }) => {
 };
 
 export default ModalEditTransaction;
-// ...existing code...
