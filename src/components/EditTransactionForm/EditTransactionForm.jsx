@@ -1,9 +1,9 @@
-import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
 import * as yup from "yup";
 import DatePicker from "react-datepicker";
+import toast from "react-hot-toast";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./EditTransactionForm.module.css";
 import { updateTransaction } from "../../redux/transactions/operations";
@@ -28,13 +28,10 @@ const schema = yup.object({
 const EditTransactionForm = ({ transactionData, onCancel }) => {
   const dispatch = useDispatch();
 
-  console.log(transactionData);
-
   const {
     register,
     handleSubmit,
     control,
-    setValue,
     watch,
     formState: { errors },
   } = useForm({
@@ -46,13 +43,13 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
         : transactionData?.date
         ? new Date(transactionData.date)
         : new Date(),
-      // normalize category field name to categoryId
       categoryId: transactionData?.categoryId || transactionData?.category || "",
-      type: transactionData?.type || "INCOME", // keep INCOME/EXPENSE uppercase
+      type: transactionData?.type || "INCOME", 
+      amount: transactionData?.amount != null ? Math.abs(Number(transactionData.amount)) : "",
     },
   });
 
-  const type = watch("type");
+  const type = watch("type"); // stays as initial transaction type
 
   const handleFormSubmit = (data) => {
     const formatted = {
@@ -62,39 +59,39 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
               data.date.getDate()
             ).padStart(2, "0")}`
           : data.date,
-      type: data.type, // already INCOME or EXPENSE
+      type: data.type, // unchanged INCOME or EXPENSE
       amount: Number(data.amount),
       comment: data.comment || "",
       categoryId: data.categoryId || null,
     };
 
-    // Eğer backend giderleri negatif bekliyorsa uncomment et:
     if (formatted.type === "EXPENSE") formatted.amount = -Math.abs(formatted.amount);
-    console.log(formatted);
-    dispatch(updateTransaction({ id: transactionData.id, updatedData: formatted }));
+
+    dispatch(updateTransaction({ id: transactionData.id, updatedData: formatted }))
+    .unwrap()
+    .then(() => {
+      toast.success("Transaction updated successfully",{ duration: 2000 });
+      
+    })
+    .catch(() => {
+      toast.error("Failed to update transaction",{ duration: 2000 });
+    });
+    onCancel();
   };
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className={styles.form}>
       <h2 className={styles.title}>Edit transaction</h2>
 
-      {/* INCOME / EXPENSE (tıklanabilir, değeri büyük harf ile tutuyor) */}
+      {/* Type is fixed to transaction's original value (no toggle) */}
       <div className={styles.typeSwitch}>
-        <button
-          type="button"
-          className={`${styles.income} ${type === "INCOME" ? styles.active : ""}`}
-          onClick={() => setValue("type", "INCOME", { shouldDirty: true, shouldTouch: true })}
-        >
+        <span className={`${styles.typePill} ${type === "INCOME" ? styles.active : ""}`}>
           INCOME
-        </button>
-        <span className={styles.divider}>/</span>
-        <button
-          type="button"
-          className={`${styles.expense} ${type === "EXPENSE" ? styles.active : ""}`}
-          onClick={() => setValue("type", "EXPENSE", { shouldDirty: true, shouldTouch: true })}
-        >
+        </span>
+        /
+        <span className={`${styles.typePill} ${type === "EXPENSE" ? styles.active : ""}`}>
           EXPENSE
-        </button>
+        </span>
       </div>
 
       {/* EXPENSE ise kategori göster */}
@@ -152,3 +149,4 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
 };
 
 export default EditTransactionForm;
+// ...existing code...

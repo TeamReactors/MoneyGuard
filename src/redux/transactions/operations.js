@@ -46,6 +46,7 @@ export const deleteTransaction = createAsyncThunk(
 export const updateTransaction = createAsyncThunk(
   "transactions/update",
   async ({ id, updatedData }, { rejectWithValue }) => {
+    console.log(updatedData)
     try {
       const response = await axios.patch(`/api/transactions/${id}`, updatedData);
       return response.data;

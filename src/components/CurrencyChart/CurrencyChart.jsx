@@ -61,7 +61,6 @@ export default function CurrencyChart() {
                 ],
                 backgroundColor: function (context) {
                     const chart = context.chart;
-                    console.log("Chart", chart);
                     const { ctx, chartArea } = chart;
                     if (!chartArea) return null;
 
