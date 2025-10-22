@@ -6,16 +6,20 @@ import DatePicker from "react-datepicker";
 import toast from "react-hot-toast";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./AddTransactionForm.module.css";
-import { createTransaction, fetchCategories } from "../../redux/transactions/operations";
+import {
+  createTransaction,
+  fetchCategories,
+} from "../../redux/transactions/operations";
 import { selectCategories } from "../../redux/transactions/selectors";
+import "../../index.css";
 
 const AddTransactionForm = ({ onClose }) => {
   const dispatch = useDispatch();
-  const categories = useSelector(selectCategories)
+  const categories = useSelector(selectCategories);
 
   useEffect(() => {
     dispatch(fetchCategories());
-  },[dispatch])
+  }, [dispatch]);
 
   const [type, setType] = useState("INCOME");
   const [date, setDate] = useState(new Date());
@@ -58,13 +62,21 @@ const AddTransactionForm = ({ onClose }) => {
       };
 
       dispatch(createTransaction(newTransaction))
-      .unwrap()
-      .then(()=>{
-        toast.success("Transaction added successfully", { duration: 2000 },{style:{zIndex:9999}});
-      })
-      .catch(()=>{
-        toast.error("Failed to add transaction. Please try again.", { duration: 2000 },{style:{zIndex:9999}});
-      })
+        .unwrap()
+        .then(() => {
+          toast.success(
+            "Transaction added successfully",
+            { duration: 2000 },
+            { style: { zIndex: 9999 } }
+          );
+        })
+        .catch(() => {
+          toast.error(
+            "Failed to add transaction. Please try again.",
+            { duration: 2000 },
+            { style: { zIndex: 9999 } }
+          );
+        });
       onClose();
     },
   });
@@ -110,13 +122,11 @@ const AddTransactionForm = ({ onClose }) => {
           onBlur={formik.handleBlur}
           className={styles.categorySelect}
         >
-
-          {
-            categories.map((category) => (
-              <option key={category.id} value={category.id}>{category.name}</option>
-            ))
-          }
-
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
         </select>
       )}
       {formik.touched.categoryId && formik.errors.categoryId && (
@@ -161,7 +171,7 @@ const AddTransactionForm = ({ onClose }) => {
 
       {/* Butonlar */}
       <div className={styles.buttonGroup}>
-        <button type="submit" className={styles.addButton}>
+        <button type="submit" className={styles.addButton + " buttonEffect"}>
           ADD
         </button>
         <button type="button" onClick={onClose} className={styles.cancelButton}>

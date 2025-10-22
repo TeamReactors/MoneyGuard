@@ -1,7 +1,7 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import DatePicker from "react-datepicker";
 import toast from "react-hot-toast";
@@ -9,7 +9,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import styles from "./EditTransactionForm.module.css";
 import { updateTransaction } from "../../redux/transactions/operations";
 import { fetchCategories } from "../../redux/transactions/operations";
-import {selectCategories} from "../../redux/transactions/selectors";
+import { selectCategories } from "../../redux/transactions/selectors";
+import "../../index.css";
 
 // Validation şeması (EXPENSE / INCOME olarak kontrol)
 const schema = yup.object({
@@ -32,10 +33,9 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchCategories());
-  },[dispatch]);
-
+  }, [dispatch]);
 
   const {
     register,
@@ -52,15 +52,20 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
         : transactionData?.date
         ? new Date(transactionData.date)
         : new Date(),
-      categoryId: transactionData?.categoryId || transactionData?.category || "",
-      type: transactionData?.type || "INCOME", 
-      amount: transactionData?.amount != null ? Math.abs(Number(transactionData.amount)) : "",
+      categoryId:
+        transactionData?.categoryId || transactionData?.category || "",
+      type: transactionData?.type || "INCOME",
+      amount:
+        transactionData?.amount != null
+          ? Math.abs(Number(transactionData.amount))
+          : "",
     },
   });
 
   const type = watch("type"); // stays as initial transaction type
 
-  const categoryIdFromData = transactionData?.categoryId || transactionData?.category || "";
+  const categoryIdFromData =
+    transactionData?.categoryId || transactionData?.category || "";
   const categoryName =
     (categories || []).filter((c) => c.id === categoryIdFromData)[0]?.name ||
     categoryIdFromData ||
@@ -70,9 +75,9 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
     const formatted = {
       transactionDate:
         data.date instanceof Date
-          ? `${data.date.getFullYear()}-${String(data.date.getMonth() + 1).padStart(2, "0")}-${String(
-              data.date.getDate()
-            ).padStart(2, "0")}`
+          ? `${data.date.getFullYear()}-${String(
+              data.date.getMonth() + 1
+            ).padStart(2, "0")}-${String(data.date.getDate()).padStart(2, "0")}`
           : data.date,
       type: data.type, // unchanged INCOME or EXPENSE
       amount: Number(data.amount),
@@ -80,17 +85,23 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
       categoryId: data.categoryId || null,
     };
 
-    if (formatted.type === "EXPENSE") formatted.amount = -Math.abs(formatted.amount);
+    if (formatted.type === "EXPENSE")
+      formatted.amount = -Math.abs(formatted.amount);
 
-    dispatch(updateTransaction({ id: transactionData.id, updatedData: formatted }))
-    .unwrap()
-    .then(() => {
-      toast.success("Transaction updated successfully",{ duration: 2000 },{style:{zIndex:9999}});
-      
-    })
-    .catch(() => {
-      toast.error("Failed to update transaction",{ duration: 2000 });
-    });
+    dispatch(
+      updateTransaction({ id: transactionData.id, updatedData: formatted })
+    )
+      .unwrap()
+      .then(() => {
+        toast.success(
+          "Transaction updated successfully",
+          { duration: 2000 },
+          { style: { zIndex: 9999 } }
+        );
+      })
+      .catch(() => {
+        toast.error("Failed to update transaction", { duration: 2000 });
+      });
     onCancel();
   };
 
@@ -100,11 +111,19 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
 
       {/* Type is fixed to transaction's original value (no toggle) */}
       <div className={styles.typeSwitch}>
-        <span className={`${styles.typePill} ${type === "INCOME" ? styles.active : ""}`}>
+        <span
+          className={`${styles.typePill} ${
+            type === "INCOME" ? styles.active : ""
+          }`}
+        >
           INCOME
         </span>
         /
-        <span className={`${styles.typePill} ${type === "EXPENSE" ? styles.active : ""}`}>
+        <span
+          className={`${styles.typePill} ${
+            type === "EXPENSE" ? styles.active : ""
+          }`}
+        >
           EXPENSE
         </span>
       </div>
@@ -112,7 +131,7 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
       {/* EXPENSE ise kategori göster */}
       {type === "EXPENSE" && (
         <>
-         <input
+          <input
             type="text"
             value={categoryName}
             readOnly
@@ -120,12 +139,19 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
             className={styles.input}
           />
           <input type="hidden" {...register("categoryId")} />
-          {errors.categoryId && <p className={styles.error}>{errors.categoryId.message}</p>}
+          {errors.categoryId && (
+            <p className={styles.error}>{errors.categoryId.message}</p>
+          )}
         </>
       )}
 
       {/* Tutar */}
-      <input type="number" placeholder="0.00" {...register("amount")} className={styles.input} />
+      <input
+        type="number"
+        placeholder="0.00"
+        {...register("amount")}
+        className={styles.input}
+      />
       {errors.amount && <p className={styles.error}>{errors.amount.message}</p>}
 
       {/* Tarih */}
@@ -145,11 +171,18 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
       {errors.date && <p className={styles.error}>{errors.date.message}</p>}
 
       {/* Açıklama */}
-      <input type="text" placeholder="Comment" {...register("comment")} className={styles.input} />
-      {errors.comment && <p className={styles.error}>{errors.comment.message}</p>}
+      <input
+        type="text"
+        placeholder="Comment"
+        {...register("comment")}
+        className={styles.input}
+      />
+      {errors.comment && (
+        <p className={styles.error}>{errors.comment.message}</p>
+      )}
 
       <div className={styles.buttons}>
-        <button type="submit" className={styles.saveBtn}>
+        <button type="submit" className={`${styles.saveBtn} buttonEffect`}>
           SAVE
         </button>
         <button type="button" onClick={onCancel} className={styles.cancelBtn}>

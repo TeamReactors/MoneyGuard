@@ -241,7 +241,9 @@
   letter-spacing: 10%;
   width: 300px;
   height: 50px;
+  transition: all 0.3s ease;
 }
 .cancelButton:hover {
-  background: #f0f0f0;
+  background: #f0f0f0be;
+  transform: scale(1.05);
 }
