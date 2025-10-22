@@ -1,12 +1,15 @@
+import {useEffect} from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import * as yup from "yup";
 import DatePicker from "react-datepicker";
 import toast from "react-hot-toast";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./EditTransactionForm.module.css";
 import { updateTransaction } from "../../redux/transactions/operations";
+import { fetchCategories } from "../../redux/transactions/operations";
+import {selectCategories} from "../../redux/transactions/selectors";
 
 // Validation şeması (EXPENSE / INCOME olarak kontrol)
 const schema = yup.object({
@@ -27,6 +30,12 @@ const schema = yup.object({
 
 const EditTransactionForm = ({ transactionData, onCancel }) => {
   const dispatch = useDispatch();
+  const categories = useSelector(selectCategories);
+
+  useEffect(()=>{
+    dispatch(fetchCategories());
+  },[dispatch]);
+
 
   const {
     register,
@@ -50,6 +59,12 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
   });
 
   const type = watch("type"); // stays as initial transaction type
+
+  const categoryIdFromData = transactionData?.categoryId || transactionData?.category || "";
+  const categoryName =
+    (categories || []).filter((c) => c.id === categoryIdFromData)[0]?.name ||
+    categoryIdFromData ||
+    "";
 
   const handleFormSubmit = (data) => {
     const formatted = {
@@ -97,17 +112,14 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
       {/* EXPENSE ise kategori göster */}
       {type === "EXPENSE" && (
         <>
-          <select {...register("categoryId")} className={styles.select}>
-            <option value="">Select category</option>
-            <option value="128673b5-2f9a-46ae-a428-ec48cf1effa1">Main expenses</option>
-            <option value="27eb4b75-9a42-4991-a802-4aefe21ac3ce">Products</option>
-            <option value="3caa7ba0-79c0-40b9-ae1f-de1af1f6e386">Car</option>
-            <option value="76cc875a-3b43-4eae-8fdb-f76633821a34">Child Care</option>
-            <option value="128673b5-2f9a-46ae-a428-ec48cf1effa1">Household Products</option>
-            <option value="1272fcc4-d59f-462d-ad33-a85a075e5581">Education</option>
-            <option value="c143130f-7d1e-4011-90a4-54766d4e308e">Leisure</option>
-            <option value="719626f1-9d23-4e99-84f5-289024e437a8">Other Expenses</option>
-          </select>
+         <input
+            type="text"
+            value={categoryName}
+            readOnly
+            placeholder="Category"
+            className={styles.input}
+          />
+          <input type="hidden" {...register("categoryId")} />
           {errors.categoryId && <p className={styles.error}>{errors.categoryId.message}</p>}
         </>
       )}
