@@ -71,21 +71,61 @@
 .spanActions {
 	text-align: right;
 }
-.addButton{
-	display: block;
-	margin: 10px auto;
-	border-radius: 20px;
-	background-image: linear-gradient(to right,rgb(225,158,84),rgb(177,91,156));
-	padding: 10px;
+.addButton {
+	background: linear-gradient(96.76deg, #FFC727 -16.42%, #9E40BA 97.04%);
 	border: none;
-	color: white;
 	cursor: pointer;
-	transition: all 0.5s ease-in-out;
+	min-width: 68px;
+	height: 40px;
+	padding: 12px 12px;
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 20px;
+	color: #ffffff;
+	font-weight: 700;
+	position: relative;
+	overflow: hidden;
+	transition: all 0.3s ease;
 }
-.addButton:hover {
-	transform: translateY(-3px);
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22);
-	background-image: linear-gradient(to right, rgb(245,180,100), rgb(195,110,170));
+
+.addButton::before {
+	content: '';
+	position: absolute;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: linear-gradient(
+		0deg,
+		transparent,
+		transparent 30%,
+		rgba(0,255,255,0.18)
+	);
+	transform: rotate(-45deg);
+	transition: opacity 0.45s ease, transform 0.6s ease;
+	opacity: 0;
+	pointer-events: none;
+	mix-blend-mode: screen;
+}
+
+.addButton:hover,
+.addButton:focus {
+	transform: translateZ(0) scale(1.05);
+}
+
+.addButton:hover::before,
+.addButton:focus::before {
+	opacity: 1;
+	transform: rotate(-45deg) translateY(100%);
+	animation: holoLoop 1.6s linear infinite;
+}
+
+@keyframes holoLoop {
+	0% { transform: rotate(-45deg) translateY(-10%); opacity: 0.6; }
+	40% { transform: rotate(-45deg) translateY(40%); opacity: 1; }
+	100% { transform: rotate(-45deg) translateY(100%); opacity: 0.4; }
 }
 
 /* Tablet styles -> fixed container width 704px */
