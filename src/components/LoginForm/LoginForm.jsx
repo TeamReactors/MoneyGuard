@@ -26,7 +26,7 @@ const LoginForm = () => {
   const handleSubmit = (values, actions) => {
     dispatch(logIn(values))
       .then(() => {
-        toast.success("Login Successfull", { duration: 2000 });
+        toast.success("Login Successfull", { duration: 2000 },{style:{zIndex:9999}});
       })
       .catch((e) => {
         if (e === "Request failed with status code 403") {

@@ -85,7 +85,7 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
     dispatch(updateTransaction({ id: transactionData.id, updatedData: formatted }))
     .unwrap()
     .then(() => {
-      toast.success("Transaction updated successfully",{ duration: 2000 });
+      toast.success("Transaction updated successfully",{ duration: 2000 },{style:{zIndex:9999}});
       
     })
     .catch(() => {
