@@ -2,23 +2,12 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { register } from "../../redux/auth/operations";
 import css from "./RegistrationForm.module.css";
 
 /**
- * Password scoring:
- * - +1 if length >= 8
- * - +1 if length >= 12 (bonus)
- * - +1 if contains uppercase
- * - +1 if contains number
- * - +1 if contains special char
- *
- * Score -> label:
- * 0-1: Too weak
- * 2: Normal
- * 3-4: Strong
- * 5: Very strong
+ * Password scoring system:
  */
 const getPasswordScore = (pw = "") => {
   let score = 0;
@@ -39,12 +28,11 @@ const scoreToLabel = (score) => {
 };
 
 const scoreToColor = (score) => {
-  if (score <= 1) return "#ff4d4f"; // too weak
-  if (score === 2) return "#ffb84d"; // normal
-  if (score >= 3 && score <= 4) return "#9acd32"; // strong
-  return "#29a745"; // very strong
+  if (score <= 1) return "#ff4d4f";
+  if (score === 2) return "#ffb84d";
+  if (score >= 3 && score <= 4) return "#9acd32";
+  return "#29a745";
 };
-
 
 export const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -63,17 +51,27 @@ export const RegistrationForm = () => {
   const handleSubmit = (values, { resetForm }) => {
     const { username, email, password } = values;
     dispatch(register({ username, email, password }))
-    .unwrap()
-    .then(() => {
-      toast.success("Registration Successful", { duration: 2000 });
-    })
-      .catch((e) => {
-        if(e === "Request failed with status code 409"){
-          return toast.error("User with this email already exists.", { duration: 2000 });
+      .unwrap()
+      .then(() => {
+        toast.success("Registration successful!", { duration: 2500 });
+        resetForm();
+      })
+      .catch((error) => {
+        // common error patterns
+        const message = error?.message || error;
+
+        if (message.includes("409") || message.includes("Conflict")) {
+          toast.error("User with this email already exists.", { duration: 2500 });
+        } else if (message.includes("400")) {
+          toast.error("Invalid input data. Please check your fields.", { duration: 2500 });
+        } else if (message.includes("401")) {
+          toast.error("Unauthorized action.", { duration: 2500 });
+        } else if (message.includes("500")) {
+          toast.error("Server error. Please try again later.", { duration: 2500 });
+        } else {
+          toast.error("Registration failed. Please try again.", { duration: 2500 });
         }
-      toast.error("Registration Failed. Please try again.", { duration: 2000 });
-    });
-    resetForm();
+      });
   };
 
   return (
@@ -125,7 +123,7 @@ export const RegistrationForm = () => {
                 <ErrorMessage name="password" component="div" className={css.error} />
               </label>
 
-              {/* Password strength indicator */}
+              {/* Password strength bar */}
               <div
                 aria-live="polite"
                 style={{
