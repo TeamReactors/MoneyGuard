@@ -47,7 +47,7 @@ const Header = () => {
     <>
       <header className={styles.header}>
         <div className={styles.container}>
-         
+          
           <div className={styles.logo}
            onClick={() => {scrollToTop();}}
                >
@@ -82,7 +82,9 @@ const Header = () => {
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
             <div className={styles.modalContent}>
-
+            <button className={styles.closeButton} onClick={handleCancelLogout}>
+          ✕
+        </button>
            <div className={styles.modalHeader}>
                 <img src="/monerguard.svg" alt="Money Guard Logo" className={styles.modalLogo} />
                 <h3 className={styles.modalTitle}>Money Guard</h3>
