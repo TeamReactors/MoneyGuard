@@ -25,7 +25,6 @@ const LoginForm = () => {
 
   const handleSubmit = (values, actions) => {
     dispatch(logIn(values))
-      .unwrap()
       .then(() => {
         toast.success("Login Successfull", { duration: 2000 });
       })
@@ -44,7 +43,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className={css.background}>
+    <div>
       <div className={css.login}>
         <img className={css.guard} src="../../../monerguard.svg" alt="" />
         <h1>Money Guard</h1>
