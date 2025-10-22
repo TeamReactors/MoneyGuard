@@ -1,140 +1,176 @@
-/* MOBİL GÖRÜNÜM */
-.form {
+.formContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  height: 100vh;
   width: 100%;
-  background: linear-gradient(180deg, #4b00c7 0%, #30007c 100%);
-  color: #fff;
-  padding: 40px 24px;
-  box-sizing: border-box;
-  border-radius: 0;
-  font-family: "Poppins", sans-serif;
+  height: 511px;
+  gap: 25px;
+  align-items: center;
 }
 
 .title {
+  color: #fff;
   text-align: center;
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 16px;
+  font-weight: 400;
+  font-size: 30px;
+  margin: 0 0 10px 0;
 }
-
-/* GELİR-GİDER GEÇİŞİ */
-.typeSwitch {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  font-size: 18px;
-  margin-bottom: 20px;
-  user-select: none;
-}
-
-.income,
-.expense {
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-/* .activeIncome {
+.income {
   color: #ffb627;
 }
-
-.activeExpense {
+.expense {
   color: #ff868d;
-} */
-
-.inactive {
-  color: #ffffff99;
 }
 
-.divider {
-  color: #ccc;
+
+/* --- Miktar ve Tarih Satırı --- */
+.inputRow {
+  display: flex;
+  gap: 30px;
+  /* Tutar ve Tarih arası boşluk */
 }
 
-/* veri girişi */
-.select,
-.input {
+/* Tutar ve Tarih inputlarının ikisi de %50 yer kaplasın */
+/* DatePicker bir <div> içine sarılı olduğu için > div kullandık */
+.inputRow>.inputField,
+.inputRow>div {
+  width: 50%;
+}
+
+/* --- Genel Input Stilleri (Tutar, Yorum) --- */
+.inputField,
+.comment {
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 60%);
+  padding: 12px 5px;
   font-size: 16px;
-  padding: 10px 0;
-  margin-bottom: 20px;
-  outline: none;
   width: 100%;
+  box-sizing: border-box;
+  /* Padding'in genişliği etkilememesi için */
 }
 
-.select option {
-  background: #4b00c7;
-  color: #fff;
-}
-
-.input::placeholder {
+/* Placeholder Rengi */
+.inputField::placeholder,
+.comment::placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.error {
-  font-size: 12px;
-  color: #ff7070;
-  margin-top: -16px;
-  margin-bottom: 8px;
+/* Focus (Tıklama) Stili */
+.inputField:focus,
+.comment:focus {
+  outline: none;
+  border-bottom-color: #fff;
 }
 
-/* BUTONLAR */
-.buttons {
+/* Yorum alanı (soldan hizalı) */
+.comment {
+  text-align: left;
+}
+
+/* --- DatePicker Stili --- */
+/* DatePicker'ın input'u da diğer input'lar gibi görünmeli */
+.datePicker {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  padding: 12px 5px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  /* Tarih de ortalı */
+  cursor: pointer;
+}
+
+.datePicker:focus {
+  outline: none;
+  border-bottom-color: #fff;
+}
+
+/* DatePicker'ın ikonunu eklemek (JSX'teki .inputRow > div hedefleniyor) */
+.inputRow>div:last-child {
+  position: relative;
+}
+
+.inputRow>div:last-child::after {
+  content: "📅";
+  /* Takvim ikonu */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.7;
+  pointer-events: none;
+  /* İkonun tıklamayı engellememesi için */
+}
+
+/* --- Hata Mesajları --- */
+.error {
+  color: #ff868d;
+  /* Pembe/Kırmızı */
+  font-size: 12px;
+  text-align: left;
+  margin-top: -20px;
+  /* Input'a yaklaştır */
+  margin-bottom: -10px;
+  /* Sonraki elemanla boşluğu kapa */
+}
+
+/* Miktar/Tarih satırının altındaki hata ortalansın */
+.inputRow+.error {
+  text-align: center;
+}
+
+/* --- Buton Grubu --- */
+.buttonGroup {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-top: 30px;
+  gap: 15px;
+  margin-top: 20px;
+  /* Formun kalanıyla arayı aç */
 }
 
-.saveBtn {
-  background: linear-gradient(90deg, #ffb627 0%, #a44bfc 100%);
+/* --- ADD Butonu (Gradient) --- */
+.addButton {
+  padding: 14px;
   border: none;
-  padding: 12px 0;
-  color: #fff;
+  border-radius: 20px;
+  font-size: 18px;
   font-weight: 600;
-  border-radius: 30px;
-  font-size: 16px;
+  text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-  transition: opacity 0.2s ease;
+  transition: all 0.2s ease;
+  background: linear-gradient(90deg, #ffb627 0%, #9e40ba 61%, #7000ff 91%);
+  color: white;
+  letter-spacing: 10%;
+  width: 300px;
+  height: 50px;
 }
 
-.saveBtn:hover {
+.addButton:hover {
   opacity: 0.9;
+  box-shadow: 0 5px 15px rgba(255, 150, 80, 0.3);
 }
 
-.cancelBtn {
-  background: #fff;
-  color: #4b00c7;
+/* --- CANCEL Butonu (Beyaz) --- */
+.cancelButton {
+  padding: 14px;
   border: none;
-  border-radius: 30px;
-  padding: 12px 0;
+  border-radius: 20px;
+  font-size: 18px;
   font-weight: 600;
-  font-size: 16px;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
+  background: #fff;
+  color: #623f8b;
+  letter-spacing: 10%;
+  width: 300px;
+  height: 50px;
 }
 
-.cancelBtn:hover {
-  background: #e8e8e8;
-}
-.active{
-  color: #ff868d;
-}
-
-/* TABLET VE ÜSTÜ */
-@media (min-width: 768px) {
-  .form {
-    max-width: 420px;
-    margin: auto;
-    border-radius: 16px;
-    height: auto;
-    padding: 40px 32px;
-  }
+.cancelButton:hover {
+  background: #f0f0f0;
 }
