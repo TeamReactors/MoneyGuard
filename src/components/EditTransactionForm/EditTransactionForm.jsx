@@ -120,7 +120,7 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
             type === "INCOME" ? styles.income : ""
           }`}
         >
-          INCOME
+          Income
         </span>
         /
         <span
@@ -129,7 +129,7 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
             type === "EXPENSE" ? styles.expense : ""
           }`}
         >
-          EXPENSE
+          Expense
         </span>
       </div>
 
