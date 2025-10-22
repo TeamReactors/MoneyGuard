@@ -3,7 +3,6 @@ import styles from "./App.module.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import RestrictedRoute from "../RestrictedRoute";
 import StatisticsTab from "../../pages/StatisticsTab";
-import Currency from "../Currency/Currency";
 import PrivateRoute from "../PrivateRoute";
 import Loader from "../Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,7 +30,7 @@ function App() {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <Loader></Loader>
+    <Loader/>
   ) : (
     <div className={styles.App}>
       <Suspense fallback={<Loader />}>
@@ -70,7 +69,6 @@ function App() {
             }
             />
             
-            {/* çağlayan burayı sileyim deme sakın sjhdbef */}
           <Route
             path="/currency"
             element={

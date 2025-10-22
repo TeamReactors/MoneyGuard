@@ -15,10 +15,8 @@ const ButtonAddTransactions = () => {
     setIsModalOpen(false);
   };
 
-  const handleTransactionSuccess = (result) => {
-    console.log("İşlem başarıyla eklendi:", result);
+  const handleTransactionSuccess = () => {
     closeModal();
-    // burada listeyi yenileyebilirsin
   };
 
   return (

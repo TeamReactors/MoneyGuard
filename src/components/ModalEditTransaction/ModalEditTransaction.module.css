@@ -1,43 +1,59 @@
-.backdrop {
+.overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 999;
 }
 
 .modal {
-  animation: fadeIn 0.25s ease;
   position: relative;
+  background: linear-gradient(90deg,
+      rgba(83, 61, 186),
+      rgba(80, 48, 154),
+      rgba(106, 70, 165, 0.75),
+      rgba(133, 93, 175, 0.19));
+  border-radius: 8px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.3s ease;
+  max-width: 540px;
+  width: 100%;
 }
 
-.closeBtn {
+.closeButton {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
+  top: 16px;
+  right: 16px;
+  background: transparent;
   border: none;
-  font-size: 22px;
   color: #fff;
+  font-size: 1.3rem;
   cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.closeBtn:hover {
-  opacity: 0.8;
+.closeButton:hover {
   transform: scale(1.1);
+  color: #ffb627;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: scale(0.9);
   }
+
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
+  }
+}
+@media screen and (max-width:600px) {
+  .modal {
+    width: 90%;
   }
 }
