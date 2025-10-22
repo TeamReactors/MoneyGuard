@@ -46,9 +46,11 @@ export const deleteTransaction = createAsyncThunk(
 export const updateTransaction = createAsyncThunk(
   "transactions/update",
   async ({ id, updatedData }, { rejectWithValue }) => {
-    console.log(updatedData)
     try {
-      const response = await axios.patch(`/api/transactions/${id}`, updatedData);
+      const response = await axios.patch(
+        `/api/transactions/${id}`,
+        updatedData
+      );
       return response.data;
     } catch (error) {
       return rejectWithValue(
@@ -71,12 +73,15 @@ export const transactionsSummary = createAsyncThunk(
     }
   }
 );
-export const fetchCategories = createAsyncThunk("transactions/fetchCategories", async (_, thunkApi) => { 
-  try {
-    const res = await axios.get("/api/transaction-categories");
-    
-    return res.data;
-  } catch (error) {
-    return thunkApi.rejectWithValue(error.message);
+export const fetchCategories = createAsyncThunk(
+  "transactions/fetchCategories",
+  async (_, thunkApi) => {
+    try {
+      const res = await axios.get("/api/transaction-categories");
+
+      return res.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
   }
-});
+);
