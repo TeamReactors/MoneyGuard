@@ -185,7 +185,11 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
         <button type="submit" className={`${styles.saveBtn} buttonEffect`}>
           SAVE
         </button>
-        <button type="button" onClick={onCancel} className={styles.cancelBtn}>
+        <button
+          type="button"
+          onClick={onCancel}
+          className={styles.cancelBtn + " cancelEffects"}
+        >
           CANCEL
         </button>
       </div>
@@ -194,4 +198,3 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
 };
 
 export default EditTransactionForm;
-// ...existing code...

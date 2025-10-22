@@ -244,6 +244,7 @@
   transition: all 0.3s ease;
 }
 .cancelButton:hover {
-  background: #f0f0f0be;
+  background: rgba(255, 133, 139, 0.9);
+  color: #fff;
   transform: scale(1.05);
 }

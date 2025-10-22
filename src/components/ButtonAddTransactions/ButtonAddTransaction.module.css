@@ -17,6 +17,8 @@
     cursor: pointer;
     z-index: 1200;
     transition: transform .12s ease, box-shadow .12s ease;
+    will-change: transform;
+    animation: sway 4s ease-in-out infinite;
 }
 
 .addbuttonDash::before {
@@ -30,3 +32,17 @@
     transform: translateY(-6px) scale(1.03);
     box-shadow: 0 18px 50px rgba(83, 16, 95, 0.45);
 }
+
+    /* Pause the animation while hovered (or focused for accessibility) */
+    .addbtn:hover,
+    .addbtn:focus-within {
+        animation-play-state: paused;
+    }
+
+    /* Jump up in one step, then down in one step */
+
+    @keyframes sway {
+        0%   { transform: translateY(0) rotate(0deg); }
+        50%  { transform: translateY(calc(100vh  / -20)) rotate(0deg); }
+        100% { transform: translateY(0) rotate(0deg); }
+    }

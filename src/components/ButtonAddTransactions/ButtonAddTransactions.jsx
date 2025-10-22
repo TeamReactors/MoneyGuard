@@ -22,7 +22,7 @@ const ButtonAddTransactions = () => {
   };
 
   return (
-    <div>
+    <div className={styles.buttonContainer}>
       <button
         className={`${styles.addbtn} buttonEffect`}
         onClick={openModal}

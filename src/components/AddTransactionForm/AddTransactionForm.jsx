@@ -174,7 +174,11 @@ const AddTransactionForm = ({ onClose }) => {
         <button type="submit" className={styles.addButton + " buttonEffect"}>
           ADD
         </button>
-        <button type="button" onClick={onClose} className={styles.cancelButton}>
+        <button
+          type="button"
+          onClick={onClose}
+          className={styles.cancelButton + " buttonEffect"}
+        >
           CANCEL
         </button>
       </div>
