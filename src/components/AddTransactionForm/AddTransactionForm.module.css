@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 511px;
   gap: 25px;
   align-items: center;
 }
@@ -68,7 +67,7 @@
   width: 44px;
   bottom: -2px;
   left: -2px;
-  background-color: #ffb627; /* Sarı topuz */
+  background-color: #ffb627;
   border-radius: 50%;
   transition: 0.4s;
   /* Artı işaretini ortalamak için */
@@ -83,7 +82,7 @@
 /* Gider (Expense) seçilince (checked) */
 .switch input:checked + .slider::before {
   transform: translateX(40px);
-  background-color: #ff868d; /* Pembe/Kırmızı topuz */
+  background-color: #ff868d;
   content: "-"; /* Gider için - */
 }
 
@@ -104,14 +103,14 @@
 }
 /* Select'in option elemanlarını stillendirme */
 .categorySelect option {
-  background-color: #3a2d80; /* Koyu mor (açılır menü arkaplanı) */
+  background-color: #3a2d80;
   color: #fff;
 }
 
 /* --- Miktar ve Tarih Satırı --- */
 .inputRow {
   display: flex;
-  gap: 30px; /* Tutar ve Tarih arası boşluk */
+  gap: 30px;
 }
 
 /* Tutar ve Tarih inputlarının ikisi de %50 yer kaplasın */
@@ -121,7 +120,6 @@
   width: 50%;
 }
 
-/* --- Genel Input Stilleri (Tutar, Yorum) --- */
 .inputField,
 .comment {
   background: transparent;
@@ -134,29 +132,25 @@
   box-sizing: border-box; /* Padding'in genişliği etkilememesi için */
 }
 
-/* Placeholder Rengi */
 .inputField::placeholder,
 .comment::placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* Focus (Tıklama) Stili */
 .inputField:focus,
 .comment:focus {
   outline: none;
   border-bottom-color: #fff;
 }
 
-/* Tutar alanı (tasarımda ortalıydı) */
 .inputField {
   text-align: center;
 }
-/* Yorum alanı (soldan hizalı) */
+
 .comment {
   text-align: left;
 }
 
-/* --- DatePicker Stili --- */
 /* DatePicker'ın input'u da diğer input'lar gibi görünmeli */
 .datePicker {
   background: transparent;
@@ -167,7 +161,7 @@
   font-size: 16px;
   width: 100%;
   box-sizing: border-box;
-  text-align: center; /* Tarih de ortalı */
+  text-align: center;
   cursor: pointer;
 }
 .datePicker:focus {
@@ -192,11 +186,11 @@
 
 /* --- Hata Mesajları --- */
 .error {
-  color: #ff868d; /* Pembe/Kırmızı */
+  color: #ff868d;
   font-size: 12px;
   text-align: left;
-  margin-top: -20px; /* Input'a yaklaştır */
-  margin-bottom: -10px; /* Sonraki elemanla boşluğu kapa */
+  margin-top: -20px;
+  margin-bottom: -10px;
 }
 /* Miktar/Tarih satırının altındaki hata ortalansın */
 .inputRow + .error {
@@ -208,7 +202,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-top: 20px; /* Formun kalanıyla arayı aç */
+  margin-top: 20px;
 }
 
 /* --- ADD Butonu (Gradient) --- */
