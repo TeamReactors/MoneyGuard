@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     fetchCurrencyData,
     getFromLocalStorage,
@@ -8,8 +8,6 @@ import { isLessThanOneHour } from '../../utils/timeUtils.js';
 import CurrencyChart from '../CurrencyChart/CurrencyChart.jsx';
 import css from './Currency.module.css';
 import Loader from '../Loader/Loader.jsx';
-import Header from '../Header/Header.jsx';
-import Navigation from '../Navigation/Navigation.jsx';
 
 const Currency = () => {
     const [currency, setCurrency] = useState([]);
@@ -17,23 +15,27 @@ const Currency = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const local = getFromLocalStorage();
+        const fetchData = async () => {
+            const local = getFromLocalStorage();
 
-        if (local && isLessThanOneHour(local.timestamp)) {
-            setCurrency(local.data);
-            setLoading(false);
-        } else {
-            fetchCurrencyData()
-                .then((data) => {
+            if (local && isLessThanOneHour(local.timestamp)) {
+                setCurrency(local.data);
+                setLoading(false);
+            } else {
+                try {
+                    const data = await fetchCurrencyData();
                     saveToLocalStorage(data);
                     setCurrency(data);
-                })
-                .catch((err) => {
+                } catch (err) {
                     console.error(err);
-                    setError('no data available');
-                })
-                .finally(() => setLoading(false));
-        }
+                    setError('No data available');
+                } finally {
+                    setLoading(false);
+                }
+            }
+        };
+
+        fetchData();
     }, []);
 
     if (loading) return <Loader />;

@@ -1,16 +1,16 @@
-
-.CurrencyMobil{
-     position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-    background: radial-gradient(975px 400px at 10% 94%, rgba(255, 255, 255, 0.02), transparent 68% 10%), linear-gradient(27deg, #2b1e40 0%, #160a23 59%, #150723 100%);   
+.CurrencyMobil {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(975px 400px at 10% 94%, rgba(255, 255, 255, 0.02), transparent 68% 10%), linear-gradient(27deg, #2b1e40 0%, #160a23 59%, #150723 100%);
 }
+
 .currencyContainer {
     background-color: rgba(74, 86, 226, 0.1);
     color: #fff;
     margin: 0 auto;
-   
+
 }
 
 .currencyTable {
@@ -20,7 +20,6 @@
 
 .currencyHeader {
     background-color: rgba(255, 255, 255, 0.2);
-    height: 50px;
     width: 100%;
 }
 
@@ -35,6 +34,7 @@
     font-size: 0.875rem;
     text-align: center;
 }
+
 .currencyBody tr {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     transition: background-color 0.3s ease;
@@ -44,16 +44,18 @@
     background-color: rgb(75, 45, 117, 0.3);
     transition: background-color 0.3s ease;
 }
- .ellipse1 ,.ellipse2,.ellipse5{
-     position: fixed;
-        border-radius: 50%;
-        pointer-events: none;
-        mix-blend-mode: screen;
-    z-index: 0;}
 
-    .ellipse1 {
-    
-     width: 137px;
+.ellipse1,
+.ellipse2,
+.ellipse5 {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.ellipse1 {
+    width: 137px;
     height: 167px;
     background: linear-gradient(163deg, #ae63bb, #421c7f);
     filter: blur(100px);
@@ -63,18 +65,19 @@
     border-radius: 10%;
 }
 
-
 .ellipse5 {
-       width: 485px;
+    width: 485px;
     height: 376px;
     bottom: 40%;
     left: 0;
     background: linear-gradient(47deg, #2c0dcb 42.11%, #230e90 63.65%);
     filter: blur(200px);
     opacity: 1;
-    border-radius: 0; }
+    border-radius: 0;
+}
+
 .ellipse2 {
-        width: 239px;
+    width: 239px;
     height: 338px;
     bottom: 0;
     right: 0;
@@ -82,24 +85,26 @@
     filter: blur(169px);
     opacity: 1;
 }
-@media (min-width: 768px) and (max-width: 1279px) {
-    .currencyContainer {
 
+@media (min-width: 768px) and (max-width: 1279px) {
+    /* .currencyContainer {
         max-height: 214px;
+    } */
+
+    .ellipse1,
+    .ellipse2,
+    .ellipse5 {
+        display: none;
     }
-   
- .ellipse1 ,.ellipse2,.ellipse5{
-    display: none;
- }
- .CurrencyMobil{
-    all: unset;
- }
+
+    .CurrencyMobil {
+        all: unset;
+    }
 }
 
 
-@media(min-width: 1280px) {
-   .CurrencyMobil{
-    all: unset;
- }
-} 
-
+@media (min-width: 1280px) {
+    .CurrencyMobil {
+        all: unset;
+    }
+}
