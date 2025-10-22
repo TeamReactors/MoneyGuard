@@ -1,49 +1,58 @@
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
-import { NavLink} from 'react-router-dom'; 
+import { NavLink } from 'react-router-dom';
 import styles from './Navigation.module.css';
+import { IoHomeSharp } from "react-icons/io5";
+import { FaDollarSign } from "react-icons/fa6";
+import { SlGraph } from "react-icons/sl";
 
 const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const navigate = useNavigate();
-  
-  
-  // const handleTabClick = (tabName) => {
-  //   onTabChange(tabName);
-   
-  //   if (tabName === 'home') {
-  //     navigate('/dashboard');
-  //   } else {
-  //     navigate(`/dashboard/${tabName}`);
-  //   }
-  // };
 
   if (!isLoggedIn) return null;
 
   return (
     <nav className={styles.navigation}>
       <ul>
-        <li className={styles.link}>
-          
-          <img  src="/home.svg" alt="Home" className={styles.navIcon} />
-          
-          
-          <NavLink className={styles.linkText} to="/dashboard">Home</NavLink>
-        </li>
-        <li className={styles.link}>
-          
-          <img src="/statistic.svg" alt="Statistics" className={styles.navIcon} />
-        
-          <NavLink className={styles.linkText} to="/statistics">Statistics</NavLink>
-        </li>
+
         <li className={styles.navLink}>
-          
-          <img src="/dolar.svg" alt="Currency" className={styles.navIcon} />
-        
-          <NavLink className={styles.linkText} to="/currency">Currency</NavLink>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive ? `${styles.linkInner} ${styles.active}` : styles.linkInner
+            }
+            end
+          >
+           <IoHomeSharp  className={styles.navIcon} />
+            <span className={styles.linkText}>Home</span>
+          </NavLink>
         </li>
-      </ul>  
-      
+
+        <li className={styles.navLink}>
+          <NavLink
+            to="/statistics"
+            className={({ isActive }) =>
+              isActive ? `${styles.linkInner} ${styles.active}` : styles.linkInner
+            }
+          >
+            <SlGraph className={styles.navIcon} />
+            <span className={styles.linkText}>Statistics</span>
+          </NavLink>
+        </li>
+
+        <li className={`${styles.navLink} ${styles.currencyLink}`}>
+          <NavLink
+            to="/currency"
+            className={({ isActive }) =>
+              isActive ? `${styles.linkInner} ${styles.active}` : styles.linkInner
+            }
+          >
+            <FaDollarSign className={styles.navIcon} />
+            <span className={styles.linkText}>Currency</span>
+          </NavLink>
+        </li>
+
+      </ul>
     </nav>
   );
 };

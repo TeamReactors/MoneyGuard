@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import DatePicker from "react-datepicker";
+import toast from "react-hot-toast";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./AddTransactionForm.module.css";
 import { createTransaction, fetchCategories } from "../../redux/transactions/operations";
@@ -56,7 +57,14 @@ const AddTransactionForm = ({ onClose }) => {
         ...values,
       };
 
-      dispatch(createTransaction(newTransaction));
+      dispatch(createTransaction(newTransaction))
+      .unwrap()
+      .then(()=>{
+        toast.success("Transaction added successfully", { duration: 2000 },{style:{zIndex:9999}});
+      })
+      .catch(()=>{
+        toast.error("Failed to add transaction. Please try again.", { duration: 2000 },{style:{zIndex:9999}});
+      })
       onClose();
     },
   });

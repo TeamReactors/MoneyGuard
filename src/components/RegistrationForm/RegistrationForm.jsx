@@ -53,7 +53,7 @@ export const RegistrationForm = () => {
     dispatch(register({ username, email, password }))
       .unwrap()
       .then(() => {
-        toast.success("Registration successful!", { duration: 2500 });
+        toast.success("Registration successful!", { duration: 2500 },{style:{zIndex:9999}});
         resetForm();
       })
       .catch((error) => {
