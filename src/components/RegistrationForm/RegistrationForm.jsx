@@ -61,14 +61,12 @@ export const RegistrationForm = () => {
         const message = error?.message || error;
 
         if (message.includes("409") || message.includes("Conflict")) {
-          toast.error("User with this email already exists.", { duration: 2500 });
-        } else if (message.includes("400")) {
-          toast.error("Invalid input data. Please check your fields.", { duration: 2500 });
-        } else if (message.includes("401")) {
-          toast.error("Unauthorized action.", { duration: 2500 });
-        } else if (message.includes("500")) {
-          toast.error("Server error. Please try again later.", { duration: 2500 });
-        } else {
+          toast.error("User with this email already exists.", { duration: 2000 });
+        }
+        else if (message.includes("500") || message.includes("Internal Server Error")) {
+          toast.error("Internal Server Error. Please try again later.", { duration: 2500 });
+        }
+         else {
           toast.error("Registration failed. Please try again.", { duration: 2500 });
         }
       });
@@ -123,6 +121,15 @@ export const RegistrationForm = () => {
                 <ErrorMessage name="password" component="div" className={css.error} />
               </label>
 
+              <label className={css.label}>
+                Confirm Password
+                <Field type="password" name="confirmPassword" className={css.input} />
+                <ErrorMessage
+                  name="confirmPassword"
+                  component="div"
+                  className={css.error}
+                />
+              </label>
               {/* Password strength bar */}
               <div
                 aria-live="polite"
@@ -167,16 +174,6 @@ export const RegistrationForm = () => {
                   {label}
                 </div>
               </div>
-
-              <label className={css.label}>
-                Confirm Password
-                <Field type="password" name="confirmPassword" className={css.input} />
-                <ErrorMessage
-                  name="confirmPassword"
-                  component="div"
-                  className={css.error}
-                />
-              </label>
 
               <button type="submit" className={css.button}>
                 Register
