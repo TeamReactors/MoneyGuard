@@ -100,7 +100,7 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
         );
       })
       .catch(() => {
-        toast.error("Failed to update transaction", { duration: 2000 });
+        toast.error("Failed to update transaction", { duration: 2000 }); // ozanım çok teşekkürler verceli bozdun
       });
     onCancel();
   };

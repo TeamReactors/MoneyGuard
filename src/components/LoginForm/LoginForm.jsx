@@ -25,6 +25,7 @@ const LoginForm = () => {
 
   const handleSubmit = (values, actions) => {
     dispatch(logIn(values))
+      .unwrap()
       .then(() => {
         toast.success("Login Successfull", { duration: 2000 },{style:{zIndex:9999}});
       })
