@@ -24,7 +24,7 @@ const initialState = {
   categories: {
     items: []
   },
-  date: { month: 1, year: 2020 },
+  date: {},
 };
 
 const handlePending = (state) => {

@@ -1,6 +1,7 @@
 import css from "./StatisticsDashboard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { changeDate } from "../../redux/transactions/slice";
+import { useEffect } from "react";
 
 function StatisticsDashboard() {
   const months = [
@@ -23,6 +24,16 @@ function StatisticsDashboard() {
   const dispatch = useDispatch();
   const date = useSelector((state) => state.transactions.date);
 
+  useEffect(() => {
+    const now = new Date();
+    dispatch(
+      changeDate({
+        month: now.getMonth() + 1,
+        year: now.getFullYear(),
+      })
+    );
+  }, []);
+
   const handleMonthChange = (event) => {
     dispatch(
       changeDate({
@@ -38,14 +49,18 @@ function StatisticsDashboard() {
 
   return (
     <div className={css.date}>
-      <select className={css.box} onChange={handleMonthChange}>
+      <select
+        value={months[date.month - 1]}
+        className={css.box}
+        onChange={handleMonthChange}
+      >
         {months.map((month) => (
           <option className={css.option} value={month}>
             {month}
           </option>
         ))}
       </select>
-      <select className={css.box} onChange={handleYearChange}>
+      <select value={date.year} className={css.box} onChange={handleYearChange}>
         {years.map((year) => (
           <option className={css.option} value={year}>
             {year}
