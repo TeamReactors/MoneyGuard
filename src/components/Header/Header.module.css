@@ -20,7 +20,19 @@
   margin: 0 auto;
   position: relative;
 }
-
+.closeButton{
+  position: absolute;
+  top: -21px;
+  right: -13px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: clamp(18px, 4vw, 24px);
+  cursor: pointer;
+  padding: clamp(4px, 1vw, 8px);
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
 
 .logo {
   display: flex;
