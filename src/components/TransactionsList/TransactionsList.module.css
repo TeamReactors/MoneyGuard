@@ -173,7 +173,7 @@
 
 	/* align specific columns */
 	.transactionTable td:nth-child(1), .transactionTable th:nth-child(1) {
-    text-align: left; /* Date */
+    text-align: center; /* Date column center */
   }
 	.transactionTable td:nth-child(2), .transactionTable th:nth-child(2) {
 		text-align: center; /* Type */

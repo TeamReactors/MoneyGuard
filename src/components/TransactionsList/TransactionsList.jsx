@@ -171,10 +171,10 @@ const TransactionList = () => {
       ) : (
         <table className={`${css.transactionTable} ${css.scaledContainer}`}>
           <colgroup>
-            <col style={{ width: "16%" }} />
+            <col style={{ width: "13%" }} />
             <col style={{ width: "8%" }} />
             <col style={{ width: "16%" }} />
-            <col style={{ width: "25%" }} />
+            <col style={{ width: "28%" }} />
             <col style={{ width: "17%" }} />
             <col style={{ width: "18%" }} />
           </colgroup>
