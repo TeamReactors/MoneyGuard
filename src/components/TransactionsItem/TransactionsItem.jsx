@@ -11,6 +11,16 @@ import { useState } from "react";
 import ModalEditTransaction from "../ModalEditTransaction/ModalEditTransaction";
 import Toast from "react-hot-toast";
 
+function formatDateDMY(dateString) {
+  if (!dateString) return "";
+  const d = new Date(dateString);
+  if (isNaN(d)) return dateString;
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const year = String(d.getFullYear()).slice(-2);
+  return `${day}.${month}.${year}`;
+}
+
 const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
   const dispatch = useDispatch();
   const fallbackMobile = useMediaQuery({ maxWidth: 767.98 });
@@ -50,7 +60,9 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
           <div className={css.cardContent}>
             <div className={css.row}>
               <span className={css.label}>Date</span>
-              <span className={css.value}>{transaction.transactionDate}</span>
+              <span className={css.value}>
+                {formatDateDMY(transaction.transactionDate)}
+              </span>
             </div>
             <div className={css.row}>
               <span className={css.label}>Type</span>
@@ -91,7 +103,9 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
         </li>
       ) : (
         <tr className={css.tableRow}>
-          <td className={css.spanDate}>{transaction.transactionDate}</td>
+          <td className={css.spanDate}>
+            {formatDateDMY(transaction.transactionDate)}
+          </td>
           <td className={css.spanType}>{typeSymbol(transaction.type)}</td>
           <td className={css.spanCategory}>
             {transactionCategory(transaction.categoryId)}

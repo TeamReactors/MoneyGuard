@@ -19,6 +19,11 @@ const TransactionList = () => {
 
   const transactions = useSelector(selectTransactions);
 
+  // Sort transactions by date descending (newest first)
+  const sortedTransactions = [...transactions].sort(
+    (a, b) => new Date(b.transactionDate) - new Date(a.transactionDate)
+  );
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -35,7 +40,7 @@ const TransactionList = () => {
 
   return isMobile ? (
     <ul className={css.transactionList}>
-      {transactions.length === 0 && (
+      {sortedTransactions.length === 0 && (
         <li style={{ textAlign: "center", padding: "32px 16px" }}>
           <div
             style={{
@@ -75,7 +80,7 @@ const TransactionList = () => {
           </div>
         </li>
       )}
-      {transactions.map((transaction) => (
+      {sortedTransactions.map((transaction) => (
         <TransactionsItem
           key={transaction.id}
           transaction={transaction}
@@ -85,7 +90,7 @@ const TransactionList = () => {
     </ul>
   ) : (
     <div className={css.tableContainer}>
-      {transactions.length > 8 ? (
+      {sortedTransactions.length > 8 ? (
         <div className={css.scrollTableWrapper}>
           <table className={`${css.transactionTable} ${css.scaledContainer}`}>
             <colgroup>
@@ -106,7 +111,7 @@ const TransactionList = () => {
                 <th className={css.spanActions}></th>
               </tr>
             </thead>
-            {(!transactions || transactions.length === 0) && (
+            {(!sortedTransactions || sortedTransactions.length === 0) && (
               <tbody>
                 <tr>
                   <td
@@ -154,7 +159,7 @@ const TransactionList = () => {
               </tbody>
             )}
             <tbody>
-              {transactions.map((transaction) => (
+              {sortedTransactions.map((transaction) => (
                 <TransactionsItem
                   key={transaction.id}
                   transaction={transaction}
@@ -183,7 +188,7 @@ const TransactionList = () => {
               <th className={css.spanActions}></th>
             </tr>
           </thead>
-          {(!transactions || transactions.length === 0) && (
+          {(!sortedTransactions || sortedTransactions.length === 0) && (
             <tbody>
               <tr>
                 <td
@@ -231,7 +236,7 @@ const TransactionList = () => {
             </tbody>
           )}
           <tbody>
-            {transactions.map((transaction) => (
+            {sortedTransactions.map((transaction) => (
               <TransactionsItem
                 key={transaction.id}
                 transaction={transaction}
