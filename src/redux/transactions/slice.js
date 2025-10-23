@@ -19,8 +19,8 @@ const initialState = {
     incomeSummary: 0,
     expenseSummary: 0,
     periodTotal: 0,
-    year: null,
-    month: null,
+    year: 0,
+    month: 0,
   },
   categories: {
     items: [],

@@ -61,7 +61,7 @@ function Chart() {
           }
         })}
         <p className={css.centerText}>{transactionsSummaryData.periodTotal}</p>
-        <Doughnut
+        {transactionsSummaryData.year != 0 && <Doughnut
           data={dataset}
           options={{
             cutout: "70%",
@@ -72,7 +72,7 @@ function Chart() {
               tooltip: { enabled: hasData },
             },
           }}
-        />
+        />}
       </div>
     </div>
   );

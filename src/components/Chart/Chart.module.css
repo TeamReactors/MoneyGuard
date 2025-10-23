@@ -15,8 +15,9 @@
   font-size: 30px;
   color: white;
   position: absolute;
-  height: 280px;
-  width: 280px;
+  top: 160px;
+  left: 50px;
+  height: 32px;
+  width: 180px;
   text-align: center;
-  align-content: center;
 }
