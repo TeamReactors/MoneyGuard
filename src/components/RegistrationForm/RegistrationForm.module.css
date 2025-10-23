@@ -10,6 +10,7 @@
   background: radial-gradient(circle at 30% 30%, #2a006f 0%, #160038 60%, #0d0022 100%);
   background-image: url(../../assets/img/bg-register-desk@1x.webp);
   background-size: cover;
+  background-color: #2a006f;
 }
 
 /* Subtle purple glow behind the form */
