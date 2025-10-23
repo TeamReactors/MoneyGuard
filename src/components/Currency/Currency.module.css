@@ -9,8 +9,7 @@
 .currencyContainer {
     background-color: rgba(74, 86, 226, 0.1);
     color: #fff;
-    margin: 0 auto;
-
+    margin: 20px;
 }
 
 .currencyTable {
@@ -30,7 +29,7 @@
 }
 
 .currencyBody td {
-    padding: 8px 20px;
+    padding: 14px 20px;
     font-size: 0.875rem;
     text-align: center;
 }
@@ -87,9 +86,9 @@
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
-    /* .currencyContainer {
-        max-height: 214px;
-    } */
+    .currencyContainer {
+        margin: 0 auto;
+    }
 
     .ellipse1,
     .ellipse2,
@@ -104,6 +103,9 @@
 
 
 @media (min-width: 1280px) {
+    .currencyContainer {
+        margin: 0 auto;
+    }
     .CurrencyMobil {
         all: unset;
     }
