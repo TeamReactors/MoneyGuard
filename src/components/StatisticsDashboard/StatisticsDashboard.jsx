@@ -55,14 +55,14 @@ function StatisticsDashboard() {
         onChange={handleMonthChange}
       >
         {months.map((month) => (
-          <option key={month} className={css.option} value={month}>
+          <option className={css.option} value={month}>
             {month}
           </option>
         ))}
       </select>
       <select value={date.year} className={css.box} onChange={handleYearChange}>
         {years.map((year) => (
-          <option key={year} className={css.option} value={year}>
+          <option className={css.option} value={year}>
             {year}
           </option>
         ))}
