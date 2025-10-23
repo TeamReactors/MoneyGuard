@@ -19,9 +19,35 @@ function Chart() {
     (state) => state.transactions.transactionsSummary
   );
 
+  const hasData = transactionsSummaryData.categoriesSummary.length > 0;
+
   const data = [];
   const labels = [];
   const colors = [];
+
+  const dataset = hasData
+    ? {
+        labels: labels,
+        datasets: [
+          {
+            label: "Amount",
+            data: data,
+            borderWidth: 0,
+            backgroundColor: colors,
+          },
+        ],
+      }
+    : {
+        labels: ["No Data"],
+        datasets: [
+          {
+            data: [1],
+            backgroundColor: ["grey"],
+            borderWidth: 0,
+          },
+        ],
+      };
+
   colorSelect;
   return (
     <div>
@@ -36,23 +62,14 @@ function Chart() {
         })}
         <p className={css.centerText}>{transactionsSummaryData.periodTotal}</p>
         <Doughnut
-          data={{
-            labels: labels,
-            datasets: [
-              {
-                label: "Amount",
-                data: data,
-                borderWidth: 0,
-                backgroundColor: colors,
-              },
-            ],
-          }}
+          data={dataset}
           options={{
             cutout: "70%",
             plugins: {
               legend: {
                 display: false,
               },
+              tooltip: { enabled: hasData },
             },
           }}
         />
