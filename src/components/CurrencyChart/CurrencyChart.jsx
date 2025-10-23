@@ -46,18 +46,18 @@ export default function CurrencyChart() {
                 borderWidth: 2,
                 fill: false,
                 tension: 0.3,
-                pointRadius: 5,
-                pointHoverRadius: 7,
+                pointRadius: 7,
+                pointHoverRadius: 9,
                 pointBackgroundColor: 'rgba(57, 0, 150, 0.2)',
                 pointBorderColor: '#FF868D'
             },
             {
                 label: 'data',
                 data: [
-                    USDRateData[0].rateBuy - 1,
-                    EURRateData[0].rateBuy - 1,
-                    USDRateData[0].rateSell - 1,
-                    EURRateData[0].rateSell - 1
+                    USDRateData[0].rateBuy - 0.8,
+                    EURRateData[0].rateBuy - 0.8,
+                    USDRateData[0].rateSell - 0.8,
+                    EURRateData[0].rateSell - 0.8
                 ],
                 backgroundColor: function (context) {
                     const chart = context.chart;
