@@ -14,9 +14,7 @@ function StatisticsTable() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    if(date.year != undefined){
-      dispatch(transactionsSummary(date));
-    }
+    dispatch(transactionsSummary(date));
   }, [date]);
 
   colorSelect;
