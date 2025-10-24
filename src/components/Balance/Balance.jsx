@@ -26,7 +26,7 @@ const BalancePage = () => {
         <div className={styles.balanceAmount}>
           {balance !== null && balance !== undefined ? (
             <>
-              <FiDollarSign />{" "}
+              ${" "}
               {balance.toLocaleString("tr-TR", {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,

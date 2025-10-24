@@ -19,7 +19,7 @@ function Chart() {
     (state) => state.transactions.transactionsSummary
   );
 
-  const hasData = transactionsSummaryData.categoriesSummary.length > 0;
+  const hasData = transactionsSummaryData.expenseSummary < 0;
 
   const data = [];
   const labels = [];
@@ -60,7 +60,7 @@ function Chart() {
             colors.push(colorSelect(category.name));
           }
         })}
-        <p className={css.centerText}>{transactionsSummaryData.periodTotal}</p>
+        <p className={css.centerText}>$ {transactionsSummaryData.periodTotal}</p>
         {transactionsSummaryData.year != 0 && <Doughnut
           data={dataset}
           options={{
