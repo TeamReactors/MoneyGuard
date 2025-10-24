@@ -62,11 +62,9 @@ export const RegistrationForm = () => {
 
         if (message.includes("409") || message.includes("Conflict")) {
           toast.error("User with this email already exists.", { duration: 2000 });
-        }
-        else if (message.includes("500") || message.includes("Internal Server Error")) {
+        }else if (message.includes("500") || message.includes("Internal Server Error")) {
           toast.error("Internal Server Error. Please try again later.", { duration: 2500 });
-        }
-         else {
+        }else {
           toast.error("Registration failed. Please try again.", { duration: 2500 });
         }
       });
