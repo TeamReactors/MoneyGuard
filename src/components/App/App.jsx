@@ -2,7 +2,7 @@ import { Suspense, lazy, useEffect } from "react";
 import styles from "./App.module.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import RestrictedRoute from "../RestrictedRoute";
-import StatisticsTab from "../../pages/StatisticsTab";
+import StatisticPage from "../../pages/StatisticPage/StatisticPage";
 import PrivateRoute from "../PrivateRoute";
 import Loader from "../Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
@@ -65,7 +65,7 @@ function App() {
           <Route
             path="/statistics"
             element={
-              <PrivateRoute redirectTo="/login" component={<StatisticsTab />} />
+              <PrivateRoute redirectTo="/login" component={<StatisticPage />} />
             }
             />
             

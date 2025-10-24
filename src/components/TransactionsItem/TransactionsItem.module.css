@@ -32,19 +32,19 @@
 }
 
 .label {
-	text-transform: lowercase;
+	text-transform: capitalize;
 	color: rgba(255,255,255,0.6);
-	font-size: 12px;
-	font-weight: 700;
+	font-size: 16px;
+	font-weight: 600;
 }
 
 .value {
 	color: #fff;
-	font-weight: 600;
+	font-weight: 400;
 }
 
 .sum {
-	font-weight: 700;
+	font-weight: 600;
 }
 
 .actions {
