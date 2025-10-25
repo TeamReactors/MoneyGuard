@@ -6,28 +6,9 @@ import Balance from '../../components/Balance/Balance.jsx';
 import ButtonAddTransactions from '../../components/ButtonAddTransactions/ButtonAddTransactions.jsx';
 import styles from './Dashboard.module.css';
 import TransactionList from '../../components/TransactionsList/TransactionsList.jsx';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const DashboardPage = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
   
- 
-  const getActiveTabFromUrl = () => {
-    if (location.pathname.includes('/statistics')) return 'statistics';
-    if (location.pathname.includes('/currency')) return 'currency';
-    return 'home';
-  };
-
-  const activeTab = getActiveTabFromUrl();
-
-  const handleTabChange = (tabName) => {
-    if (tabName === 'home') {
-      navigate('/dashboard');
-    } else {
-      navigate(`/dashboard/${tabName}`);
-    }
-  };
 
   return (
     <>
@@ -43,7 +24,7 @@ const DashboardPage = () => {
         <div className={styles.leftContainerDash}>
           <div className={styles.tabletdivDash}>
             <div>
-              <Navigation activeTab={activeTab} onTabChange={handleTabChange} />
+              <Navigation />
             </div>
             <Balance />
           </div>
