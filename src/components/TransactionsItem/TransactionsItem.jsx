@@ -1,61 +1,74 @@
-import { useDispatch, useSelector } from "react-redux";
-import { deleteTransaction, fetchCategories } from "../../redux/transactions/operations";
-import css from "./TransactionsItem.module.css";
-import { useMediaQuery } from "react-responsive";
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  typeSymbol,
-  transactionCategory,
-  sumColor,
-} from "../../utils/transactionUtils";
-import { useEffect, useState } from "react";
-import ModalEditTransaction from "../ModalEditTransaction/ModalEditTransaction";
-import Toast from "react-hot-toast";
-import { selectCategories } from "../../redux/transactions/selectors";
+  deleteTransaction,
+  fetchCategories,
+} from '../../redux/transactions/operations';
+import css from './TransactionsItem.module.css';
+import { useMediaQuery } from 'react-responsive';
+import { typeSymbol, sumColor } from '../../utils/transactionUtils';
+import { useEffect, useState } from 'react';
+import ModalEditTransaction from '../ModalEditTransaction/ModalEditTransaction';
+import Toast from 'react-hot-toast';
+import { selectCategories } from '../../redux/transactions/selectors';
+import ConfirmDeleteModal from '../ConfirmDeleteModal/ConfirmDeleteModal';
 
 function formatDateDMY(dateString) {
-  if (!dateString) return "";
+  if (!dateString) return '';
   const d = new Date(dateString);
   if (isNaN(d)) return dateString;
-  const day = String(d.getDate()).padStart(2, "0");
-  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
   const year = String(d.getFullYear()).slice(-2);
   return `${day}.${month}.${year}`;
 }
 
 const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
-  const categories = useSelector(selectCategories)
+  const categories = useSelector(selectCategories);
 
   const dispatch = useDispatch();
   const fallbackMobile = useMediaQuery({ maxWidth: 767.98 });
   const isMobile =
-    typeof isMobileProp === "boolean" ? isMobileProp : fallbackMobile;
-  
+    typeof isMobileProp === 'boolean' ? isMobileProp : fallbackMobile;
+
   useEffect(() => {
-    dispatch(fetchCategories())
-  },[dispatch])
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const openEdit = () => setIsEditOpen(true);
+  const closeEdit = () => setIsEditOpen(false);
+
+  const openDeleteModal = () => setIsDeleteModalOpen(true);
+  const closeDeleteModal = () => setIsDeleteModalOpen(false);
 
   const handleDelete = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const confirmDelete = () => {
     dispatch(deleteTransaction(transaction.id))
       .unwrap()
       .then(() => {
-        Toast.success("Transaction deleted successfully", { duration: 2000 });
+        Toast.success('Transaction deleted successfully', { duration: 2000 });
+        setIsDeleteModalOpen(false);
       })
       .catch(() => {
-        Toast.error("Failed to delete transaction. Please try again.", {
+        Toast.error('Failed to delete transaction. Please try again.', {
           duration: 3000,
         });
+        setIsDeleteModalOpen(false);
       });
   };
-
-  const [isEditOpen, setIsEditOpen] = useState(false);
-  const openEdit = () => setIsEditOpen(true);
-  const closeEdit = () => setIsEditOpen(false);
 
   const amount = Number(transaction.amount || 0).toLocaleString(undefined, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
-  const newCategory = categories.filter(categorie=> categorie.categoryId === transaction.categoryId) 
+  const newCategory = categories.filter(
+    category => category.id === transaction.categoryId
+  );
 
   return (
     <>
@@ -79,7 +92,7 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
             <div className={css.row}>
               <span className={css.label}>Category</span>
               <span className={css.value}>
-                {newCategory.name}
+                {newCategory[0]?.name || 'Unknown'}
               </span>
             </div>
             <div className={css.row}>
@@ -116,7 +129,7 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
           </td>
           <td className={css.spanType}>{typeSymbol(transaction.type)}</td>
           <td className={css.spanCategory}>
-            {transactionCategory(transaction.categoryId)}
+            {newCategory[0]?.name || 'Unknown'}
           </td>
           <td className={css.spanComment}>{transaction.comment}</td>
           <td
@@ -148,6 +161,11 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
           onClose={closeEdit}
         />
       )}
+      <ConfirmDeleteModal
+        isOpen={isDeleteModalOpen}
+        onConfirm={confirmDelete}
+        onCancel={closeDeleteModal}
+      />
     </>
   );
 };
