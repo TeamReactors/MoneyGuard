@@ -8,6 +8,7 @@ import { isLessThanOneHour } from '../../utils/timeUtils.js';
 import CurrencyChart from '../CurrencyChart/CurrencyChart.jsx';
 import css from './Currency.module.css';
 import Loader from '../Loader/Loader.jsx';
+import Navigation from '../Navigation/Navigation.jsx';
 
 const Currency = () => {
     const [currency, setCurrency] = useState([]);
@@ -42,35 +43,35 @@ const Currency = () => {
 
     return (
         <div className={css.CurrencyMobil}>
-       
-             <div className= {css.ellipse5}></div>
-              <div className={css.ellipse2}></div>
-              <div className={css.ellipse1}></div>
-        <div className={css.currencyContainer}>
-            
-            <table className={css.currencyTable}>
-                <thead className={css.currencyHeader}>
-                    <tr className={css.currencyRow}>
-                        <th>Currency</th>
-                        <th>Purchase</th>
-                        <th>Sale</th>
-                    </tr>
-                </thead>
-                <tbody className={css.currencyBody}>
-                    {currency.map((item) => (
-                        <tr key={item.currencyCodeA}>
-                            <td>{item.currencyCodeA === 840 ? 'USD' : 'EUR'}</td>
-                            <td>{item.rateBuy.toFixed(2)}</td>
-                            <td>{item.rateSell.toFixed(2)}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div className={css.navigation}><Navigation /></div>
+            <div className={css.ellipse5}></div>
+            <div className={css.ellipse2}></div>
+            <div className={css.ellipse1}></div>
+            <div className={css.currencyContainer}>
 
-            <CurrencyChart data={currency} />
+                <table className={css.currencyTable}>
+                    <thead className={css.currencyHeader}>
+                        <tr className={css.currencyRow}>
+                            <th>Currency</th>
+                            <th>Purchase</th>
+                            <th>Sale</th>
+                        </tr>
+                    </thead>
+                    <tbody className={css.currencyBody}>
+                        {currency.map((item) => (
+                            <tr key={item.currencyCodeA}>
+                                <td>{item.currencyCodeA === 840 ? 'USD' : 'EUR'}</td>
+                                <td>{item.rateBuy.toFixed(2)}</td>
+                                <td>{item.rateSell.toFixed(2)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+
+                <CurrencyChart data={currency} />
+            </div>
         </div>
-        </div>
-        
+
     );
 }
 export default Currency;
