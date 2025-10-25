@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import DatePicker from "react-datepicker";
-import toast from "react-hot-toast";
-import "react-datepicker/dist/react-datepicker.css";
-import styles from "./AddTransactionForm.module.css";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import DatePicker from 'react-datepicker';
+import toast from 'react-hot-toast';
+import 'react-datepicker/dist/react-datepicker.css';
+import styles from './AddTransactionForm.module.css';
 import {
   createTransaction,
   fetchCategories,
-} from "../../redux/transactions/operations";
-import { selectCategories } from "../../redux/transactions/selectors";
-import "../../index.css";
+} from '../../redux/transactions/operations';
+import { selectCategories } from '../../redux/transactions/selectors';
+import '../../index.css';
 
 const AddTransactionForm = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -21,37 +21,37 @@ const AddTransactionForm = ({ onClose }) => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  const [type, setType] = useState("INCOME");
+  const [type, setType] = useState('INCOME');
   const [date, setDate] = useState(new Date());
 
   const formik = useFormik({
     initialValues: {
-      categoryId: "",
-      comment: "",
-      amount: "",
+      categoryId: categories[0]?.id || '',
+      comment: '',
+      amount: '',
     },
     validationSchema: Yup.object({
       categoryId: Yup.string().when([], {
-        is: () => type === "EXPENSE",
-        then: (schema) => schema.required("Category is required"),
+        is: () => type === 'EXPENSE',
+        then: schema => schema.required('Category is required'),
       }),
       amount: Yup.number()
-        .typeError("Enter a valid number")
-        .positive("Amount must be positive")
-        .required("Amount is required"),
-      comment: Yup.string().max(100, "Max 100 characters"),
+        .typeError('Enter a valid number')
+        .positive('Amount must be positive')
+        .required('Amount is required'),
+      comment: Yup.string().max(100, 'Max 100 characters'),
     }),
-    onSubmit: (values) => {
-      const formatDate = (d) => {
+    onSubmit: values => {
+      const formatDate = d => {
         const y = d.getFullYear();
-        const m = String(d.getMonth() + 1).padStart(2, "0");
-        const day = String(d.getDate()).padStart(2, "0");
+        const m = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
         return `${y}-${m}-${day}`;
       };
-      if (type === "INCOME") {
-        values.categoryId = "063f1132-ba5d-42b4-951d-44011ca46262";
+      if (type === 'INCOME') {
+        values.categoryId = '063f1132-ba5d-42b4-951d-44011ca46262';
       }
-      if (type === "EXPENSE") {
+      if (type === 'EXPENSE') {
         values.amount = -values.amount;
       }
 
@@ -65,14 +65,14 @@ const AddTransactionForm = ({ onClose }) => {
         .unwrap()
         .then(() => {
           toast.success(
-            "Transaction added successfully",
+            'Transaction added successfully',
             { duration: 2000 },
             { style: { zIndex: 9999 } }
           );
         })
         .catch(() => {
           toast.error(
-            "Failed to add transaction. Please try again.",
+            'Failed to add transaction. Please try again.',
             { duration: 2000 },
             { style: { zIndex: 9999 } }
           );
@@ -89,7 +89,7 @@ const AddTransactionForm = ({ onClose }) => {
       <div className={styles.toggleContainer}>
         <span
           className={`${styles.toggleLabel} ${styles.income} ${
-            type === "INCOME" ? styles.active : ""
+            type === 'INCOME' ? styles.active : ''
           }`}
         >
           Income
@@ -98,15 +98,15 @@ const AddTransactionForm = ({ onClose }) => {
         <label className={styles.switch}>
           <input
             type="checkbox"
-            checked={type === "EXPENSE"}
-            onChange={() => setType(type === "INCOME" ? "EXPENSE" : "INCOME")}
+            checked={type === 'EXPENSE'}
+            onChange={() => setType(type === 'INCOME' ? 'EXPENSE' : 'INCOME')}
           />
           <span className={styles.slider}></span>
         </label>
 
         <span
           className={`${styles.toggleLabel} ${styles.expense} ${
-            type === "EXPENSE" ? styles.active : ""
+            type === 'EXPENSE' ? styles.active : ''
           }`}
         >
           Expense
@@ -114,7 +114,7 @@ const AddTransactionForm = ({ onClose }) => {
       </div>
 
       {/* kategori (yalnızca gider için) */}
-      {type === "EXPENSE" && (
+      {type === 'EXPENSE' && (
         <select
           name="categoryId"
           value={formik.values.categoryId}
@@ -122,7 +122,7 @@ const AddTransactionForm = ({ onClose }) => {
           onBlur={formik.handleBlur}
           className={styles.categorySelect}
         >
-          {categories.map((category) => (
+          {categories.map(category => (
             <option key={category.id} value={category.id}>
               {category.name}
             </option>
@@ -146,7 +146,7 @@ const AddTransactionForm = ({ onClose }) => {
         />
         <DatePicker
           selected={date}
-          onChange={(selectedDate) => setDate(selectedDate)}
+          onChange={selectedDate => setDate(selectedDate)}
           dateFormat="dd.MM.yyyy"
           className={styles.datePicker}
         />
@@ -171,13 +171,13 @@ const AddTransactionForm = ({ onClose }) => {
 
       {/* Butonlar */}
       <div className={styles.buttonGroup}>
-        <button type="submit" className={styles.addButton + " buttonEffect"}>
+        <button type="submit" className={styles.addButton + ' buttonEffect'}>
           ADD
         </button>
         <button
           type="button"
           onClick={onClose}
-          className={styles.cancelButton + " buttonEffect"}
+          className={styles.cancelButton + ' buttonEffect'}
         >
           CANCEL
         </button>
