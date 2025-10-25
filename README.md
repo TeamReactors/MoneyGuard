@@ -141,7 +141,7 @@ Made with ❤️ by TeamReactors.
 - [GitHub Team](https://github.com/TeamReactors)
 - For questions, contact us via
   [issues](https://github.com/TeamReactors/MoneyGuard/issues) or email:
-  teamreactors@gmail.com
+  https://discord.gg/79edTz5EuF
 
 ---
 
