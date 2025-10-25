@@ -1,26 +1,26 @@
-import Header from "../../components/Header/Header.jsx";
-import Currency from "../../components/Currency/Currency.jsx";
-import Navigation from "../../components/Navigation/Navigation.jsx";
-import Balance from "../../components/Balance/Balance.jsx";
-import styles from "../Dashboard/Dashboard.module.css";
-import { useLocation, useNavigate } from "react-router-dom";
-import StatisticsTab from "../StatisticsTab.jsx";
+import Header from '../../components/Header/Header.jsx';
+import Currency from '../../components/Currency/Currency.jsx';
+import Navigation from '../../components/Navigation/Navigation.jsx';
+import Balance from '../../components/Balance/Balance.jsx';
+import styles from '../Dashboard/Dashboard.module.css';
+import { useLocation, useNavigate } from 'react-router-dom';
+import StatisticsTab from '../StatisticsTab.jsx';
 
 const StatisticPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const getActiveTabFromUrl = () => {
-    if (location.pathname.includes("/statistics")) return "statistics";
-    if (location.pathname.includes("/currency")) return "currency";
-    return "home";
+    if (location.pathname.includes('/statistics')) return 'statistics';
+    if (location.pathname.includes('/currency')) return 'currency';
+    return 'home';
   };
 
   const activeTab = getActiveTabFromUrl();
 
-  const handleTabChange = (tabName) => {
-    if (tabName === "home") {
-      navigate("/dashboard");
+  const handleTabChange = tabName => {
+    if (tabName === 'home') {
+      navigate('/dashboard');
     } else {
       navigate(`/dashboard/${tabName}`);
     }
@@ -47,7 +47,7 @@ const StatisticPage = () => {
               <Balance />
             </div>
 
-            {!location.pathname.includes("currency") && (
+            {!location.pathname.includes('currency') && (
               <div className={styles.CurrencyDash}>
                 <Currency />
               </div>
