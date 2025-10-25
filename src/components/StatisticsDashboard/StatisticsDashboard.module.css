@@ -72,4 +72,8 @@
     flex-direction: row;
     gap: 24px;
   }
+
+  .container{
+    width: 715px;
+  }
 }
