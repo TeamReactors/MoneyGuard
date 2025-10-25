@@ -89,7 +89,9 @@
     .currencyContainer {
         margin: 0 auto;
     }
-
+    .navigation{
+        display: none;
+    }
     .ellipse1,
     .ellipse2,
     .ellipse5 {
@@ -109,4 +111,7 @@
     .CurrencyMobil {
         all: unset;
     }
+          .navigation {
+              display: none;
+          }
 }
