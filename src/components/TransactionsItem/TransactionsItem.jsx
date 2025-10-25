@@ -97,7 +97,9 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
             </div>
             <div className={css.row}>
               <span className={css.label}>Comment</span>
-              <span className={css.value}>{transaction.comment}</span>
+              <span className={css.value} title={transaction.comment}>
+                {transaction.comment.trim() === '' ? '⛔' : transaction.comment}
+              </span>
             </div>
             <div className={css.row}>
               <span className={css.label}>Sum</span>
@@ -131,7 +133,9 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
           <td className={css.spanCategory}>
             {newCategory[0]?.name || 'Unknown'}
           </td>
-          <td className={css.spanComment}>{transaction.comment}</td>
+          <td className={css.spanComment} title={transaction.comment}>
+            {transaction.comment.trim() === '' ? '⛔' : transaction.comment}
+          </td>
           <td
             className={css.spanSum}
             style={{ color: sumColor(transaction.type) }}
