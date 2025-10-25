@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="src/assets/img/logo.png" alt="MoneyGuard Logo" width="120" />
+  <img src="src/assets/img/logo.jpg" alt="MoneyGuard Logo" width="120" />
   <h1>MoneyGuard</h1>
   <p><strong>The Ultimate Personal Finance Tracker</strong></p>
   <p>
