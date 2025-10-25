@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef,useCallback } from 'react';
 import css from './ConfirmDeleteModal.module.css';
 
 const ConfirmDeleteModal = ({ isOpen, onConfirm, onCancel }) => {
@@ -15,11 +15,14 @@ const ConfirmDeleteModal = ({ isOpen, onConfirm, onCancel }) => {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onCancel]);
 
-  const handleOverlayClick = e => {
-    if (e.target === e.currentTarget) {
-      onCancel();
-    }
-  };
+  const handleOverlayClick = useCallback(
+      (event) => {
+        if (event.target === event.currentTarget) {
+          onCancel();
+        }
+      },
+      [onCancel]
+    );
 
   if (!isOpen) return null;
   return (

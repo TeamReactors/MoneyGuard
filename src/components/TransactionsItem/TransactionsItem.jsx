@@ -1,4 +1,5 @@
 import React,{useMemo} from 'react';
+import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import {
   deleteTransaction,
@@ -41,6 +42,7 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
   const openEdit = () => setIsEditOpen(true);
   const closeEdit = () => setIsEditOpen(false);
 
+  const openDeleteModal = ()=> setIsDeleteModalOpen(true);
   const closeDeleteModal = () => setIsDeleteModalOpen(false);
 
   const handleDelete = () => {
@@ -170,11 +172,16 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
           onClose={closeEdit}
         />
       )}
-      <ConfirmDeleteModal
-        isOpen={isDeleteModalOpen}
+      {
+        isDeleteModalOpen && ReactDOM.createPortal(
+          <ConfirmDeleteModal
+        isOpen={openDeleteModal}
         onConfirm={confirmDelete}
         onCancel={closeDeleteModal}
-      />
+      />,document.body
+        )
+      }
+      
     </>
   );
 };
