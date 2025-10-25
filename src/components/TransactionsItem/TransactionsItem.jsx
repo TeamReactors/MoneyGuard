@@ -1,3 +1,4 @@
+import React,{useMemo} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   deleteTransaction,
@@ -40,7 +41,6 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
   const openEdit = () => setIsEditOpen(true);
   const closeEdit = () => setIsEditOpen(false);
 
-  const openDeleteModal = () => setIsDeleteModalOpen(true);
   const closeDeleteModal = () => setIsDeleteModalOpen(false);
 
   const handleDelete = () => {
@@ -62,13 +62,18 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
       });
   };
 
-  const amount = Number(transaction.amount || 0).toLocaleString(undefined, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-  const newCategory = categories.filter(
-    category => category.id === transaction.categoryId
+  const amount = useMemo(
+    () =>
+      Number(transaction.amount || 0).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }),
+    [transaction.amount]
   );
+  const categoryName = useMemo(() => {
+    const c = (categories || []).find((cat) => cat.id === transaction.categoryId);
+    return c?.name || "Unknown";
+  }, [categories, transaction.categoryId]);
 
   return (
     <>
@@ -92,7 +97,7 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
             <div className={css.row}>
               <span className={css.label}>Category</span>
               <span className={css.value}>
-                {newCategory[0]?.name || 'Unknown'}
+                {categoryName}
               </span>
             </div>
             <div className={css.row}>
@@ -131,7 +136,7 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
           </td>
           <td className={css.spanType}>{typeSymbol(transaction.type)}</td>
           <td className={css.spanCategory}>
-            {newCategory[0]?.name || 'Unknown'}
+            {categoryName}
           </td>
           <td className={css.spanComment} title={transaction.comment}>
             {transaction.comment.trim() === '' ? '⛔' : transaction.comment}
@@ -174,4 +179,4 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
   );
 };
 
-export default TransactionsItem;
+export default React.memo(TransactionsItem);

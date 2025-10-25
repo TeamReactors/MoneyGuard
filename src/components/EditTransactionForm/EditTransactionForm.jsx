@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect,useMemo } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,6 +37,17 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
+  const memoDefaultValues = useMemo(() => {
+    return {
+      ...transactionData,
+      date: transactionData?.transactionDate ? new Date(transactionData.transactionDate) : new Date(),
+      categoryId: transactionData?.categoryId || transactionData?.category || "",
+      type: transactionData?.type || "INCOME",
+      amount: transactionData?.amount != null ? Math.abs(Number(transactionData.amount)) : "",
+      comment: transactionData?.comment || "",
+    };
+  }, [transactionData]);
+
   const {
     register,
     handleSubmit,
@@ -45,21 +56,7 @@ const EditTransactionForm = ({ transactionData, onCancel }) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: {
-      ...transactionData,
-      date: transactionData?.transactionDate
-        ? new Date(transactionData.transactionDate)
-        : transactionData?.date
-        ? new Date(transactionData.date)
-        : new Date(),
-      categoryId:
-        transactionData?.categoryId || transactionData?.category || "",
-      type: transactionData?.type || "INCOME",
-      amount:
-        transactionData?.amount != null
-          ? Math.abs(Number(transactionData.amount))
-          : "",
-    },
+    defaultValues: memoDefaultValues,
   });
 
   const type = watch("type"); // stays as initial transaction type

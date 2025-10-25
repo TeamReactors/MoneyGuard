@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTransactions } from "../../redux/transactions/selectors";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
@@ -19,10 +19,18 @@ const TransactionList = () => {
 
   const transactions = useSelector(selectTransactions);
 
-  // Sort transactions by date descending (newest first)
-  const sortedTransactions = [...transactions].sort(
-    (a, b) => new Date(b.transactionDate) - new Date(a.transactionDate)
+  const sortedTransactions = useMemo(
+    () =>
+      [...(transactions || [])].sort(
+        (a, b) => new Date(b.transactionDate) - new Date(a.transactionDate)
+      ),
+    [transactions]
   );
+
+  // Sort transactions by date descending (newest first)
+  // const sortedTransactions = [...transactions].sort(
+  //   (a, b) => new Date(b.transactionDate) - new Date(a.transactionDate)
+  // );
 
   const openModal = () => {
     setIsModalOpen(true);
