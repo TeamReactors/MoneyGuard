@@ -1,5 +1,5 @@
-import { useDispatch } from "react-redux";
-import { deleteTransaction } from "../../redux/transactions/operations";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTransaction, fetchCategories } from "../../redux/transactions/operations";
 import css from "./TransactionsItem.module.css";
 import { useMediaQuery } from "react-responsive";
 import {
@@ -7,9 +7,10 @@ import {
   transactionCategory,
   sumColor,
 } from "../../utils/transactionUtils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalEditTransaction from "../ModalEditTransaction/ModalEditTransaction";
 import Toast from "react-hot-toast";
+import { selectCategories } from "../../redux/transactions/selectors";
 
 function formatDateDMY(dateString) {
   if (!dateString) return "";
@@ -22,10 +23,16 @@ function formatDateDMY(dateString) {
 }
 
 const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
+  const categories = useSelector(selectCategories)
+
   const dispatch = useDispatch();
   const fallbackMobile = useMediaQuery({ maxWidth: 767.98 });
   const isMobile =
     typeof isMobileProp === "boolean" ? isMobileProp : fallbackMobile;
+  
+  useEffect(() => {
+    dispatch(fetchCategories())
+  },[dispatch])
 
   const handleDelete = () => {
     dispatch(deleteTransaction(transaction.id))
@@ -48,6 +55,7 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
+  const newCategory = categories.filter(categorie=> categorie.categoryId === transaction.categoryId) 
 
   return (
     <>
@@ -71,7 +79,7 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
             <div className={css.row}>
               <span className={css.label}>Category</span>
               <span className={css.value}>
-                {transactionCategory(transaction.categoryId)}
+                {newCategory.name}
               </span>
             </div>
             <div className={css.row}>
