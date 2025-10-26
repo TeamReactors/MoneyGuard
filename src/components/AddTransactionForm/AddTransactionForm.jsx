@@ -39,7 +39,7 @@ const AddTransactionForm = ({ onClose }) => {
         .typeError('Enter a valid number')
         .positive('Amount must be positive')
         .required('Amount is required'),
-      comment: Yup.string().max(100, 'Max 100 characters'),
+      comment: Yup.string().max(50, 'Max 50 characters'),
     }),
     onSubmit: values => {
       const formatDate = d => {
