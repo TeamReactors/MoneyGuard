@@ -29,6 +29,7 @@ const AddTransactionForm = ({ onClose }) => {
       categoryId: categories[0]?.id || '',
       comment: '',
       amount: '',
+      transactionDate: new Date(),
     },
     validationSchema: Yup.object({
       categoryId: Yup.string().when([], {
@@ -40,6 +41,9 @@ const AddTransactionForm = ({ onClose }) => {
         .positive('Amount must be positive')
         .required('Amount is required'),
       comment: Yup.string().max(50, 'Max 50 characters'),
+      transactionDate: Yup.date()
+        .required('Date is required')
+        .typeError('Date is required'),
     }),
     onSubmit: values => {
       const formatDate = d => {
@@ -56,7 +60,7 @@ const AddTransactionForm = ({ onClose }) => {
       }
 
       const newTransaction = {
-        transactionDate: formatDate(date),
+        transactionDate: formatDate(values.transactionDate),
         type,
         ...values,
       };
@@ -80,6 +84,11 @@ const AddTransactionForm = ({ onClose }) => {
       onClose();
     },
   });
+
+  // DatePicker ile formik'i senkronize et
+  const handleDateChange = selectedDate => {
+    formik.setFieldValue('transactionDate', selectedDate);
+  };
 
   return (
     <form onSubmit={formik.handleSubmit} className={styles.formContainer}>
@@ -145,14 +154,20 @@ const AddTransactionForm = ({ onClose }) => {
           className={styles.inputField}
         />
         <DatePicker
-          selected={date}
-          onChange={selectedDate => setDate(selectedDate)}
+          selected={formik.values.transactionDate}
+          onChange={handleDateChange}
           dateFormat="dd.MM.yyyy"
           className={styles.datePicker}
+          name="transactionDate"
+          onBlur={formik.handleBlur}
+          isClearable
         />
       </div>
       {formik.touched.amount && formik.errors.amount && (
         <div className={styles.error}>{formik.errors.amount}</div>
+      )}
+      {formik.touched.transactionDate && formik.errors.transactionDate && (
+        <div className={styles.error}>{formik.errors.transactionDate}</div>
       )}
 
       {/* Yorum bölümü */}

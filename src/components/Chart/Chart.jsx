@@ -5,18 +5,18 @@ import {
   Legend,
   CategoryScale,
   LinearScale,
-} from "chart.js";
-import { Doughnut } from "react-chartjs-2";
-import css from "./Chart.module.css";
-import { useSelector } from "react-redux";
+} from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+import css from './Chart.module.css';
+import { useSelector } from 'react-redux';
 
-import { colorSelect } from "../../utils/colorSelect";
+import { colorSelect } from '../../utils/colorSelect';
 
 ChartJS.register(CategoryScale, LinearScale, ArcElement, Tooltip, Legend);
 
 function Chart() {
   const transactionsSummaryData = useSelector(
-    (state) => state.transactions.transactionsSummary
+    state => state.transactions.transactionsSummary
   );
 
   const hasData = transactionsSummaryData.expenseSummary < 0;
@@ -30,7 +30,7 @@ function Chart() {
         labels: labels,
         datasets: [
           {
-            label: "Amount",
+            label: 'Amount',
             data: data,
             borderWidth: 0,
             backgroundColor: colors,
@@ -38,11 +38,11 @@ function Chart() {
         ],
       }
     : {
-        labels: ["No Data"],
+        labels: ['No Data'],
         datasets: [
           {
             data: [1],
-            backgroundColor: ["grey"],
+            backgroundColor: ['grey'],
             borderWidth: 0,
           },
         ],
@@ -53,26 +53,33 @@ function Chart() {
     <div>
       <div className={css.box}>
         <p className={css.title}>Statistics</p>
-        {transactionsSummaryData.categoriesSummary.map((category) => {
-          if (category.name != "Income") {
-            data.push(category.total);
+        {transactionsSummaryData.categoriesSummary.map(category => {
+          if (category.name != 'Income') {
+            // Harcamalar için negatif değeri pozitife çevir
+            const amount =
+              category.total < 0 ? Math.abs(category.total) : category.total;
+            data.push(amount);
             labels.push(category.name);
             colors.push(colorSelect(category.name));
           }
         })}
-        <p className={css.centerText}>$ {transactionsSummaryData.periodTotal}</p>
-        {transactionsSummaryData.year != 0 && <Doughnut
-          data={dataset}
-          options={{
-            cutout: "70%",
-            plugins: {
-              legend: {
-                display: false,
+        <p className={css.centerText}>
+          $ {transactionsSummaryData.periodTotal}
+        </p>
+        {transactionsSummaryData.year != 0 && (
+          <Doughnut
+            data={dataset}
+            options={{
+              cutout: '70%',
+              plugins: {
+                legend: {
+                  display: false,
+                },
+                tooltip: { enabled: hasData },
               },
-              tooltip: { enabled: hasData },
-            },
-          }}
-        />}
+            }}
+          />
+        )}
       </div>
     </div>
   );
