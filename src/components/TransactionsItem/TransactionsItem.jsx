@@ -1,5 +1,5 @@
-import React,{useMemo} from 'react';
-import ReactDOM from "react-dom";
+import React, { useMemo } from 'react';
+import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   deleteTransaction,
@@ -42,7 +42,7 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
   const openEdit = () => setIsEditOpen(true);
   const closeEdit = () => setIsEditOpen(false);
 
-  const openDeleteModal = ()=> setIsDeleteModalOpen(true);
+  const openDeleteModal = () => setIsDeleteModalOpen(true);
   const closeDeleteModal = () => setIsDeleteModalOpen(false);
 
   const handleDelete = () => {
@@ -73,8 +73,8 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
     [transaction.amount]
   );
   const categoryName = useMemo(() => {
-    const c = (categories || []).find((cat) => cat.id === transaction.categoryId);
-    return c?.name || "Unknown";
+    const c = (categories || []).find(cat => cat.id === transaction.categoryId);
+    return c?.name || 'Unknown';
   }, [categories, transaction.categoryId]);
 
   return (
@@ -98,13 +98,14 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
             </div>
             <div className={css.row}>
               <span className={css.label}>Category</span>
-              <span className={css.value}>
-                {categoryName}
-              </span>
+              <span className={css.value}>{categoryName}</span>
             </div>
             <div className={css.row}>
               <span className={css.label}>Comment</span>
-              <span className={css.value} title={transaction.comment}>
+              <span
+                className={css.value + ' ' + css.comment}
+                title={transaction.comment}
+              >
                 {transaction.comment.trim() === '' ? '⛔' : transaction.comment}
               </span>
             </div>
@@ -137,9 +138,7 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
             {formatDateDMY(transaction.transactionDate)}
           </td>
           <td className={css.spanType}>{typeSymbol(transaction.type)}</td>
-          <td className={css.spanCategory}>
-            {categoryName}
-          </td>
+          <td className={css.spanCategory}>{categoryName}</td>
           <td className={css.spanComment} title={transaction.comment}>
             {transaction.comment.trim() === '' ? '⛔' : transaction.comment}
           </td>
@@ -172,16 +171,15 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
           onClose={closeEdit}
         />
       )}
-      {
-        isDeleteModalOpen && ReactDOM.createPortal(
+      {isDeleteModalOpen &&
+        ReactDOM.createPortal(
           <ConfirmDeleteModal
-        isOpen={openDeleteModal}
-        onConfirm={confirmDelete}
-        onCancel={closeDeleteModal}
-      />,document.body
-        )
-      }
-      
+            isOpen={openDeleteModal}
+            onConfirm={confirmDelete}
+            onCancel={closeDeleteModal}
+          />,
+          document.body
+        )}
     </>
   );
 };
