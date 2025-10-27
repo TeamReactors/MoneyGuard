@@ -1,25 +1,25 @@
-import React, { useMemo } from 'react';
-import ReactDOM from 'react-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useMemo } from "react";
+import ReactDOM from "react-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   deleteTransaction,
   fetchCategories,
-} from '../../redux/transactions/operations';
-import css from './TransactionsItem.module.css';
-import { useMediaQuery } from 'react-responsive';
-import { typeSymbol, sumColor } from '../../utils/transactionUtils';
-import { useEffect, useState } from 'react';
-import ModalEditTransaction from '../ModalEditTransaction/ModalEditTransaction';
-import Toast from 'react-hot-toast';
-import { selectCategories } from '../../redux/transactions/selectors';
-import ConfirmDeleteModal from '../ConfirmDeleteModal/ConfirmDeleteModal';
+} from "../../redux/transactions/operations";
+import css from "./TransactionsItem.module.css";
+import { useMediaQuery } from "react-responsive";
+import { typeSymbol, sumColor } from "../../utils/transactionUtils";
+import { useEffect, useState } from "react";
+import ModalEditTransaction from "../ModalEditTransaction/ModalEditTransaction";
+import Toast from "react-hot-toast";
+import { selectCategories } from "../../redux/transactions/selectors";
+import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal";
 
 function formatDateDMY(dateString) {
-  if (!dateString) return '';
+  if (!dateString) return "";
   const d = new Date(dateString);
   if (isNaN(d)) return dateString;
-  const day = String(d.getDate()).padStart(2, '0');
-  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
   const year = String(d.getFullYear()).slice(-2);
   return `${day}.${month}.${year}`;
 }
@@ -30,7 +30,7 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
   const dispatch = useDispatch();
   const fallbackMobile = useMediaQuery({ maxWidth: 767.98 });
   const isMobile =
-    typeof isMobileProp === 'boolean' ? isMobileProp : fallbackMobile;
+    typeof isMobileProp === "boolean" ? isMobileProp : fallbackMobile;
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -53,11 +53,11 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
     dispatch(deleteTransaction(transaction.id))
       .unwrap()
       .then(() => {
-        Toast.success('Transaction deleted successfully', { duration: 2000 });
+        Toast.success("Transaction deleted successfully", { duration: 2000 });
         setIsDeleteModalOpen(false);
       })
       .catch(() => {
-        Toast.error('Failed to delete transaction. Please try again.', {
+        Toast.error("Failed to delete transaction. Please try again.", {
           duration: 3000,
         });
         setIsDeleteModalOpen(false);
@@ -73,8 +73,10 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
     [transaction.amount]
   );
   const categoryName = useMemo(() => {
-    const c = (categories || []).find(cat => cat.id === transaction.categoryId);
-    return c?.name || 'Unknown';
+    const c = (categories || []).find(
+      (cat) => cat.id === transaction.categoryId
+    );
+    return c?.name || "Unknown";
   }, [categories, transaction.categoryId]);
 
   return (
@@ -103,10 +105,12 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
             <div className={css.row}>
               <span className={css.label}>Comment</span>
               <span
-                className={css.value + ' ' + css.comment}
+                className={css.value + " " + css.comment}
                 title={transaction.comment}
               >
-                {transaction.comment.trim() === '' ? '⛔' : transaction.comment}
+                {transaction.comment.trim() === ""
+                  ? "❔️"
+                  : transaction.comment}
               </span>
             </div>
             <div className={css.row}>
@@ -140,7 +144,7 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
           <td className={css.spanType}>{typeSymbol(transaction.type)}</td>
           <td className={css.spanCategory}>{categoryName}</td>
           <td className={css.spanComment} title={transaction.comment}>
-            {transaction.comment.trim() === '' ? '⛔' : transaction.comment}
+            {transaction.comment.trim() === "" ? "❔️" : transaction.comment}
           </td>
           <td
             className={css.spanSum}

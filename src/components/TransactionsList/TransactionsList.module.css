@@ -144,8 +144,11 @@
 	}
 
 	.transactionTable thead th {
-		background: rgba(82, 59, 126, 0.6);
+		background: rgba(82, 59, 126, 1);
 		padding: 8px 12px;
+		position: sticky;
+		top: 0;
+		z-index: 2;
 	}
 
 	/* round the left and right ends of the header pill */

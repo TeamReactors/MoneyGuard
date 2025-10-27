@@ -1,0 +1,53 @@
+.filterContainer {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .filterContainer {
+    justify-content: flex-end;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-right: 0;
+  }
+}
+
+.filterBtn {
+  background: rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.7);
+  border: none;
+  border-radius: 18px;
+  padding: 8px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+  outline: none;
+}
+
+.filterBtn:hover,
+.filterBtn:focus {
+  transform: scale(1.06);
+  box-shadow: 0 4px 16px 0 rgba(158,64,186,0.13);
+  background: rgba(255,255,255,0.28);
+  color: #fff;
+}
+
+.filterBtn.active {
+  color: #fff;
+  box-shadow: 0 2px 12px 0 rgba(158,64,186,0.10);
+}
+
+.filterBtn.all.active {
+  background: linear-gradient(96.76deg, #7B61FF -16.42%, #4E21A8 97.04%);
+}
+.filterBtn.income.active {
+  background: linear-gradient(96.76deg, #FFC727 -16.42%, #FFD86F 97.04%);
+  color: #3A2B0C;
+}
+.filterBtn.expense.active {
+  background: linear-gradient(96.76deg, #FF6B6B -16.42%, #FF9472 97.04%);
+  color: #fff;
+}
