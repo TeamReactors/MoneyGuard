@@ -20,7 +20,6 @@ const TransactionList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const transactions = useSelector(selectTransactions);
-  const typeFilter = useSelector(selectTypeFilter);
 
   const sortedTransactions = useMemo(
     () =>
@@ -30,10 +29,14 @@ const TransactionList = () => {
     [transactions]
   );
 
-  const filteredTransactions =
-    typeFilter === "all"
-      ? sortedTransactions
-      : sortedTransactions.filter((t) => t.type === typeFilter.toUpperCase());
+  const typeFilter = useSelector(selectTypeFilter);
+  const filteredTransactions = useMemo(
+    () =>
+      typeFilter === "all"
+        ? sortedTransactions
+        : sortedTransactions.filter((t) => t.type === typeFilter.toUpperCase()),
+    [sortedTransactions, typeFilter]
+  );
 
   const openModal = () => {
     setIsModalOpen(true);

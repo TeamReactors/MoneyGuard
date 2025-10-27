@@ -66,12 +66,13 @@ const TransactionsItem = ({ transaction, isMobile: isMobileProp }) => {
 
   const amount = useMemo(
     () =>
-      Number(transaction.amount || 0).toLocaleString(undefined, {
+      Math.abs(Number(transaction.amount || 0)).toLocaleString(undefined, {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       }),
     [transaction.amount]
   );
+
   const categoryName = useMemo(() => {
     const c = (categories || []).find(
       (cat) => cat.id === transaction.categoryId
