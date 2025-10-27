@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTransactions } from "../../redux/transactions/selectors";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
@@ -51,6 +51,7 @@ const TransactionList = () => {
   };
 
   const isMobile = useMediaQuery({ maxWidth: 767.98 });
+  const scrollWrapperRef = useRef(null);
 
   return isMobile ? (
     <>
@@ -117,7 +118,7 @@ const TransactionList = () => {
         <TransactionsFilter />
       </div>
       {filteredTransactions.length > 8 ? (
-        <div className={css.scrollTableWrapper}>
+        <div className={css.scrollTableWrapper} ref={scrollWrapperRef}>
           <table className={`${css.transactionTable} ${css.scaledContainer}`}>
             <colgroup>
               <col style={{ width: "12%" }} />
@@ -127,7 +128,18 @@ const TransactionList = () => {
               <col style={{ width: "17%" }} />
               <col style={{ width: "18%" }} />
             </colgroup>
-            <thead className={css.tableHeader}>
+            <thead
+              className={css.tableHeader}
+              onClick={() => {
+                if (scrollWrapperRef.current) {
+                  scrollWrapperRef.current.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                }
+              }}
+              style={{ cursor: "pointer" }}
+            >
               <tr>
                 <th className={css.spanDate}>Date</th>
                 <th className={css.spanType}>Type</th>
