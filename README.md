@@ -140,8 +140,8 @@ Made with ❤️ by TeamReactors.
 
 - [GitHub Team](https://github.com/TeamReactors)
 - For questions, contact us via
-  [issues](https://github.com/TeamReactors/MoneyGuard/issues) or email:
-  https://discord.gg/79edTz5EuF
+  [issues](https://github.com/TeamReactors/MoneyGuard/issues) or 
+  [Discord](https://discord.gg/79edTz5EuF)
 
 ---
 
