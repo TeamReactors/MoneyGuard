@@ -1,4 +1,4 @@
-import { useEffect, useState,useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTransactions } from "../../redux/transactions/selectors";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
@@ -102,10 +102,10 @@ const TransactionList = () => {
         <div className={css.scrollTableWrapper}>
           <table className={`${css.transactionTable} ${css.scaledContainer}`}>
             <colgroup>
-              <col style={{ width: "13%" }} />
+              <col style={{ width: "12%" }} />
               <col style={{ width: "8%" }} />
-              <col style={{ width: "16%" }} />
-              <col style={{ width: "28%" }} />
+              <col style={{ width: "18%" }} />
+              <col style={{ width: "27%" }} />
               <col style={{ width: "17%" }} />
               <col style={{ width: "18%" }} />
             </colgroup>
@@ -179,10 +179,10 @@ const TransactionList = () => {
       ) : (
         <table className={`${css.transactionTable} ${css.scaledContainer}`}>
           <colgroup>
-            <col style={{ width: "13%" }} />
+            <col style={{ width: "12%" }} />
             <col style={{ width: "8%" }} />
-            <col style={{ width: "16%" }} />
-            <col style={{ width: "28%" }} />
+            <col style={{ width: "18%" }} />
+            <col style={{ width: "27%" }} />
             <col style={{ width: "17%" }} />
             <col style={{ width: "18%" }} />
           </colgroup>
